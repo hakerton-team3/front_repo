@@ -1,3 +1,4 @@
+// Section2.styled.js
 import styled, { createGlobalStyle } from 'styled-components';
 
 // Global style to include the custom font
@@ -13,62 +14,73 @@ export const GlobalStyle = createGlobalStyle`
 // Main container style
 export const MainContainer = styled.div`
   width: 100%;
-  height: 40vh;
   background-color: #FFCE4F;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  padding-bottom: 10%; /* Add this line to remove bottom padding */
+  margin-bottom: 0; /* Add this line to remove bottom margin */
 `;
 
 // Title style
 export const Title = styled.div`
-  font-family: 'chab';
-  font-size: 24px;
-  margin-bottom: 20px;
+  margin-top: 5%;
+  font-size: 12px;
 `;
 
-// Card container style with horizontal scroll
-export const CardContainer = styled.div`
-  display: flex;
-  gap: 20px;
+// Wrapper for horizontal scrolling
+export const ScrollWrapper = styled.div`
+  width: 90%;
   overflow-x: auto;
-  white-space: nowrap;
-  padding: 10px;
-  width: 150%;
-  
+  display: flex;
+  margin-top: 5%;
+  &::-webkit-scrollbar {
+    height: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
 `;
 
-// Individual card style
-export const Card = styled.div`
-    width: 150%; /* 너비를 100%로 설정 */
-  max-width: 100%; /* 최대 너비를 500px로 설정 */
-  height: 100%px;
+// Card container style
+export const CardContainer = styled.div`
+  min-width: 160px;
+  height: 150px;
   background-color: white;
-  border-radius: 20px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  display: flex; /* flex를 사용하여 내부 콘텐츠 정렬 */
-  flex-direction: column; /* 수직 정렬 */
-  align-items: start; /* 왼쪽 정렬 */
-  justify-content: center; /* 중앙 정렬 */
-  position: relative;
- 
-   
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 10%;
+  margin-right: 5%; /* Space between cards */
+  position: relative; /* Needed for the hole */
 `;
 
-// Card text style
-export const CardText = styled.div`
+export const ContainererText = styled.h1`
   font-family: 'chab';
-  font-size: 24px;
-  text-align: center;
+  color: black;
+  font-size: 38px;
+  text-align: left; /* Align text to the left */
+  padding-left: 10%; /* Add padding to the left */
+  
+  width: 100%; /* Make sure the text takes the full width of the container */
 `;
 
-// Hole style
+export const LongText = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
 export const Hole = styled.div`
   width: 20px;
   height: 20px;
   background-color: #FFCE4F;
-  border: 2px white;
+  border: 2px white ;
   border-radius: 50%;
   position: absolute;
   top: 10px;

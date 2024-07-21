@@ -24,7 +24,8 @@ export const BubbleContainer = styled.div`
   padding: 3% 3%;
   color: black;
   max-width: 65%;
-  margin: 20px;
+  margin: 5%;
+  font-size:10px;
 
   &::after {
     content: '';
