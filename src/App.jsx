@@ -5,6 +5,7 @@ import Home from './Home';
 import Community from './Community';
 import Calendar from './Calendar';
 import Statistics from './Statistics';
+import History from './History';
 
 const Nav = styled.nav`
   display: flex;
@@ -42,6 +43,7 @@ function App() {
         <Route path="/community" element={<Community />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/statistics" element={<Statistics />} />
+        <Route path="/history" element={<History />} />
       </Routes>
     </Router>
   );
