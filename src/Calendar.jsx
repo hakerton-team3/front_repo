@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import './Calendar.css';
 import moment from 'moment';
 import 'moment/locale/en-gb';
 
@@ -108,45 +108,50 @@ const CustomCalendar = () => {
               </div>
             </div>
           </div>
-
+          
           <div className="info-box">
-            <div>
-              <strong>{moment(value).format('YYYY년 M월 D일')}</strong>
-            </div>
-            <div>
-              <button className="memo-button" onClick={() => setShowMemoInput(!showMemoInput)}>
-                약속 메모 | 
-              </button>
-              {showMemoInput && (
-                <textarea
-                  value={memo}
-                  onChange={handleMemoChange}
-                  placeholder="메모를 입력하세요"
-                  rows={3}
-                />
-              )}
-            </div>
-            <div className='condition-box'>
-              <strong>오늘의 컨디션 정도</strong>
-              <div className="rating-container">
-                {[1, 2, 3, 4, 5].map(num => (
-                  <div
+            <div className="info-left">
+              <div>
+                <strong>{moment(value).format('YYYY년 M월 D일')}</strong>
+              </div>
+              <div>
+                <button className="memo-button" onClick={() => setShowMemoInput(!showMemoInput)}>
+                   약속 메모 | 
+                </button>
+                {showMemoInput && (
+                  <textarea
+                    value={memo}
+                    onChange={handleMemoChange}
+                    placeholder="메모를 입력하세요"
+                    rows={3}
+                  />
+                )}
+              </div>
+              <div className='condition-box'>
+                <strong>오늘의 컨디션 정도</strong>
+                <div className="rating-container">
+                  {[1, 2, 3, 4, 5].map(num => (
+                   <div
                     key={num}
                     className={`rating-circle ${rating === num ? 'selected' : ''}`}
                     onClick={() => setRating(num)}
                   ></div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
-            <div>
-              <strong>숫자 입력</strong>
-              <div className="number-container">
-                <button onClick={decreaseNumber} className="number-button">-</button>
-                <input type="text" value={numberValue.toFixed(1)} readOnly className="number-input" />
-                <button onClick={increaseNumber} className="number-button">+</button>
+            <div className="info-right">
+              <div>
+                <strong>숫자 입력</strong>
+                <div className="number-container">
+                  <button onClick={decreaseNumber} className="number-button">-</button>
+                  <input type="text" value={numberValue.toFixed(1)} readOnly className="number-input" />
+                  <button onClick={increaseNumber} className="number-button">+</button>
+                </div>
               </div>
             </div>
           </div>
+
           <button className="save-button" onClick={handleSave}>내용 저장하기</button>
         </div>
       )}

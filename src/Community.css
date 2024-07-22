@@ -1,7 +1,7 @@
 .community-container {
   position: relative;
   height: 100vh;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .background-image {
@@ -18,19 +18,19 @@
 }
 
 .foreground-image {
-  position: absolute;
-  top: 50%;
   left: 50%;
-  transform: translate(-55%, -145%);
+  transform: translateX(-50%);
+  position: absolute;
   width: 300px;
   height: 300px;
   background-image: url('../../../public/주다리리.png');
   background-size: contain;
   background-repeat: no-repeat;
-  z-index: 10;
+  margin-top: 5%;
 }
 
 .content {
+  margin-top: 55%;
   position: absolute;
   z-index: 20;
   text-align: center;
@@ -41,15 +41,14 @@
   border-radius: 10px;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 64%;
   width: 300px;
   height: 85px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.4);
 }
 
 .buttons {
+  margin-top: 95%;
   position: absolute;
-  bottom: 65px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -60,8 +59,6 @@
 
 .text-section {
   text-align: left;
-   
-  ;
 }
 
 .text-section p {
@@ -69,14 +66,13 @@
   color: black;
   font-size: 12px;
   font-style: italic;
-  margin-top: 10px;
+  margin-top: 5%;
 }
 
 .button {
   width: 300px;
   height: 60px;
   margin: 5px 0;
-  padding: 10px 20px;
   background-color: #ffce4f;
   color: black;
   border: none;
@@ -85,7 +81,6 @@
   font-weight: bold;
   cursor: pointer;
   outline: none;
-  margin-bottom: 15px;
 }
 
 .button:hover {
@@ -93,9 +88,9 @@
 }
 
 .notice {
+  margin-top: 220%;
+  position: relative;
   text-align: center;
-  position: absolute;
-  bottom: 10px; /* Adjust as necessary */
   left: 50%;
   transform: translateX(-50%);
   width: 90%; /* Adjust width as necessary */
