@@ -3,6 +3,7 @@ import * as S from './Section01.styled';
 import { FiSettings } from 'react-icons/fi';
 import sudolImage from '../images/sudol.png';
 
+
 const Section01 = () => {
   return (
     <S.MainWrap>
