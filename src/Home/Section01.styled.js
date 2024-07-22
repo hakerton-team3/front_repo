@@ -187,3 +187,23 @@ export const Image = styled.img`
   right: -40%; /* 부모 컨테이너의 오른쪽 밖으로 나가도록 설정 */
   bottom: -70%; /* 부모 컨테이너의 아래쪽 밖으로 나가도록 설정 */
 `;
+
+export const Button = styled.button`
+ width: 340px;
+  height: 60px;
+  background: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); /* 고쳐짐: 0.25로 수정 */
+  border-radius: 20px;
+  margin-top: 10%;
+  margin-left: 10%;
+  margin-bottom: 3%;
+  display: flex; /* 추가 */
+  align-items: center; /* 추가 */
+  justify-content: center; /* 추가 */
+  text-decoration: none; /* 링크 스타일 제거 */
+  color: inherit; /* 텍스트 색상 상속 */
+
+  &:hover {
+    background-color: #e0a800; /* 호버 시 배경색 */
+  }
+`;
