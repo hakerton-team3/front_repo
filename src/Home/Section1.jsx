@@ -1,10 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as S from './Section01.styled';
 import { FiSettings } from 'react-icons/fi';
-import sudolImage from '../images/sudol.png';
-
+import sudolImage from '../images/sudol.png'; 
 
 const Section01 = () => {
+  const navigate = useNavigate();
+
+  const handleEmergencyContactsClick = () => {
+    navigate('/emergency-contacts');
+  };
+
   return (
     <S.MainWrap>
       <S.GlobalStyle />
@@ -36,6 +42,9 @@ const Section01 = () => {
         <S.CustomLinkContainer to="/emergency-contacts">
           <S.LargeText>비상연락망</S.LargeText>
         </S.CustomLinkContainer>
+        
+        <S.Button onClick={handleEmergencyContactsClick}><S.LargeText>비상연락망</S.LargeText> </S.Button>
+        
         <S.Smalltitle>음주 약속 시간에 알람으로 가장 상단에 띄울 번호를 설정해주세요.</S.Smalltitle>
       </S.MainContainer>
     </S.MainWrap>

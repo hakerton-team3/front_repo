@@ -86,3 +86,181 @@ export const Hole = styled.div`
   top: 10px;
   right: 10px;
 `;
+
+
+export const ModalTitle = styled.div`
+  font-size: 40px;
+  color: #FFCE4F;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'chab';
+`;
+
+export const ModalTitle3 = styled.div`
+  font-size: 40px;
+  color: #FFCE4F;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 50px;
+  font-family: 'chab';
+`;
+
+export const ModalTitle6 = styled.div`
+  font-size: 40px;
+  color: #EF4444;
+  text-align: center;
+  font-weight: bold;
+`;
+
+export const ModalContent = styled.div`
+  font-size: 11px;
+  color: #000000;
+  text-align: center;
+`;
+
+export const CloseIcon = styled.img`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+`;
+
+export const BadgeImage = styled.img`
+  width: 75px;
+  height: 90px;
+  margin: 5px;
+`;
+
+export const BadgeContainer = styled.div`
+  display: flex;
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center;    /* 수직 가운데 정렬 (이미지 높이에 따라 조정 가능) */
+  flex-wrap: wrap;        /* 이미지가 컨테이너를 넘어가면 줄 바꿈 */
+  gap: 10px;              /* 이미지 간의 간격 */
+  margin-top: 20px;       /* 타이틀과 이미지 간의 간격 */
+`;
+
+export const Badge = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+`;
+
+export const BadgeText = styled.div`
+    font-size: 15px;
+    color: #555;
+    text-align: center;
+    margin-top: 5px;
+`;
+
+export const BorderedText = styled.div`
+  display: flex;
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center;    /* 수직 가운데 정렬 */
+  border: 2px solid #FFCE4F; /* 테두리 색상과 두께 */
+  border-radius: 12px; /* 둥근 모서리 */
+  padding: 10px; /* 텍스트와 테두리 사이의 여백 */
+  font-size: 16px; /* 텍스트 크기 */
+  color: #000000; /* 텍스트 색상 */
+  height: 30px;
+  background-color: #ffffff; /* 배경 색상 (선택 사항) */
+  margin-top: 30px;
+`;
+
+export const AppContainer = styled.div`
+  margin: 30px;
+`;
+
+export const GoalContainer = styled.div`
+  display: flex;
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center;    /* 수직 가운데 정렬 */
+  margin: 10px;
+`;
+
+export const GoalLabel = styled.label`
+  display: block;
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #000000;
+  font-weight: bold;
+  margin-right: 20px;
+  margin-top: 10px;
+`;
+
+export const GoalLabel2 = styled.label`
+  display: block;
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #000000;
+  font-weight: bold;
+  margin-right: 54px;
+  margin-top: 10px;
+`;
+
+export const GoalInput = styled.input`
+  width: 40%;
+  padding: 8px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  font-size: 16px;
+  border: none;
+  border: 2px solid #FFCE4F;
+  outline: none;
+`;
+
+export const Underline = styled.div`
+  width: 100%;
+  height: 0.2px;
+  background-color: #000;
+  margin-top: 10px;
+`;
+
+
+export const JudalImage = styled.img`
+  width: 350px;
+  height: 190px;
+  margin: 10px;
+`;
+
+export const JudalImage2 = styled.img`
+  width: 260px;
+  height: 140px;
+  margin-left: 50px;
+  margin-top: 10px;
+`;
+
+export const SubmitButton = styled.button`
+  background-color: #FFCE4F;
+  color: #000;
+  width: 355px;
+  height: 60px;
+  font-size: 16px; 
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 1px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center;    /* 수직 가운데 정렬 */
+  
+  &:hover {
+    background-color: #ffd710;
+  }
+`;
+
+export const GemjuContainer = styled.div`
+  color: #000;
+  display: flex;
+  justify-content: center; /* 수평 가운데 정렬 */
+  align-items: center;    /* 수직 가운데 정렬 */
+  `;
+
+export const H1 = styled.h1`
+    margin: 10px;
+    color: #EF4444;
+  `;

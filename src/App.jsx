@@ -24,6 +24,8 @@ const App = () => {
             <S.StyledLink to="/community">커뮤니티</S.StyledLink>
             <S.StyledLink to="/calendar">캘린더</S.StyledLink>
             <S.StyledLink to="/statistics">통계분석</S.StyledLink>
+           
+
           </S.Nav>
         </>
       )}
