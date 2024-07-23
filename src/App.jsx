@@ -8,6 +8,7 @@ import Statistics from './Statistics';
 import EmergencyContacts from './EmergencyContacts'; // 비상연락망 페이지 컴포넌트를 추가
 import LoginScreen from '../src/login/LoginScreen'; // 로그인 화면 컴포넌트를 추가
 import RegisterScreen from './login/RegisterScreen'; // 회원가입 화면 컴포넌트를 추가
+import Test from './mbti/test';//
 
 const App = () => {
   const location = useLocation();
@@ -24,8 +25,6 @@ const App = () => {
             <S.StyledLink to="/community">커뮤니티</S.StyledLink>
             <S.StyledLink to="/calendar">캘린더</S.StyledLink>
             <S.StyledLink to="/statistics">통계분석</S.StyledLink>
-           
-
           </S.Nav>
         </>
       )}
@@ -37,6 +36,7 @@ const App = () => {
         <Route path="/statistics" element={<Statistics />} />
         <Route path="/emergency-contacts" element={<EmergencyContacts />} /> {/* 비상연락망 페이지 라우트 추가 */}
         <Route path="/register" element={<RegisterScreen />} /> {/* 회원가입 페이지 라우트 추가 */}
+        <Route path='/test' element={<Test />} />
       </Routes>
     </S.Container>
   );

@@ -185,7 +185,7 @@ export const Image = styled.img`
   height: auto;
   position: absolute; /* 절대 위치 */
   right: -40%; /* 부모 컨테이너의 오른쪽 밖으로 나가도록 설정 */
-  bottom: -70%; /* 부모 컨테이너의 아래쪽 밖으로 나가도록 설정 */
+  bottom: -50%; /* 부모 컨테이너의 아래쪽 밖으로 나가도록 설정 */
 `;
 
 export const Button = styled.button`
