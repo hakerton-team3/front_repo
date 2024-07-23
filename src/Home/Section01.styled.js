@@ -29,6 +29,7 @@ export const MainContainer = styled.div`
   background-size: cover;
   background-position: center;
   overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: hidden;
 `;
  
 // Title style
@@ -194,7 +195,7 @@ export const Button = styled.button`
   background: white;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); /* 고쳐짐: 0.25로 수정 */
   border-radius: 20px;
-  margin-top: 10%;
+  margin-top: -17.9%;
   margin-left: 10%;
   margin-bottom: 3%;
   display: flex; /* 추가 */

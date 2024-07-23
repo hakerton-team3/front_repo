@@ -1,8 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
 import memoIcone from './image/메모장.png';
 import starIcone from './image/별점.png';
 import rectangleImg from './image/Rectangle.png';
+import styled, { createGlobalStyle } from 'styled-components';
+
 
 const Container = styled.div`
   overflow-x: hidden; /* 가로 스크롤을 숨기기 위해 추가 */
@@ -18,12 +19,12 @@ const Maintext = styled.div`
   margin-left: 30px;
   font-size: 36px;
   p {
-    margin: 0; /* p 태그의 기본 margin 제거 */
+    margin-left:-190px; /* p 태그의 기본 margin 제거 */
   }
 
   p:nth-child(2) {
     font-weight: bold; /* 두 번째 p 태그 글씨를 두껍게 */
-    margin-top: -6px; /* 두 글씨 사이의 거리 조절 */
+    margin-top: -50px; /* 두 글씨 사이의 거리 조절 */
   }
 `;
 
@@ -44,14 +45,14 @@ const Underline = styled.div`
 const StarImage = styled.img`
   width: 240px;
   height: 38px;
-  margin-left: 95px;
+  margin-left: 10px;
   margin-top: 30px;
 `;
 
 const Weektext = styled.div`
   color: #000;
   margin-top: -200px; /* 조정된 margin-top 값 */
-  margin-left: 30px;
+  margin-left: -125px;
   position: relative;
   z-index: 1; /* 텍스트가 이미지 위에 위치하도록 설정 */
   
@@ -59,12 +60,24 @@ const Weektext = styled.div`
     font-size: 14px;
     margin-bottom: 10px;
     font-weight: bold;
+    margin-left: -150px;
   }
 
   h1 {
+  @font-face {
+    font-family: 'chab';
+    src: url('src/fonts/chab.ttf') format('truetype');
+    font-style: normal;
+  }
+
+  body {
+    font-family: 'chab', sans-serif;
+    color: #333; /* 기본 폰트 색상 */
+  }
+    font-family: 'chab';
     font-size: 44.48px;
     font-weight: bold; 
-    margin: 0;
+    margin: 4px;
     color: #FFCE4F;
   }
 `;
@@ -202,7 +215,7 @@ function Statistics() {
       <Weektext>
         <p>이번 주, 총</p>
         <h1>8병의 맥주,</h1>
-        <h1>2병의 소주</h1>
+        <h1>2병의 소주</h1>  
       </Weektext>
       <TextContainer>
       <p>김서경 님의 기본 주량을 넘긴 날은,</p>

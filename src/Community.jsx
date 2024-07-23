@@ -32,7 +32,7 @@ function Community() {
         <div className="custom-hr" style={{ borderTop: '1px solid #E7E7E7', width: '320px', margin: '10px 0' }}></div>
         <div className="text-section">
           <p>프라이버시 게시판</p>
-          <button className="button">나만의 게시판</button>
+          <button className="button" onClick={() => navigateTo('/privacy')}>나만의 게시판</button>
           <button className="button">술은 먹어도, 까먹진 말고.</button>
         </div>
       </div>

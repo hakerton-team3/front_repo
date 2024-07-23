@@ -42,7 +42,6 @@ const Section01 = () => {
         <S.CustomLinkContainer to="/emergency-contacts">
           <S.LargeText>비상연락망</S.LargeText>
         </S.CustomLinkContainer>
-        
         <S.Button onClick={handleEmergencyContactsClick}><S.LargeText>비상연락망</S.LargeText> </S.Button>
         
         <S.Smalltitle>음주 약속 시간에 알람으로 가장 상단에 띄울 번호를 설정해주세요.</S.Smalltitle>
