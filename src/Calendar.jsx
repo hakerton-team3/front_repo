@@ -6,25 +6,24 @@ import 'moment/locale/en-gb';
 
 const CustomCalendar = () => {
   const [value, setValue] = useState(new Date());
-  const [mark, setMark] = useState([]); // Assuming this is for marked dates
-  const [isSwitchOn, setIsSwitchOn] = useState(false); // Switch state
-  const [isInfoVisible, setIsInfoVisible] = useState(false); // Info visibility state
-  const [memo, setMemo] = useState(''); // Memo text
-  const [rating, setRating] = useState(0); // Condition rating
-  const [numberValue, setNumberValue] = useState(0); // Numeric input value
-  const [showMemoInput, setShowMemoInput] = useState(false); // Show memo input toggle
+  const [mark, setMark] = useState([]); // for marked dates
+  const [isSwitchOn, setIsSwitchOn] = useState(false); 
+  const [isInfoVisible, setIsInfoVisible] = useState(false); 
+  const [memo, setMemo] = useState(''); 
+  const [rating, setRating] = useState(0); 
+  const [numberValue, setNumberValue] = useState(0); 
+  const [showMemoInput, setShowMemoInput] = useState(false); 
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleDateChange = (date) => {
     setValue(date);
-    setIsInfoVisible(true); // Show additional-info when a date is selected
+    setIsInfoVisible(true);
   };
 
   const handleMonthChange = (date) => {
-    // Logic for month change if needed
   };
 
   const handleDate = (direction) => {
-    // Logic for handling date navigation
   };
 
   const NextIcon = ({ handleDate }) => (
@@ -44,20 +43,28 @@ const CustomCalendar = () => {
   };
 
   const increaseNumber = () => {
-    setNumberValue(prev => Math.min(prev + 0.5, 10)); // Limit max value for example
+    setNumberValue(prev => Math.min(prev + 0.5, 10)); 
   };
 
   const decreaseNumber = () => {
-    setNumberValue(prev => Math.max(prev - 0.5, 0)); // Limit min value for example
+    setNumberValue(prev => Math.max(prev - 0.5, 0)); 
   };
 
   const handleSave = () => {
-    // Logic to save the data (e.g., send to a server or local storage)
     alert(`Date: ${moment(value).format('YYYY-MM-DD')}, Memo: ${memo}, Rating: ${rating}, Number: ${numberValue}`);
   };
 
+  const handleOtherButtonClick = () => {
+    setIsModalVisible(true);
+  };
+  
+  const handleCloseModal = () => {
+    setIsModalVisible(false);
+  };
+  
+
   return (
-    <div className="react-calendar-wrapper">
+    <div className={`react-calendar-wrapper ${isSwitchOn ? 'switch-on' : ''}`}>
       <div className="calendar-header">
         <div className="header-text">
           <div className="event-text">
@@ -87,7 +94,7 @@ const CustomCalendar = () => {
         tileContent={({ date, view }) => {
           const html = [];
           if (mark.find((x) => x === moment(date).format('YYYY-MM-DD'))) {
-            html.push(<div className="dot" key={date}></div>);
+            html.push(<div className="dot" key={date.toISOString()}></div>);
           }
           return (
             <div className="flex justify-center items-center absoluteDiv">
@@ -100,19 +107,19 @@ const CustomCalendar = () => {
       {isInfoVisible && (
         <div className="info-container">
           <div className="top-bar">
-            <button className="other-button">그 외</button>
             <div className="beer-soju-text">맥주/소주 각각 체크해 주세요.</div>
             <div className={`switch-container ${isSwitchOn ? 'switch-on' : ''}`} onClick={toggleSwitch}>
               <div className="switch">
                 <div className="switch-btn"></div>
               </div>
             </div>
+            <button className="other-button" onClick={handleOtherButtonClick}> 그 외 </button>
           </div>
           
           <div className="info-box">
             <div className="info-left">
               <div>
-                <strong>{moment(value).format('YYYY년 M월 D일')}</strong>
+                <strong className="left-align">{moment(value).format('YYYY년 M월 D일')}</strong>
               </div>
               <div>
                 <button className="memo-button" onClick={() => setShowMemoInput(!showMemoInput)}>
@@ -128,26 +135,30 @@ const CustomCalendar = () => {
                 )}
               </div>
               <div className='condition-box'>
-                <strong>오늘의 컨디션 정도</strong>
+                <strong style={{fontSize:'13px', marginBottom: '10px', marginLeft: '5px'}}>오늘의 컨디션 정도</strong>
                 <div className="rating-container">
-                  {[1, 2, 3, 4, 5].map(num => (
-                   <div
-                    key={num}
-                    className={`rating-circle ${rating === num ? 'selected' : ''}`}
-                    onClick={() => setRating(num)}
-                  ></div>
+                  {[{num: 1, label: '최하'}, {num: 2, label: '2'}, {num: 3, label: '3'}, {num: 4, label: '4'}, {num: 5, label: '최상'}].map(item => (
+                    <div key={item.num} className="rating-wrapper">
+                      <div
+                        className={`rating-circle ${rating === item.num ? 'selected' : ''}`}
+                        onClick={() => setRating(item.num)}
+                      ></div>
+                      <div className="rating-label">{item.label}</div>
+                    </div>
                   ))}
                 </div>
               </div>
             </div>
             <div className="info-right">
-              <div>
-                <strong>숫자 입력</strong>
+              <div className="bottle-image"></div>
+              <div style={{fontSize:'12px', marginLeft:'5%'}}>
+                예상 음주량
                 <div className="number-container">
                   <button onClick={decreaseNumber} className="number-button">-</button>
                   <input type="text" value={numberValue.toFixed(1)} readOnly className="number-input" />
                   <button onClick={increaseNumber} className="number-button">+</button>
                 </div>
+                0.5 단위
               </div>
             </div>
           </div>
@@ -155,7 +166,72 @@ const CustomCalendar = () => {
           <button className="save-button" onClick={handleSave}>내용 저장하기</button>
         </div>
       )}
+
+      {isModalVisible && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <button className="modal-close-button" onClick={handleCloseModal}>X</button>
+            <div className="modal-body">
+            <div className="modal-box">
+            <div className="modal-top">
+            <div className="modal-left">
+              <div>
+                <strong className="modal-left-align">{moment(value).format('YYYY년 M월 D일')}</strong>
+              </div>
+              <div>
+                <button className="modal-memo-button" onClick={() => setShowMemoInput(!showMemoInput)}>
+                   약속 메모 | 
+                </button>
+                {showMemoInput && (
+                  <textarea
+                    value={memo}
+                    onChange={handleMemoChange}
+                    placeholder="메모를 입력하세요"
+                    rows={3}
+                  />
+                )}
+              </div>
+              <div className='modal-condition-box'>
+                <strong style={{fontSize:'13px', marginBottom: '10px', marginLeft: '5px'}}>오늘의 컨디션 정도</strong>
+                <div className="modal-rating-container">
+                  {[{num: 1, label: '최하'}, {num: 2, label: '2'}, {num: 3, label: '3'}, {num: 4, label: '4'}, {num: 5, label: '최상'}].map(item => (
+                    <div key={item.num} className="modal-rating-wrapper">
+                      <div
+                        className={`modal-rating-circle ${rating === item.num ? 'selected' : ''}`}
+                        onClick={() => setRating(item.num)}
+                      ></div>
+                      <div className="modal-rating-label">{item.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="modal-info-right">
+              <div className="modal-bottle-image"></div>
+              <div style={{fontSize:'12px', marginLeft:'5%'}}>
+                예상 음주량
+                <div className="modal-number-container">
+                  <button onClick={decreaseNumber} className="modal-number-button">-</button>
+                  <input type="text" value={numberValue.toFixed(1)} readOnly className="modal-number-input" />
+                  <button onClick={increaseNumber} className="modal-number-button">+</button>
+                </div>
+                0.5 단위
+              </div>
+            </div>
+            </div>
+            <div className="modal-bottom">
+              <button className="modal-drink-button">하이볼/가벼운 음주</button>
+              <button className="modal-drink-button">고량주/고도수 음주</button>
+            </div>
+          </div>
+          
+
+          <button className="modal-save-button" onClick={handleSave}>내용 저장하기</button>
+        </div>
+      </div>
     </div>
+    )}
+  </div>
   );
 };
 
