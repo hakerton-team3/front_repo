@@ -29,6 +29,7 @@ export const MainContainer = styled.div`
   background-size: cover;
   background-position: center;
   overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: hidden;
 `;
  
 // Title style
@@ -185,7 +186,7 @@ export const Image = styled.img`
   height: auto;
   position: absolute; /* 절대 위치 */
   right: -40%; /* 부모 컨테이너의 오른쪽 밖으로 나가도록 설정 */
-  bottom: -70%; /* 부모 컨테이너의 아래쪽 밖으로 나가도록 설정 */
+  bottom: -50%; /* 부모 컨테이너의 아래쪽 밖으로 나가도록 설정 */
 `;
 
 export const Button = styled.button`
@@ -194,7 +195,7 @@ export const Button = styled.button`
   background: white;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); /* 고쳐짐: 0.25로 수정 */
   border-radius: 20px;
-  margin-top: 10%;
+  margin-top: -17.9%;
   margin-left: 10%;
   margin-bottom: 3%;
   display: flex; /* 추가 */

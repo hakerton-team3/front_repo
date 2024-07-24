@@ -20,7 +20,7 @@ const LoginScreen = () => {
       <S.Input type="password" placeholder="사용자 패스워드를 입력하세요." />
       <S.Button onClick={handleGuestLogin}>게스트 입장 로그인하기</S.Button>
       <S.LinkContainer>
-        <S.Link href="#">비밀번호 찾기 </S.Link>
+        <S.Link href="calendar">비밀번호 찾기 </S.Link>
         <S.Link href="/register">추적주적 회원가입</S.Link>
         
       </S.LinkContainer>

@@ -166,6 +166,7 @@ export const BorderedText = styled.div`
   font-size: 16px; /* 텍스트 크기 */
   color: #000000; /* 텍스트 색상 */
   height: 30px;
+  width: 300px;
   background-color: #ffffff; /* 배경 색상 (선택 사항) */
   margin-top: 30px;
 `;
