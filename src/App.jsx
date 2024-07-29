@@ -6,10 +6,11 @@ import Community from './Community';
 import Calendar from './Calendar';
 import Statistics from './Statistics';
 import EmergencyContacts from './EmergencyContacts'; // 비상연락망 페이지 컴포넌트를 추가
-import LoginScreen from '../src/login/LoginScreen'; // 로그인 화면 컴포넌트를 추가
+import LoginScreen from './login/LoginScreen'; // 로그인 화면 컴포넌트를 추가
 import RegisterScreen from './login/RegisterScreen'; // 회원가입 화면 컴포넌트를 추가
-import PrivacyPost from './PrivacyBoard/Privacy.jsx';
-import Test from './mbti/test';//
+import PrivacyPost from './PrivacyBoard/Privacy'; 
+import Test from './mbti/test'; // 
+import Personal from './Personal'; //
 
 const App = () => {
   const location = useLocation();
@@ -33,12 +34,13 @@ const App = () => {
         <Route path="/" element={<LoginScreen />} /> {/* 첫 화면을 LoginScreen으로 설정 */}
         <Route path="/home" element={<Home />} />
         <Route path="/community" element={<Community />} />
+        <Route path="/personal" element={<Personal />} />  {/* 혼잣말 게시판 */}      
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/statistics" element={<Statistics />} />
         <Route path="/emergency-contacts" element={<EmergencyContacts />} /> {/* 비상연락망 페이지 라우트 추가 */}
         <Route path="/register" element={<RegisterScreen />} /> {/* 회원가입 페이지 라우트 추가 */}
-        <Route path='/test' element={<Test />} />
-        <Route path="/privacy" element={<PrivacyPost />} /> {/* 개인 개시판 라우트 추가 */}
+        <Route path="/test" element={<Test />} /> 
+        <Route path="/privacy" element={<PrivacyPost />} /> {/* 개인 게시판 라우트 추가 */}
       </Routes>
     </S.Container>
   );
