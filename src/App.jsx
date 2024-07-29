@@ -8,14 +8,16 @@ import Statistics from './Statistics';
 import EmergencyContacts from './EmergencyContacts'; // 비상연락망 페이지 컴포넌트를 추가
 import LoginScreen from './login/LoginScreen'; // 로그인 화면 컴포넌트를 추가
 import RegisterScreen from './login/RegisterScreen'; // 회원가입 화면 컴포넌트를 추가
-import PrivacyPost from './PrivacyBoard/Privacy'; 
 import Test from './mbti/test'; // 
 import Personal from './Personal'; //
+import PrivacyPost from './PrivacyBoard/Privacy.jsx';
+import Result from './mbti/result.jsx';
+import Test from './mbti/test.jsx';
 
 const App = () => {
   const location = useLocation();
 
-  const isAuthRoute = location.pathname === '/' || location.pathname === '/register';
+  const isAuthRoute = location.pathname === '/' || location.pathname === '/register'  || location.pathname === '/test' || location.pathname === '/result';
 
   return (
     <S.Container>
@@ -39,7 +41,10 @@ const App = () => {
         <Route path="/statistics" element={<Statistics />} />
         <Route path="/emergency-contacts" element={<EmergencyContacts />} /> {/* 비상연락망 페이지 라우트 추가 */}
         <Route path="/register" element={<RegisterScreen />} /> {/* 회원가입 페이지 라우트 추가 */}
-        <Route path="/test" element={<Test />} /> 
+        
+        <Route path='/test' element={<Test />} /> {/* Test 페이지 라우트 추가 */}
+        <Route path='/result' element={<Result />} /> {/* Result 페이지 라우트 추가 */}
+
         <Route path="/privacy" element={<PrivacyPost />} /> {/* 개인 게시판 라우트 추가 */}
       </Routes>
     </S.Container>

@@ -115,9 +115,13 @@ export const Image = styled.img`
   width: auto; /* 이미지의 크기를 조정 */
   height: auto;
   margin-bottom: 5%;
- 
+  margin-top: 30%;
 `;
 
+export const Textdiv = styled.div`
+  margin-left:5%;
+  margin-right:5%;
+`;
 
 export const BackContainer = styled.div`
 width: 100%;
