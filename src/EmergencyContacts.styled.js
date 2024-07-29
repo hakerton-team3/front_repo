@@ -20,10 +20,9 @@ export const Divider = styled.div`
 export const BubbleContainer = styled.div`
   position: relative;
   background: #FFCE4F;
-  border-radius: 0.6em;
+  border-radius: 1.0em;
   padding: 3% 3%;
   color: black;
-  max-width: 65%;
   margin: 5%;
   font-size:10px;
 

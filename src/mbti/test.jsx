@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import Bubble from '../Bubble';
 import * as S from './test.styled';
 import Beerimage from '../images/6.png';
+import { useNavigate, Outlet } from 'react-router-dom'; 
+
+
 
 const questions = [
   {
@@ -48,6 +51,9 @@ const questions = [
   // 더 많은 질문을 여기에 추가할 수 있습니다.
 ];
 
+
+
+
 const Test = () => {
   const [selectedIndexes, setSelectedIndexes] = useState({});
 
@@ -58,6 +64,13 @@ const Test = () => {
     }));
   };
 
+ 
+    const navigate = useNavigate();
+  
+    const handleresultLogin = () => {
+      navigate('/result');  
+    };
+  
   return (
     <S.MainContainer>
       <S.Title>잠깐,</S.Title>
@@ -86,7 +99,14 @@ const Test = () => {
       ))}
       <S.Divider />
       <S.Image src={Beerimage} alt="logo" />
-      <S.Button>확인하러 가기</S.Button>
+      <S.Container>
+      <S.Instruction>아래 공백에 사용자의 이름을 입력해주세요. </S.Instruction>
+      <S.InputLine />
+      <S.MainText>
+        님의 <S.Highlight>술</S.Highlight><S.SubHighlight>BTI</S.SubHighlight>는?
+      </S.MainText>
+      </S.Container>
+      <S.Button onClick={handleresultLogin}>확인하러 가기</S.Button>
       <S.BackContainer>
      
       <S.FooterText>주적<br />酒적</S.FooterText> 

@@ -1,349 +1,636 @@
 .react-calendar-wrapper {
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: white;
-  }
-  
-  .calendar-header {
-    flex-direction: column;
-    align-items: center;
-    margin-left:10%;
-  }
-  
-  .header-text {
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-    max-width: 100%;
-  }
-  
-  .event-text {
-    text-align: left;
-    font-size: 30px;
-    margin: 0;
-    margin-left:2%;
-    margin-right: 3%;
-    margin-bottom: 5%;
-    margin-top: 5%;
-  }
-  
-  .event-circle {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: #FFCE4F;
-    background: linear-gradient(to bottom, #FFCE4F 0%, #FFCE4F 5%, white 100%);
-    display: flex;
-    margin-top: 10%;
-  }
-  
-  .event-button {
-    width: 300px;
-    height: 15px !important;
-    font-size: 20px !important;
-    font-weight: bold;
-    text-align: center;
-    background-color: #FFCE4F;
-    color: #171717;
-    border: none;
-    padding: 30px 20px !important;
-    border-radius: 15px;
-    cursor: pointer;
-    margin-top: 30px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* 캘린더 스타일 */
-  .react-calendar {
-    padding: 3% 5%;
-    background-color: white;
-    border: none;
-    margin-top: 10%;
-    margin-bottom: 10%;
-    align-items: center;
-  }
-  
-  /* 캘린더 내비게이션 및 타일 스타일 */
-  .react-calendar__navigation__label {
-    background-color: white !important;
-    color: black;
-    font-family: SUIT Variable;
-    font-size: 20px;
-    line-height: 140%;
-    border: none;
-  }
-  
-  .react-calendar__month-view__weekdays__weekday {
-    color: black;
-    font-size: 18px;
-    margin-bottom: 10px;
-    border-bottom: none !important;
-    text-decoration: none !important;
-  }
-  
-  .react-calendar__month-view__days__day--weekend {
-    color: black;
-    font-size: 18px;
-    width: 44px;
-    height: 44px;
-    text-align: center;
-  }
-  
-  .react-calendar__tile {
-    background-color: white;
-    color: black;
-    font-size: 18px;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-  }
-  
-  .react-calendar__month-view__days__day--neighboringMonth {
-    color: lightgrey;
-    font-size: 18px;
-    width: 44px;
-    height: 44px;
-  }
-  
-  .react-calendar__tile--now {
-    background-color: #FFCE4F;
-    color: white;
-    font-size: 18px;
-    border-radius: 30%;
-  }
-  
-  .react-calendar__tile--active {
-    background-color: #FFCE4F;
-    color: white;
-    font-size: 18px;
-    border-radius: 30%;
-    border: none;
-  }
-  
-  .react-calendar__tile--hasActive {
-    background: #FFCE4F;
-  }
-  
-  .react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus {
-    background: #FFCE4F;
-    border: none;
-  }
-  
-  .dot {
-    height: 8px;
-    width: 8px;
-    background-color: #FFCE4F;
-    border-radius: 30%;
-    text-align: center;
-    margin-top: 3px;
-  }
-  
-  .react-calendar__navigation__arrow {
-    background-color: white;
-    border: none;
-  }
-  
-  * {
-    text-decoration: none !important;
-  }
-  
-  /* New Styles */
-  .info-container {
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center !important;
-    gap: 10px;
-  }
-  
-  .top-bar {
-    display: flex;
-    flex-direction: row;
-    align-items: center !important;
-    gap: 10px;
-  }
-  
-  .other-button {
-    margin-left: 10%;
-  }
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: white;
+}
 
-  .beer-soju-text {
-    font-size: 15px;
-  }
-  
-  .info-box {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start; /* Align items to the start */
-    background-color: #FFB94F;
-    padding: 10px; /* 적절한 패딩 값 */
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    width: 100%;
-    margin-left: 20%;
-  }
+.calendar-header {
+  flex-direction: column;
+  align-items: center;
+  margin-left:10%;
+}
 
-  .info-left {
-    display: flex;
-    flex-direction: column; /* 위에서 아래로 배열 */
-    gap: 10px; /* 요소들 사이의 간격 */
-  }
-  
-  .info-right {
-    display: flex;
-    justify-content: left; /*  정렬 */
-    align-items: left; /* 수직  정렬 */
-  }
-  
-  .memo-button {
-    background-color: white;
-    color: black;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 15px;
-  }
-  
-  .save-button{
-    background-color: #FFCE4F;
-    color: black;
-    border: none;
-  
-    padding: 0px;
-    border-radius: 15px;
-    width: 100%;
-    height: 60px;
-    margin-left: 10%;
+.header-text {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 100%;
+}
 
-    max-width: 600px;
-    border-radius: 5px;
-    margin-top: 5%;
-    margin-bottom: 10%;
-    
-    
-    font-size: 15px;
-    font-weight: bold;
-    text-align: center !important;
+.event-text {
+  text-align: left;
+  font-size: 30px;
+  margin: 0;
+  margin-left:2%;
+  margin-right: 3%;
+  margin-bottom: 5%;
+  margin-top: 5%;
+}
+
+.event-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #FFCE4F;
+  background: linear-gradient(to bottom, #FFCE4F 0%, #FFCE4F 5%, white 100%);
+  display: flex;
+  margin-top: 10%;
+}
+
+.event-button {
+  width: 300px;
+  height: 15px !important;
+  font-size: 20px !important;
+  font-weight: bold;
+  text-align: center;
+  background-color: #FFCE4F;
+  color: #171717;
+  border: none;
+  padding: 30px 20px !important;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 캘린더 스타일 */
+.react-calendar {
+  padding: 3% 5%;
+  background-color: white;
+  border: none;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  align-items: center;
+}
+
+/* 캘린더 내비게이션 및 타일 스타일 */
+.react-calendar__navigation__label {
+  background-color: white !important;
+  color: black;
+  font-family: SUIT Variable;
+  font-size: 20px;
+  line-height: 140%;
+  border: none;
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  color: black;
+  font-size: 18px;
+  margin-bottom: 10px;
+  border-bottom: none !important;
+  text-decoration: none !important;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: black;
+  font-size: 18px;
+  width: 44px;
+  height: 44px;
+  text-align: center;
+}
+
+.react-calendar__tile {
+  background-color: white;
+  color: black;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+  color: lightgrey;
+  font-size: 18px;
+  width: 44px;
+  height: 44px;
+}
+
+.react-calendar__tile--now {
+  background-color: #FFCE4F;
+  color: white;
+  font-size: 18px;
+  border-radius: 30%;
+}
+
+.react-calendar__tile--active {
+  background-color: #FFCE4F;
+  color: white;
+  font-size: 18px;
+  border-radius: 30%;
+  border: none;
+}
+
+.react-calendar__tile--hasActive {
+  background: #FFCE4F;
+}
+
+.react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus {
+  background: #FFCE4F;
+  border: none;
+}
+
+.dot {
+  height: 8px;
+  width: 8px;
+  background-color: #FFCE4F;
+  border-radius: 30%;
+  text-align: center;
+  margin-top: 3px;
+}
+
+.react-calendar__navigation__arrow {
+  background-color: white;
+  border: none;
+}
+
+* {
+  text-decoration: none !important;
+}
+
+.info-container {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center !important;
+  gap: 10px;
+}
+
+.top-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center !important;
+  gap: 10px;
+  width: 100%;
+  margin-left: 10%;
+}
+
+.beer-soju-text {
+  margin-left: 5%;
+  font-size: 13px;
+}
+
+
+.switch-container {
+  position: relative;
+  display: inline-block;
+  width: 58px;
+  height: 28px;
+}
+
+.switch {
+  cursor: pointer;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border: 2px solid #FFB94F;
+  border-radius: 20px;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.switch:hover {
+  background: #efefef;
+}
+
+.switch-btn {
+  position: absolute;
+  left: 3px;
+  top: 55%;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background-color: #FFB94F;
+  transform: translateY(-50%);
+  box-shadow: 1px 3px 4px rgba(0,0,0,0.1);
+  transition: all 0.4s;
+}
+
+.switch-on .switch {
+  border-color: #9EDC60;
+}
+
+.switch-on .switch-btn {
+  left: 34px;
+  background: #9EDC60;
+}
+
+.other-button {
+  margin-left: 5%;
+  font-size: 10px;
+}
+
+.info-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Align items to the start */
+  background-color: #FFB94F;
+  padding: 20px; /* 적절한 패딩 값 */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 300px;
+  margin-left: 10%;
+}
+
+.info-left {
+  display: flex;
+  flex-direction: column; /* 위에서 아래로 배열 */
+  align-items: flex-start;
+  gap: 10px; /* 요소들 사이의 간격 */
+}
+
+.left-align {
+  text-align: left;
+}
+
+.memo-button {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 10px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 15px;
+  width: 210px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.condition-box{
+  border-radius: 15px;
+  background-color: white;
+  padding: 5px;
+  text-align: left;
+}
+
+
+.rating-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  margin-bottom: 3%;
   }
   
-  .memo-button:hover, .save-button:hover {
-    background-color: #e6b700;
-  }
-  
-  .number-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border: none;
-    width: 12px;
-    height: 12px;
-    border-radius: 5px;
-  }
-  
-  .number-button {
-    background-color: #FFB94F;
-    border: none;
-    color: black;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
-  }
-  
-  .number-input {
-    text-align: center;
-    width: 60px;
-    font-size: 18px;
-  }
-  
-  .switch-container {
-    position: relative;
-    display: inline-block;
-    width: 58px;
-    height: 28px;
-  }
-  
-  .switch {
-    cursor: pointer;
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    background: #fff;
-    border: 2px solid #FFB94F;
-    border-radius: 20px;
-    transition: background 0.2s, border-color 0.2s;
-  }
-  
-  .switch:hover {
-    background: #efefef;
-  }
-  
-  .switch-btn {
-    position: absolute;
-    left: 2.5px;
-    top: 50%;
-    width: 20px;
-    height: 20px;
-    border-radius: 100%;
-    background-color: #FFB94F;
-    transform: translateY(-50%);
-    box-shadow: 1px 3px 4px rgba(0,0,0,0.1);
-    transition: all 0.4s;
-  }
-  
-  .switch-on .switch {
-    border-color: #9EDC60;
-  }
-  
-  .switch-on .switch-btn {
-    left: 34px;
-    background: #9EDC60;
-  }
-  
-  
-  /* Base styles for rating circles */
-  .rating-container {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 15px;
+  .rating-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   }
   
   .rating-circle {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: white;
-    cursor: pointer;
-    transition: background-color 0.3s, width 0.3s, height 0.3s;
-    border: 2px solid #FFCE4F;
-    position: relative; /* Ensure positioning for the pseudo-element */
+  margin-top: 20%;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: white;
+  cursor: pointer;
+  transition: background-color 0.3s, width 0.3s, height 0.3s;
+  border: 2px solid #FFCE4F;
+  position: relative; /* Ensure positioning for the pseudo-element */
   }
   
-  /* Styles for selected rating circles */
+  .rating-label {
+  color: black;
+  font-size: 12px;
+  margin-top: 5px; /* Add some space between the circle and the label */
+  }
+  
   .rating-circle.selected::before {
-    content: '';
-    display: block;
-    width: 20px;
-    height: 20px;
-    background-color: #FFCE4F;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Center the 20px circle within the 30px circle */
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: #FFCE4F;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the 20px circle within the 30px circle */
   }
   
-  .condition-box{
-    border-radius: 15px;
-    background-color: white;
-    padding: 5px;
+.info-right {
+  .info-right {
+    display: flex;
+    flex-direction: column; /* 위에서 아래로 배열 */
+    align-items: center; /* 가운데 정렬 */
+    justify-content: center;
+    gap: 10px; 
+  }
+}
+
+.bottle-image {
+  background-image: url('/노란술병.png');
+  width: 80px;
+  height: 80px;
+  margin-top: 40%;
+  margin-left: 30%;
+  margin-bottom: 10%;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.number-container {
+  margin-left: 5%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  justify-content: center; /* 가운데 정렬 */
+}
+
+.number-button {
+  font-weight: bold;
+  background-color: #FFB94F;
+  border: none;
+  color: black;
+  padding: 0px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.number-input {
+  text-align: center;
+  width: 30px;
+  font-size: 15px;
+}
+
+
+.save-button{
+  background-color: #FFCE4F;
+  color: black;
+  border: none;
+
+  padding: 20px; 
+  border-radius: 15px;
+  width: 340px;
+  height: 60px;
+  margin-left: 10%;
+
+  max-width: 600px;
+  border-radius: 5px;
+  margin-top: 0%;
+  margin-bottom: 10%;
+  
+  
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center !important;
+}
+
+.memo-button:hover, .save-button:hover {
+  background-color: #e6b700;
+}
+
+.react-calendar-wrapper.switch-on .info-box {
+  background-color: #9EDC60;
+}
+
+.react-calendar-wrapper.switch-on .rating-circle {
+  border-color: #9EDC60;
+}
+
+.react-calendar-wrapper.switch-on .number-button {
+background-color: #9EDC60;
+}
+
+.react-calendar-wrapper.switch-on .bottle-image {
+  background-image: url('/초록술병.png');
+}
+
+/* 기본 상태: 스위치 색상이 #FFCE4F일 때 선택된 circle 색상 */
+.rating-circle.selected::before {
+background-color: #FFCE4F;
+}
+
+/* 스위치 색상이 #9EDC60일 때 선택된 circle 색상 */
+.react-calendar-wrapper.switch-on .rating-circle.selected::before {
+background-color: #9EDC60;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure the modal is on top */
+}
+
+.modal-content {
+  background: #F0F0F0;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  width: 80%;
+  max-width: 350px;
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #F0F0F0;
+  border: none;
+  color: black;
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 20%;
+  cursor: pointer;
+}
+
+.modal-box {
+  flex-direction: column;
+  background-color: #F0F0F0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Align items to the start */
+  padding: 20px; /* 적절한 패딩 값 */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 300px;
+  margin-left: 2%;
+  margin-top: 10%;
+  margin-bottom: 5%;
+}
+
+.modal-top {
+  display: flex;
+}
+
+.modal-left {
+  display: flex;
+  flex-direction: column; /* 위에서 아래로 배열 */
+  align-items: flex-start;
+  gap: 10px; /* 요소들 사이의 간격 */
+}
+
+.modal-left-align {
+  text-align: left;
+}
+
+.modal-memo-button {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 10px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 15px;
+  width: 210px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.modal-condition-box{
+  border-radius: 15px;
+  background-color: white;
+  padding: 5px;
+  text-align: left;
+}
+
+
+.modal-rating-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  margin-bottom: 3%;
   }
   
+  .modal-rating-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+  
+  .modal-rating-circle {
+  margin-top: 20%;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: white;
+  cursor: pointer;
+  transition: background-color 0.3s, width 0.3s, height 0.3s;
+  border: 2px solid #FFCE4F;
+  position: relative; /* Ensure positioning for the pseudo-element */
+  }
+  
+  .modal-rating-label {
+  color: black;
+  font-size: 12px;
+  margin-top: 5px; /* Add some space between the circle and the label */
+  }
+  
+  .modal-rating-circle.selected::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: #FFCE4F;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the 20px circle within the 30px circle */
+  }
+  
+.modal-info-right {
+  .info-right {
+    display: flex;
+    flex-direction: column; /* 위에서 아래로 배열 */
+    align-items: center; /* 가운데 정렬 */
+    justify-content: center;
+    gap: 10px; 
+  }
+}
+
+.modal-bottle-image {
+  background-image: url('/기타술병.png');
+  width: 80px;
+  height: 80px;
+  margin-top: 40%;
+  margin-left: 30%;
+  margin-bottom: 10%;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.modal-number-container {
+  margin-left: 5%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  justify-content: center; /* 가운데 정렬 */
+}
+
+.modal-number-button {
+  font-weight: bold;
+  background-color: #F0F0F0;
+  border: none;
+  color: black;
+  padding: 0px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.modal-number-input {
+  text-align: center;
+  width: 30px;
+  font-size: 15px;
+}
+
+.modal-bottom {
+  display: flex;
+  justify-content: space-between; 
+  gap: 10px; 
+  margin-top: 20px; 
+}
+
+.modal-drink-button {
+  background-color: #D3D3D3;
+  color: black;
+  border: none;
+  padding: 10px 20px; 
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px;
+  flex: 1; 
+  text-align: center;
+}
+
+.modal-save-button{
+  background-color: #FFCE4F;
+  color: black;
+  border: none;
+
+  padding: 20px; 
+  border-radius: 15px;
+  width: 340px;
+  height: 60px;
+  margin-left: 10%;
+
+  max-width: 600px;
+  border-radius: 15px;
+  margin-top: 0%;
+  margin-left: 1%;
+  margin-bottom: 3%;
+  
+  
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center !important;
+}
