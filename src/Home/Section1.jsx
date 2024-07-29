@@ -40,10 +40,7 @@ const Section01 = () => {
           <S.Smalltitle>숙취가 심한 서경님! 숙취해소제 챙겨요</S.Smalltitle>
         </S.YellowContainer2>
         
-        {/* 기존 삭제된 부분을 확인해주세요 */}
-        {/* <S.CustomLinkContainer to="/emergency-contacts">
-          <S.LargeText>비상연락망</S.LargeText>
-        </S.CustomLinkContainer> */}
+        
         
         <S.Button onClick={handleEmergencyContactsClick}>
           <S.LargeText>비상연락망</S.LargeText>

@@ -16,7 +16,7 @@ export const GlobalStyle = createGlobalStyle`
 export const FontChab = styled.span`
   font-family: 'chab';
   font-weight: bold;
-  font-size: 50px;
+  font-size: 45px;
 `;
 
 // Main container style with transparent background and gradient
@@ -110,7 +110,6 @@ export const YellowContainer = styled.div`
   color: black; 
   font-weight: bold;
 `;
-
 export const YellowContainer2 = styled.div`
   background-color: #FFCE4F; /* 노란색 배경 */
   width: 50%;
@@ -119,12 +118,29 @@ export const YellowContainer2 = styled.div`
   padding: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-left: 10%;
-  color: black; 
+  color: black;
   font-weight: bold;
   display: flex;
   margin-top: 10%;
   align-items: center;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -9px;
+    right: 15%;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-bottom-color: #FFCE4F;
+    border-top: 0;
+    border-right: 0;
+    margin-right: -10px;
+    margin-top: -10px;
+  }
 `;
+
  
 
 export const Rowcustom = styled.div`
@@ -195,7 +211,7 @@ export const Button = styled.button`
   background: white;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); /* 고쳐짐: 0.25로 수정 */
   border-radius: 20px;
-  margin-top: -17.9%;
+  margin-top: 10%;
   margin-left: 10%;
   margin-bottom: 3%;
   display: flex; /* 추가 */
