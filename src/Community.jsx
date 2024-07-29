@@ -92,7 +92,7 @@ function Community() {
             <S.ImageButton onClick={() => navigateTo('/community')}>
             <img src="/단체게시판.png" alt="Community Board" />
             </S.ImageButton>
-            <S.ImageButton onClick={() => navigateTo('/personal')}>
+            <S.ImageButton onClick={() => navigateTo('/privacy')}>
             <img src="/혼잣말게시판.png" alt="Personal Board" />
         </S.ImageButton>
         </S.ButtonContainer>

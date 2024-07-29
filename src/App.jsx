@@ -9,10 +9,8 @@ import EmergencyContacts from './EmergencyContacts'; // 비상연락망 페이�
 import LoginScreen from './login/LoginScreen'; // 로그인 화면 컴포넌트를 추가
 import RegisterScreen from './login/RegisterScreen'; // 회원가입 화면 컴포넌트를 추가
 import Test from './mbti/test'; // 
-import Personal from './Personal'; //
-import PrivacyPost from './PrivacyBoard/Privacy.jsx';
+import PrivacyPost from './PrivacyBoard/Privacy';
 import Result from './mbti/result.jsx';
-import Test from './mbti/test.jsx';
 
 const App = () => {
   const location = useLocation();
@@ -35,8 +33,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LoginScreen />} /> {/* 첫 화면을 LoginScreen으로 설정 */}
         <Route path="/home" element={<Home />} />
-        <Route path="/community" element={<Community />} />
-        <Route path="/personal" element={<Personal />} />  {/* 혼잣말 게시판 */}      
+        <Route path="/community" element={<Community />} /> 
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/statistics" element={<Statistics />} />
         <Route path="/emergency-contacts" element={<EmergencyContacts />} /> {/* 비상연락망 페이지 라우트 추가 */}
