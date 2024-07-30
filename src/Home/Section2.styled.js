@@ -156,20 +156,6 @@ export const BadgeText = styled.div`
     margin-top: 5px;
 `;
 
-export const BorderedText = styled.div`
-  display: flex;
-  justify-content: center; 
-  align-items: center;    
-  border: 2px solid #FFCE4F; 
-  border-radius: 12px; 
-  padding: 10px; 
-  font-size: 16px; 
-  color: #000000; 
-  height: 30px;
-  width: 300px;
-  background-color: #ffffff;
-  margin-top: 30px;
-`;
 
 export const BorderedTextSmall = styled.div`
   display: flex;

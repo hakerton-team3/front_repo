@@ -214,7 +214,7 @@ const RetestButton = styled.button`
   border-radius: 10px;
   cursor: pointer;
   margin-top: 40px;
-  margin-left: 30px;
+  margin-left: 35px;
   margin-bottom: 40px;
   font-weight: bold;
   display: flex;

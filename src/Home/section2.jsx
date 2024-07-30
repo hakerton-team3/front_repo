@@ -15,8 +15,6 @@ import badgeIcon7 from '../image/미획득뱃지7.svg';
 import badgeIcon8 from '../image/미획득뱃지8.svg';
 import judalIcon from '../image/금주 주달.png';
 import judalIcon2 from '../image/금주중 주달.png';
-import { useNavigate } from 'react-router-dom';
-
 
 const Section02 = () => {
 
@@ -32,7 +30,6 @@ const Section02 = () => {
   const [isOpen3, setIsOpen3] = useState(false);
   const [isOpen4, setIsOpen4] = useState(false);
   const [isOpen5, setIsOpen5] = useState(false);
-  const [isOpen6, setIsOpen6] = useState(false);
   const [isOpen7, setIsOpen7] = useState(false);
   const [isOpen8, setIsOpen8] = useState(false);
 
@@ -46,14 +43,11 @@ const Section02 = () => {
   const closeModal4 = () => setIsOpen4(false);
   const openModal5 = () => setIsOpen5(true);
   const closeModal5 = () => setIsOpen5(false);
-  const openModal6 = () => setIsOpen6(true);
-  const closeModal6 = () => setIsOpen6(false);
   const openModal7 = () => setIsOpen7(true);
   const closeModal7 = () => setIsOpen7(false);
   const openModal8 = () => setIsOpen8(true);
   const closeModal8 = () => setIsOpen8(false);
 
-  const navigate = useNavigate();
   const navigateTo = (path) => {
     navigate(path);
   };
@@ -184,8 +178,8 @@ const Section02 = () => {
         <K.CloseIcon src={closeIcon} alt="Close" onClick={closeModal3} />
         <K.ModalTitle3>나만의 미션</K.ModalTitle3>
         <K.ModalContent>나만의 미션으로 절주챌린지와 금주챌린지에 도전해봐요.</K.ModalContent>
-        <K.BorderedText onClick={openModal4}>절주챌린지 도전</K.BorderedText>
-        <K.BorderedText onClick={openModal5}>금주챌린지 도전</K.BorderedText>
+        <K.BorderedBtn onClick={openModal4}>절주챌린지 도전</K.BorderedBtn>
+        <K.BorderedBtn onClick={openModal5}>금주챌린지 도전</K.BorderedBtn>
       </Modal>
 
       <Modal ariaHideApp={false} isOpen={isOpen4} onRequestClose={closeModal4} style={customStyles}>
@@ -217,19 +211,6 @@ const Section02 = () => {
         <K.ModalContent>2주동안 금주를 실천하는 챌린지, 솔직하게 임하길.</K.ModalContent>
         <K.JudalImage src={judalIcon}></K.JudalImage>
         <K.SubmitButton onClick={HandleredHome}>즉시 시작하기</K.SubmitButton>
-      </Modal>
-
-      <Modal ariaHideApp={false} isOpen={isOpen6} onRequestClose={closeModal6} style={customStyles}>
-        <K.CloseIcon src={closeIcon} alt="Close" onClick={closeModal6} />
-        <K.ModalTitle6>금주챌린지</K.ModalTitle6>
-        <K.ModalContent>2주동안 금주를 실천하는 챌린지, 솔직하게 임하길.</K.ModalContent>
-        <K.JudalImage2 src={judalIcon2}></K.JudalImage2>
-        <K.GemjuContainer>
-          <h4>성공까지</h4>
-          <K.H1>8일</K.H1>
-          <h4>남았어요.</h4>
-        </K.GemjuContainer>
-        <K.SubmitButton>포기하기</K.SubmitButton>
       </Modal>
 
       <Modal ariaHideApp={false} isOpen={isOpen7} onRequestClose={closeModal7} style={customStyles}>
