@@ -2,116 +2,151 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Community.styled'; 
 
-// 더미 데이터
-const posts = [
-    // {title: '확실히 혼자 마실 때 더 많이 마시게 되는 것 같네'},
-    // {title: '같이'},
-    // {title: '번개'},
-    // {title: '주종'}
-   ];
-
-
-   const HorizontalScroll = () => {
-    const scrollRef = useRef();
-    const [activeIndex, setActiveIndex] = useState(0);
-    const bestPosts = ['BestPost 1', 'BestPost 2', 'BestPost 3']; // Example posts
+const HorizontalScroll = ({ posts }) => {
+  const scrollRef = useRef();
+  const [activeIndex, setActiveIndex] = useState(0);
   
-    const handleScroll = () => {
-      const scrollLeft = scrollRef.current.scrollLeft;
-      const containerWidth = scrollRef.current.offsetWidth;
-      const itemWidth = 270; // Assuming each item has a fixed width of 270px
-      const center = scrollLeft + containerWidth / 2;
+  const handleScroll = () => {
+    const scrollLeft = scrollRef.current.scrollLeft;
+    const containerWidth = scrollRef.current.offsetWidth;
+    const itemWidth = 270; // Assuming each item has a fixed width of 270px
+    const center = scrollLeft + containerWidth / 2;
+
+    const newIndex = Math.round(center / itemWidth);
+    setActiveIndex(newIndex);
+  };
   
-      const newIndex = Math.round(center / itemWidth);
-      setActiveIndex(newIndex);
+  useEffect(() => {
+    const container = scrollRef.current;
+    container.addEventListener('scroll', handleScroll);
+
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
     };
-  
-    useEffect(() => {
-      const container = scrollRef.current;
-      container.addEventListener('scroll', handleScroll);
-  
-      return () => {
-        container.removeEventListener('scroll', handleScroll);
-      };
-    }, []);
-  
-    return (
-      <S.ScrollContainer ref={scrollRef}>
-        {bestPosts.map((post, index) => (
-          <S.ItemContainer
-            key={index}
-            className={index === activeIndex ? 'active' : 'inactive'}
-          >
-            <S.ItemBackground>
-            <S.Text>{post}</S.Text>
-            <S.Content>{post}</S.Content>
+  }, []);
+
+  return (
+    <S.ScrollContainer ref={scrollRef}>
+      {posts.map((post, index) => (
+        <S.ItemContainer
+          key={index}
+          className={index === activeIndex ? 'active' : 'inactive'}
+        >
+          <S.ItemBackground>
+            <S.Text>{post.title}</S.Text>
+            <S.Content>{post.memo}</S.Content>
           </S.ItemBackground>
         </S.ItemContainer>
       ))}
     </S.ScrollContainer>
-    );
-  };
+  );
+};
 
 function Community() {
   const navigate = useNavigate();
+  const navigateTo = (path) => { navigate(path); };
 
-  const navigateTo = (path) => {
-    navigate(path);
+  const [search, setSearch] = useState(""); 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEntirePostModalOpen, setIsEntirePostModalOpen] = useState(false);
+  const [currentPost, setCurrentPost] = useState(null);
+  const [memo, setMemo] = useState("");
+  const [title, setTitle] = useState("");
+  const [tags, setTags] = useState("");
+  const [postList, setPostList] = useState([]); // Initialize with an empty array
+
+  const onChange = (e) => setSearch(e.target.value);
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
+  const onMemoChange = (e) => setMemo(e.target.value);
+  const onTitleChange = (e) => setTitle(e.target.value);
+  
+  const onTagsChange = (e) => {
+    const tagsArray = e.target.value.split(' ').filter(tag => tag.startsWith('#'));
+    if (tagsArray.length <= 3) {
+      setTags(e.target.value);
+    }
   };
 
-  const [search, setSearch] = useState(""); // 검색어를 상태로 관리
-  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 상태 관리 추가
-  const [memo, setMemo] = useState(""); // 메모 상태 추가
+  const handleUpload = () => {
+    const newPost = {
+      title,
+      memo,
+      tags: tags.split(" ").filter(tag => tag.startsWith('#')),
+      time: new Date()
+    };
+    setPostList([newPost, ...postList]);
+    setTitle("");
+    setMemo("");
+    setTags("");
+    setIsModalOpen(false);
+  };
 
-  // 검색어 입력 시 상태를 업데이트하는 함수
-  const onChange = (e) => {
-    setSearch(e.target.value)
-  }
+  const formatTime = (time) => {
+    const now = new Date();
+    const diff = Math.floor((now - time) / 60000); 
 
-  // 모달 열기/닫기 함수
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  }
+    if (diff < 60) {
+      return `${diff}분 전`;
+    } else {
+      const hours = Math.floor(diff / 60);
+      const minutes = diff % 60;
+      return `${hours}시간 ${minutes}분 전`;
+    }
+  };
 
-   // 메모 입력 시 상태를 업데이트하는 함수
-   const onMemoChange = (e) => {
-    setMemo(e.target.value);
-  }
+  // Filter posts by title
+  const filteredPosts = postList.filter((post) => 
+    post.title.toLowerCase().includes(search.toLowerCase())
+  );
 
-  // 검색어를 기준으로 게시글을 필터링
-  const filterTitle = posts.filter((post) => {
-    // 제목의 공백을 제거하고 소문자로 변환하여 검색어와 비교
-    return post.title.replace(" ", "").toLocaleLowerCase().includes(search.toLocaleLowerCase().replace(" ", ""));
-  });
+  const postsWithTag = postList.filter(post => post.tags.includes('#흑역사'));
+
+  const openEntirePostModal = (post) => {
+    setCurrentPost(post);
+    setIsEntirePostModalOpen(true);
+  };
+
+  const closeEntirePostModal = () => {
+    setCurrentPost(null);
+    setIsEntirePostModalOpen(false);
+  };
+
+  const handlePostClick = (post) => {
+    openEntirePostModal(post);
+  };
+
+  const [liked, setLiked] = useState(false);
+  const toggleLike = () => {
+    setLiked(!liked);
+  };
 
   return (
     <>
       <S.GlobalStyle />
       <S.CommunityContainer>
         <S.ButtonContainer>
-            <S.ImageButton onClick={() => navigateTo('/community')}>
+          <S.ImageButton onClick={() => navigateTo('/community')}>
             <img src="/단체게시판.png" alt="Community Board" />
-            </S.ImageButton>
-            <S.ImageButton onClick={() => navigateTo('/privacy')}>
+          </S.ImageButton>
+          <S.ImageButton onClick={() => navigateTo('/privacy')}>
             <img src="/혼잣말게시판.png" alt="Personal Board" />
-        </S.ImageButton>
+          </S.ImageButton>
         </S.ButtonContainer>
         <S.BestContainer>
-            <S.Best>
-                <S.Title>오늘의 흑역사 베스트</S.Title> 
-                <S.Heart src="/public/베스트.png" alt="Best" />
-            </S.Best>
-            <S.BestSection>
-                <HorizontalScroll />
-            </S.BestSection>
-
+          <S.Best>
+            <S.Title>오늘의 흑역사 베스트</S.Title> 
+            <S.Heart src="/public/베스트.png" alt="Best" />
+          </S.Best>
+          <S.BestSection>
+            <HorizontalScroll posts={postsWithTag} />
+          </S.BestSection>
         </S.BestContainer>
         <S.KeywordContainer>
-            <S.Keyword>
-                <S.Title>키워드를 검색해 주세요</S.Title>
-                <S.Search src="/public/검색.png" alt="Search" />
-            </S.Keyword>
-            <S.InputContainer>
+          <S.Keyword>
+            <S.Title style={{marginTop:'10px'}}>키워드를 검색해 주세요</S.Title>
+            <S.Search src="/public/검색.png" alt="Search" />
+          </S.Keyword>
+          <S.InputContainer>
             <S.StyledInput 
               type="text" 
               value={search} 
@@ -119,56 +154,88 @@ function Community() {
               placeholder="@솔로샷러 가 작성한 오늘의 게시글은?" 
             />
             <S.SearchIcon src="/public/돋보기.png" alt="Search Icon" />
-            <S.WriteIcon src="/public/작성.png" alt="Write Icon" onClick={toggleModal} /> {/* 모달 열기 */}
+            <S.WriteIcon src="/public/작성.png" alt="Write Icon" onClick={toggleModal} />
           </S.InputContainer>
           <S.Try>@를 이용해 관심 있는 술BTI에 대해서도 찾아보아요!</S.Try>
-
-          {/* 필터링된 게시글 제목을 표시 */}
-          <div>
-            {filterTitle.length > 0 ? (
-              filterTitle.map((post, index) => (
-                <div key={index}>
-                  <span>{post.title}</span>
-                </div>
-              ))
-            ) : (
-              <p>검색 결과가 없습니다.</p>
-            )}
-          </div>
         </S.KeywordContainer>
-
-        <S.PostContainer>
-            <S.Text>
-            <p style={{fontSize:"8px", color:"gray"}}>3시간전 · @주량마스터 님의 새로운 게시글</p>
-            <h5 style={{fontSize:"13px"}}>확실히 혼자 마실 때 더 많이 마시게 되는 것 같네</h5>
-            <p style={{fontSize:"9px", color:"darkgray"}}>절주챌린지 중인 분들도 많을텐데 혼자 마시면서 줄이기보다는 다같이 마시는</p>
-            </S.Text>
-            <S.Box>
-                <S.TagGroup>
-                    <S.Tag>#절주챌린지</S.Tag>
-                    <S.Tag>#주량</S.Tag>
-                    <S.Tag>#나만의 생각</S.Tag>
-                </S.TagGroup>          
-            </S.Box>
-            <p style={{fontSize:"10px", color:"gray", textAlign:"left"}}>❤️ 680</p>
-            
-            
-
-        </S.PostContainer>
-
+        <S.PostListContainer>
+          {filteredPosts.length > 0 ? (
+            filteredPosts.map((post, index) => (
+              <React.Fragment key={index}>
+                <S.PostContainer onClick={() => handlePostClick(post)}>
+                  <S.Text>
+                    <p style={{ fontSize: "8px", color: "gray" }}>{formatTime(post.time)} · @주량마스터 님의 새로운 게시글</p>
+                    <h5 style={{ fontSize: "13px" }}>{post.title}</h5>
+                    <p style={{ fontSize: "9px", color: "darkgray", width: "300px", height:"10px", lineHeight:"18px"}}>{post.memo}</p>
+                  </S.Text>
+                  <S.Box>
+                    <S.TagGroup>
+                      {post.tags.map((tag, tagIndex) => (
+                        <S.Tag key={tagIndex}>{tag}</S.Tag>
+                      ))}
+                    </S.TagGroup>
+                  </S.Box>
+                  <p style={{ fontSize: "10px", color: "gray", textAlign: "left" }}>❤️ </p>
+                </S.PostContainer>
+                <S.Underline /> {/* 세로로 구분 */}
+              </React.Fragment>
+            ))
+          ) : (
+            <p>검색 결과가 없습니다.</p>
+          )}
+        </S.PostListContainer>
         {isModalOpen && (
           <S.ModalOverlay onClick={toggleModal}>
             <S.ModalContent onClick={(e) => e.stopPropagation()}>
-               <S.P>작성하기 | <strong>주량마스터</strong></S.P>
-               <S.MemoBox 
-                value={memo} 
-                onChange={onMemoChange} 
-                placeholder=""
-               />
-              <S.SubmitButton>등록하기</S.SubmitButton>
+              <S.ModalTitle>커뮤니티</S.ModalTitle>
+              <S.P>@주량마스터 님이 작성 중입니다.</S.P>
+              <S.TitleBox
+                placeholder="제목을 입력해 주세요."
+                value={title}
+                onChange={onTitleChange}
+              />
+              <S.Underline />
+              <S.MemoBox
+                value={memo}
+                onChange={onMemoChange}
+                placeholder="내용을 입력해 주세요."
+              />
+              <S.Underline />
+              <S.ModalBottom>
+                <S.TagBox
+                  placeholder="키워드를 #을 포함해 작성해 주세요. (최대 3개)"
+                  value={tags}
+                  onChange={onTagsChange}
+                />
+                <S.SubmitButton onClick={handleUpload}>업로드</S.SubmitButton>
+              </S.ModalBottom>
               <S.CloseButton onClick={toggleModal}>X</S.CloseButton>
             </S.ModalContent>
           </S.ModalOverlay>
+        )}
+        {isEntirePostModalOpen && currentPost && (
+          <S.EntireModalOverlay onClick={closeEntirePostModal}>
+            <S.EntireModalContent onClick={(e) => e.stopPropagation()}>
+              <S.ModalTitle>커뮤니티</S.ModalTitle>
+              <S.EntireTitleBox>{currentPost.title}</S.EntireTitleBox>
+              <S.ModalUnderline />
+              <S.EntireMemoBox>{currentPost.memo}</S.EntireMemoBox>
+              <S.EntireModalBottom>
+                <S.EntireTagGroup>
+                  {currentPost.tags.map((tag, index) => (
+                    <S.EntireTag key={index}>{tag}</S.EntireTag>
+                  ))}
+                  <S.LikeButton onClick={toggleLike}>
+                    <S.HeartButton 
+                      src={liked ? "/public/redheart.png" : "/public/whiteheart.png"} 
+                      alt="HeartButton"
+                    />
+                  </S.LikeButton>
+                </S.EntireTagGroup>
+                <S.EntireCloseButton onClick={closeEntirePostModal}>X</S.EntireCloseButton>
+              </S.EntireModalBottom>
+            </S.EntireModalContent>
+          </S.EntireModalOverlay>
         )}
       </S.CommunityContainer>
     </>

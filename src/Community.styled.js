@@ -34,9 +34,10 @@ export const CommunityContainer = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-  display: flex; /* 버튼들을 가로로 배치 */
-  justify-content: space-around; /* 버튼 간 간격 동일 분배 */
-  width: 100%; /* 버튼 컨테이너 너비 */
+  display: flex;
+  width: 100%;
+  margin-top: 4px;
+  margin-left: 25px;
 `
 export const ImageButton = styled.button`
   border: none;
@@ -161,7 +162,7 @@ export const Title = styled.h1`
   font-size: 20px;
   font-weight: bold;
   color: #FFCE4F;
-  margin: 0;
+  margin-top: 0px;
    display: flex;
   align-items: center; /* 제목과 아이콘을 수직으로 가운데 정렬 */
 `;
@@ -174,43 +175,50 @@ export const Search = styled.img`
 `;
 
 export const InputContainer = styled.div`
-  display: flex;
-  width: 250px;
-  width: 100%;
+   display: flex; 
+  background: linear-gradient(90deg, #FFCE4F, #FF9900);
+  border-radius: 15px; 
+  padding: 5px 10px; /* 내부 여백 */
+  width: 300px; 
+  height: 37px;
+  margin-top: 5px;
 `
 
 export const StyledInput = styled.input`
-  padding: 10px;
-  padding-right: 40px; /* 아이콘 크기에 따라 여유 공간 추가 */
-  margin-top: 10px;
+ -webkit-background-clip: text;
+  border: none; /* 기본 테두리 제거 */
+  font-size: 12px; 
+  font-weight: bold;
+  padding: 10px 40px 10px 10px; /* 여백 설정 */
+
+  padding-right: 70px; /* 아이콘 크기에 따라 여유 공간 추가 */
   border: none;
   border-radius: 10px;
   font-size: 12px;
   width: 100%;
   height: 20px;
-  background-image: linear-gradient(90deg, #FFCE4F, #FF9900);
-  width: 250px;
+  width: 400px;
   overflow: auto; /* 검색어가 길어졌을때 오른쪽으로 자연스럽게 검색되도록 하기 위해 */
   position: relative; /* 아이콘을 절대 위치로 배치하기 위해 설정 */
   &::placeholder {
-    color: #FFFFFF; 
-    padding-right: 30px; /* 아이콘 크기에 따라 여유 공간 추가 */
+    color: white; 
   }
 `;
 
 export const SearchIcon = styled.img`
-  position: absolute;
-  right: 100px; /* 입력창의 왼쪽 끝과 아이콘 사이의 여유 공간 */
-  top: 30%;
-  transform: translateY(-50%); /* 세로 중앙에 위치시키기 위해 */
-  width: 20px; 
-  height: 20px; 
+ width: 35px;
+  height: 35px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 15px; 
+  margin-top: 0px;
+  cursor: pointer; /* 마우스 커서 변경 */
 `;
 
 export const WriteIcon = styled.img`
   flex-direction: row;
-  margin-top: 5px;
-  margin-left: 20px;
+  margin-top: -7px;
+  margin-left: 35px;
   width: 50px; 
   height: 50px; 
 `;
@@ -222,6 +230,10 @@ export const Try = styled.div`
   font-size: 10px;
 `
 
+export const PostListContainer = styled.div`
+display: flex;
+`
+
 export const PostContainer = styled.div`
   display: flex;
   flex-direction: column; /* 자식 요소들을 세로로 배치 */
@@ -230,6 +242,12 @@ export const Text = styled.div`
   flex-direction: column;
   text-align: left;
   line-height: 3px;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  - display: -webkit-box !important; /* Flexbox 사용 */ 
+  -webkit-line-clamp: 1 !important; /* 한 줄로 제한 */
+  -webkit-box-orient: vertical !important; /* 세로 방향 설정 */
+  word-break: keep-all !important;
 `
 export const Box = styled.div`
   margin-top: 10px;
@@ -240,7 +258,8 @@ export const Box = styled.div`
 export const TagGroup = styled.div`
   display: flex;
   gap: 10px;
-`
+  flex-wrap: wrap;  /* 태그들이 가로로 나열되고 넘치면 줄바꿈되도록 설정 */
+`;
 
 export const Tag = styled.div`
   padding: 3px 8px;
@@ -251,6 +270,12 @@ export const Tag = styled.div`
   font-size: 10px;
   color: #000;
 `
+export const TagUnderline = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: #E7E7E7;
+`
+
 
 export const ModalOverlay = styled.div`
   position: fixed;
@@ -273,31 +298,77 @@ export const ModalContent = styled.div`
   width: 300px;
 `;
 
+export const ModalTitle = styled.div`
+  font-family: 'chab';
+  font-weight: bold;
+  font-size: 38px;
+  color: #FFCE4F;
+  margin-bottom: 10px;
+`
+
 export const P = styled.div`
   text-align: left;
-  margin-left: 20px;
+  margin-left: 25px;
+  font-size: 10px;
 `
+
+export const TitleBox = styled.input`
+  margin-top: 10px;
+  margin-left: 15px;
+  padding: 10px;
+  font-weight: bold;
+  display: block;
+  border: none;
+  background: #F8F8F8;
+  font-size: 14px;
+`;
+
+export const Underline = styled.div`
+  margin-left: 25px;
+  width: 80%;
+  height: 1px;
+  background-color: #E7E7E7;
+`;
 
 export const MemoBox = styled.textarea`
   width: 250px;
   height: 120px;
-  margin-top: 10px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
+  border: none;
+  background: #F8F8F8;
   padding: 10px;
   resize: none; /* 크기 조절 불가 */
 `;
 
+export const ModalBottom = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+export const TagBox = styled.textarea`
+  margin-top: 15px;
+  margin-left: 25px;
+  margin-right: 5px;
+  width: 160px;
+  height: 28px;
+  font-size: 8px;
+  color: black;
+  background-color: white
+  border: none;
+  display: block;
+`
+
 export const SubmitButton = styled.button`
-  width: 270px;
+  width: 80px;
+  height: 44px;
   margin-top: 10px;
   padding: 10px 20px;
-  background-color: #FFCE4F;
-  border: none;
-  border-radius: 5px;
+  background-color: white;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #E7E7E7;
+  border-radius: 10px;
   cursor: pointer;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 10px;
 `;
 
 export const CloseButton = styled.button`
@@ -310,5 +381,112 @@ export const CloseButton = styled.button`
   cursor: pointer;
 `;
 
+// Entire Post Modal Styles
 
+export const EntireModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* 배경을 반투명하게 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
+
+export const EntireModalContent = styled.div`
+  background: #F8F8F8;
+  width: 40%;
+  max-width: 800px;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+`;
+
+
+
+export const EntireTitleBox = styled.div`
+  margin-top: 10px;
+  padding: 10px;
+  text-align: left;
+  font-weight: bold;
+  display: block;
+  border: none;
+  background: #F8F8F8;
+  font-size: 14px;
+`;
+
+
+export const ModalUnderline = styled.div`
+  margin-left: 10px;
+  width: 90%;
+  height: 1px;
+  background-color: #E7E7E7;
+`;
+
+export const EntireMemoBox = styled.div`
+  width: 100%;
+  margin-left: 0px;
+  max-width: 100%;
+  height: 120px;
+  border: none;
+  background: #F8F8F8;
+  padding: 10px;
+  resize: none; /* 크기 조절 불가 */
+  overflow-y: auto; /* 내용이 넘칠 경우 스크롤 가능 */
+  text-align: left;
+`;
+
+export const EntireModalBottom = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+  gap: 10px;
+  align-items: center; /* 추가: 세로 정렬을 가운데로 설정 */
+`;
+
+export const EntireTagGroup = styled.div`
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;  /* 태그들이 가로로 나열되고 넘치면 줄바꿈되도록 설정 */
+`;
+
+export const EntireTag = styled.div`
+  padding: 3px 8px;
+  border: none;
+  border-radius: 5px;
+  background-color: #FFCE4F;
+  cursor: pointer;
+  font-size: 10px;
+  color: #000;
+`;
+
+export const LikeButton = styled.button`
+  padding: 3px 8px;
+  border: none;
+  border-radius: 5px;
+  background-color: #FFCE4F;
+  cursor: pointer;
+  font-size: 10px;
+  color: #000;
+  margin-left: auto; /* 오른쪽으로 밀어내기 위해 추가 */
+`
+export const HeartButton = styled.img`
+  height: 15px;
+  width: 15px;
+  margin-top:2px;
+`
+
+export const EntireCloseButton = styled.div`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+`
 
