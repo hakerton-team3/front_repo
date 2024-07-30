@@ -1,14 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as S from './Section01.styled';
+import * as S from './SectionRed.styled';
 import { FiSettings } from 'react-icons/fi';
-import sudolImage from  '../image/sudol2.svg';
+import sudolImage from  '../image/redsudol.png';
 
 const Section01 = () => {
   const navigate = useNavigate();
 
   const handleEmergencyContactsClick = () => {
-    navigate('/contact');
+    navigate('/emergency-contacts');
   };
 
   return (
@@ -25,7 +25,7 @@ const Section01 = () => {
           <S.FontChab> 음주정보 </S.FontChab>
           <S.WhiteContainer>
             <S.Subtitle>
-              이번주 평균 음주량에 주의해 주세요.
+              2주 간의 금주챌린지 중
             </S.Subtitle>
           </S.WhiteContainer>
           <S.WhiteSubContainer>

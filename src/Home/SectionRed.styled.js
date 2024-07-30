@@ -24,7 +24,7 @@ export const MainContainer = styled.div`
   width: 100%;
   height: 100%;
   background: 
-    linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0) -100%, rgba(255, 255, 255, 1) 100%),
     url('src/images/image2.png');
   background-size: cover;
   background-position: center;
@@ -46,8 +46,8 @@ export const Title = styled.h2`
 // White container style
 export const WhiteContainer = styled.div`
   width: 100%;
-  background-color: white;
-  border-radius: 10px;
+  background-color: #EF4444;
+  border-radius: 20px;
   padding: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
@@ -62,7 +62,7 @@ export const WhiteSubContainer = styled.div`
   flex-direction: column; /* 세로 정렬 */
   align-items: flex-start; /* 왼쪽 정렬 */
   padding: 5%;
-  margin: 5%;
+  margin: 10%;
 `;
 
 // Icon wrapper style
@@ -83,8 +83,11 @@ export const MainWrap = styled.div`
 `;
 
 export const Subtitle = styled.div`
-  font-size: 13px;
-  color: black;
+  font-family: 'chab';
+  font-size: 20px;
+  color: white;
+  font-weight:bold
+
 `;
 
 export const LargeText = styled.div`
@@ -190,7 +193,7 @@ export const TransparentContainer = styled.div`
   padding-left: 10%;
   padding-right: 10%;
   padding-top: 5%;
-  padding-bottom: 5%;
+   padding-bottom: 10%;
   box-shadow: 0 12px 8px rgba(0, 0, 0, 0.1);
   margin: 10% 0 0 5%; /* 상단에 10%의 마진을 추가, 왼쪽에 5% 마진 */
   position: relative; /* 이미지 위치를 조정하기 위해 추가 */
@@ -200,7 +203,7 @@ export const TransparentContainer = styled.div`
 // Image style
 export const Image = styled.img`
   width: 70%; /* 이미지의 크기를 조정 */
-  height: auto;
+  height: 70%;
   position: absolute; /* 절대 위치 */
   right: -40%; /* 부모 컨테이너의 오른쪽 밖으로 나가도록 설정 */
   bottom: -30%; /* 부모 컨테이너의 아래쪽 밖으로 나가도록 설정 */

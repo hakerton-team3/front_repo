@@ -24,12 +24,12 @@ export const BubbleContainer = styled.div`
   padding: 3% 3%;
   color: black;
   margin: 5%;
-  font-size:10px;
+  font-size: 10px;
 
   &::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: -20px; /* 수정: 부모 요소 외부에 배치 */
     left: 20%;
     width: 0;
     height: 0;
@@ -38,7 +38,6 @@ export const BubbleContainer = styled.div`
     border-bottom: 0;
     border-left: 0;
     margin-left: -10px;
-    margin-bottom: -20px;
   }
 `;
 

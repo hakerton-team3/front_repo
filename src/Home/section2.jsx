@@ -15,8 +15,18 @@ import badgeIcon7 from '../image/미획득뱃지7.svg';
 import badgeIcon8 from '../image/미획득뱃지8.svg';
 import judalIcon from '../image/금주 주달.png';
 import judalIcon2 from '../image/금주중 주달.png';
+import { useNavigate } from 'react-router-dom';
+
 
 const Section02 = () => {
+
+  const navigate = useNavigate();
+
+  const HandleredHome = () => {
+    navigate('/redhome');
+  };
+
+
   const [isOpen1, setIsOpen1] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
   const [isOpen3, setIsOpen3] = useState(false);
@@ -101,7 +111,7 @@ const Section02 = () => {
           <S.ContainererText>
             <div>나만의</div>
             <div>미션</div>
-            <div>만들기</div>
+            
           </S.ContainererText>
         </S.CardContainer>
         {/* Add more CardContainer components as needed */}
@@ -206,7 +216,7 @@ const Section02 = () => {
         <K.ModalTitle>금주챌린지</K.ModalTitle>
         <K.ModalContent>2주동안 금주를 실천하는 챌린지, 솔직하게 임하길.</K.ModalContent>
         <K.JudalImage src={judalIcon}></K.JudalImage>
-        <K.SubmitButton>즉시 시작하기</K.SubmitButton>
+        <K.SubmitButton onClick={HandleredHome}>즉시 시작하기</K.SubmitButton>
       </Modal>
 
       <Modal ariaHideApp={false} isOpen={isOpen6} onRequestClose={closeModal6} style={customStyles}>

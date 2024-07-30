@@ -1,118 +1,124 @@
 import React, { useState } from 'react';
-import Bubble from '../Bubble';
 import * as S from './test.styled';
 import Beerimage from '../images/6.png';
-import { useNavigate, Outlet } from 'react-router-dom'; 
-
-
-
-const questions = [
-  {
-    question: "1. 당신의 음주 주기는 어떤가요?",
-    answers: ['주 1회', '주 2회~4회', '주 5회~6회', '매일']
-  },
-  {
-    question: "2. 당신의 술자리 배경은 어떤가요?",
-    answers: ['요리 주점', '일반 음식점', '지인 집', '집']
-  },
-  {
-    question: "3. 당신의 참석 유형은 어떤가요? ",
-    answers: ['회식 자리', '지인과 함께', '가족과 함께', '혼자']
-  },
-  {
-    question: "4. 당신은 왜 음주를 하나요? ",
-    answers: ['즐거움', '감정 및 스트레스 해소', '지인과의 약속', '공식적인 술자리']
-  },
-  {
-    question: "5. 약속 특성에 대해 알려주세요 ",
-    answers: ['예정된 자리', '번개']
-  },
-  {
-    question: "6. 약속 주기의 패턴은 어떤가요? ",
-    answers: ['규칙적', '불규칙적']
-  },
-  {
-    question: "7. 소주 기준 당신의 주량은 어떤가요? ",
-    answers: ['1병이하', '1병~2병', '2병~2병반', '3병이상']
-  },
-  {
-    question: "8. 당신의 주종은 무엇인가요?",
-    answers: ['소주', '맥주', '전통주', '기타']
-  },
-  {
-    question: "9. 좋아하는 안주는 무엇인가요?",
-    answers: ['한식', '일식', '중식', '그외']
-  },
-  {
-    question: "10. 평균적인 숙취 정도를 표시하세요.",
-    answers: ['멀쩡함', '조금힘듬', '많이힘듬', '일상생활불가']
-  },
-  
-  // 더 많은 질문을 여기에 추가할 수 있습니다.
-];
-
-
-
+import { useNavigate } from 'react-router-dom'; 
+import Question from './Question';
 
 const Test = () => {
-  const [selectedIndexes, setSelectedIndexes] = useState({});
+  const navigate = useNavigate();
 
-  const handleSelect = (questionIndex, answerIndex) => {
-    setSelectedIndexes(prevState => ({
-      ...prevState,
-      [questionIndex]: answerIndex,
-    }));
+  const handleresultLogin = () => {
+    navigate('/result');  
   };
 
- 
-    const navigate = useNavigate();
-  
-    const handleresultLogin = () => {
-      navigate('/result');  
-    };
-  
+  const questions = [
+    {
+      questionText: "1. 오랜 기간 진행한 프로젝트가 끝이 났다.<br>그동안의 고생을 보상하기 위한 당신의 선택은?",
+      options: [
+        "지인들과 함께 술 한 잔 하며 시간을 보낸다",
+        "넷플릭스를 켜고 술 한잔을 하며 나만의 시간을 보낸다."
+      ]
+    },
+    {
+      questionText: "2. 기다리던 연휴가 시작되었다. 당신의 선택은?",
+      options: [
+        "연휴를 맞아 지인들과 모여 술 한 잔 한다",
+        "혼자서 연휴의 여유를 즐기며 술 한 잔 한다"
+      ]
+    },
+    {
+      questionText: "3. 좋아하는 팀이 중요한 경기에서 이겼다?",
+      options: [
+        "친구들과 모여 경기 승리를 축하하며 술 한 잔 한다",
+        "혼자서 경기를 다시 보며 술 한잔 한다"
+      ]
+    },
+    {
+      questionText: "4. 시험 기간이 끝나고 스트레스를<br> 풀며 술을 마시고 있다. 당신의 선택은?",
+      options: [
+        "스트레스를 술로 풀기 위해 많이 마신다",
+        "약간의 취기가 있는 상태를 즐긴다"
+      ]
+    },
+    {
+      questionText: "5. 오랜만에 친구들과 여행을 갔다. 당신의 선택은?",
+      options: [
+        "친구들과의 여행이니 술을 많이 마신다",
+        "경치와 대화를 즐기며 적당히 마신다"
+      ]
+    },
+    {
+      questionText: "6. 무제한 칵테일 술집에 갔다.당신의 선택은?",
+      options: [
+        "무제한이니 종류별로 최대한 많이 마신다",
+        "가격과 주량을 생각하여 두세 잔 정도만 마신다"
+      ]
+    },
+    {
+      questionText: "7. 수업이 끝나고 간단하게 한 잔 하자고 물어보는 친구,<br>당신의 선택은?",
+      options: [
+        "술약속은 언제나 좋다",
+        "갑작스러운 약속은 부담스럽다"
+      ]
+    },
+    {
+      questionText: "8. 동료가 당일 저녁에 새로 생긴 술집을 가자고 한다면,<br>당신의 선택은?",
+      options: [
+        "새로운 곳을 즉흥적으로 가는게 좋다",
+        "미리 알아본 술집이 더 좋다"
+      ]
+    },
+    {
+      questionText: "9. 친구들과 자주 가던 바에 간 당신의 선택은?",
+      options: [
+        "매번 마시던 그 메뉴를 주문한다",
+        "바텐더에게 추천을 받는다"
+      ]
+    },
+    {
+      questionText: "10. 본인의 주량이 얼마나 되나요??",
+      options: [
+        "1병 이하도 못먹음",
+        "2병 먹으면 취한다"
+      ]
+    },
+    
+  ];
+
   return (
     <S.MainContainer>
       <S.Title>잠깐,</S.Title>
-      <Bubble text="사용자 아이디의 평소 음주 습관을 보다 재미있게 돌이켜 보면 어떨까요?" />
-      <Bubble text="최근 음주 스타일을 바탕으로 솔비티아이에 임해주세요." />
-      {questions.map((q, questionIndex) => (
-        <React.Fragment key={questionIndex}>
-          <S.QuestionSection>
-            <S.QuestionText>{q.question}</S.QuestionText>
-            <S.RatingContainer>
-              {q.answers.map((answer, answerIndex) => (
-                <S.RatingItem
-                  key={answerIndex}
-                  onClick={() => handleSelect(questionIndex, answerIndex)}
-                >
-                  <S.RatingCircle
-                    className={selectedIndexes[questionIndex] === answerIndex ? 'selected' : ''}
-                  />
-                  <S.RatingText>{answer}</S.RatingText>
-                </S.RatingItem>
-              ))}
-            </S.RatingContainer>
-          </S.QuestionSection>
-          {questionIndex < questions.length - 1 && <S.Divider />}
+      <S.BubbleContainer>
+        <S.BubbleContainertext2>
+          <S.BubbleContainertext>승범</S.BubbleContainertext>님의 평소음주 습관을
+        </S.BubbleContainertext2>
+        <S.BubbleContainertext2>
+          보다 재미있게 돌이켜 보면 어떨까요?
+        </S.BubbleContainertext2>
+      </S.BubbleContainer>
+      <S.BubbleContainer2>
+        <S.BubbleContainertext2>
+          최근 음주 스타일 바탕으로 <S.BubbleContainertext>술비티아이</S.BubbleContainertext>에 임해주세요.
+        </S.BubbleContainertext2>
+      </S.BubbleContainer2>
+      <S.Divider />
+      {questions.map((question, index) => (
+        <React.Fragment key={index}>
+          <Question questionText={question.questionText} options={question.options} />
+          <S.Divider />
         </React.Fragment>
       ))}
-      <S.Divider />
       <S.Image src={Beerimage} alt="logo" />
       <S.Container>
-      <S.Instruction>아래 공백에 사용자의 이름을 입력해주세요. </S.Instruction>
-      <S.InputLine />
-      <S.MainText>
-        님의 <S.Highlight>술</S.Highlight><S.SubHighlight>BTI</S.SubHighlight>는?
-      </S.MainText>
+        <S.Instruction>아래 공백에 사용자의 이름을 입력해주세요. </S.Instruction>
+        <S.InputLine />
+        <S.MainText>
+          님의 <S.Highlight>술</S.Highlight><S.SubHighlight>BTI</S.SubHighlight>는?
+        </S.MainText>
       </S.Container>
       <S.Button onClick={handleresultLogin}>확인하러 가기</S.Button>
       <S.BackContainer>
-     
-      <S.FooterText>주적<br />酒적</S.FooterText> 
-     
-      
-
+        <S.FooterText>주적<br />酒적</S.FooterText>
       </S.BackContainer>
     </S.MainContainer>
   );
