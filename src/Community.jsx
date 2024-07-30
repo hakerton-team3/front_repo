@@ -33,7 +33,7 @@ const HorizontalScroll = ({ posts }) => {
           className={index === activeIndex ? 'active' : 'inactive'}
         >
           <S.ItemBackground>
-            <S.Text>{post.title}</S.Text>
+            <S.Text2>{post.title}</S.Text2>
             <S.Content>{post.memo}</S.Content>
           </S.ItemBackground>
         </S.ItemContainer>

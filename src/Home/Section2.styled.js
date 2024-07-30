@@ -156,20 +156,6 @@ export const BadgeText = styled.div`
     margin-top: 5px;
 `;
 
-export const BorderedText = styled.div`
-  display: flex;
-  justify-content: center; 
-  align-items: center;    
-  border: 2px solid #FFCE4F; 
-  border-radius: 12px; 
-  padding: 10px; 
-  font-size: 16px; 
-  color: #000000; 
-  height: 30px;
-  width: 300px;
-  background-color: #ffffff;
-  margin-top: 30px;
-`;
 
 export const BorderedTextSmall = styled.div`
   display: flex;
@@ -183,7 +169,7 @@ export const BorderedTextSmall = styled.div`
   height: 29px;
   width: 156px;
   background-color: #ffffff; 
-  margin-top: 30px;
+  margin-top: 20px;
 `;
 
 
@@ -201,6 +187,7 @@ export const BorderedBtn = styled.button`
   background-color: #ffffff; 
   margin-top: 30px;
 `;
+
 
 export const AppContainer = styled.div`
   margin: 30px;
@@ -294,4 +281,86 @@ export const GemjuContainer = styled.div`
 export const H1 = styled.h1`
     margin: 10px;
     color: #EF4444;
+    font-family: 'chab';
+  `;
+
+export const CircleContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  justify-content: center; /* 중앙 정렬 */
+  margin-top: 20px; /* 원하는 경우 여백 추가 */
+`;
+
+export const AttendanceButton = styled.button`
+  background-color: #FFFFFF;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #000;
+  width: 129px;
+  height: 52px;
+  font-size: 16px; 
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center; 
+  align-items: center;   
+  
+  &:hover {
+    background-color: #ffd710;
+  }
+`;
+
+export const AttendanceTextContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  margin-top: 10px;
+  gap: 2px; /* 요소 간 간격 */
+`;
+
+export const AttendanceContainer = styled.div`
+  display: flex;
+  align-items: center; /* 수직 중앙 정렬 */
+  gap: 20px;
+`;
+
+export const RatingCircle = styled.div`
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #D9D9D9; /* 클릭 전 기본 배경색 */
+  transition: background-color 0.3s, width 0.3s, height 0.3s;
+  border: 2px solid white; /* 기본 테두리 색 */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  &.selected {
+    background-color: white; /* 클릭 시 배경색 */
+    border-color: #FFCE4F; /* 클릭 시 테두리 색 */
+  }
+
+  &.selected::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-color: #FFCE4F; /* 클릭 시 내부 원 색 */
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+`;
+
+export const bigText = styled.p`
+    margin: 10px;
+    color: #FFCE4F;
+    font-family: 'chab';
+    font-size: 26px;
   `;

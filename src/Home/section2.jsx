@@ -15,8 +15,6 @@ import badgeIcon7 from '../image/미획득뱃지7.svg';
 import badgeIcon8 from '../image/미획득뱃지8.svg';
 import judalIcon from '../image/금주 주달.png';
 import judalIcon2 from '../image/금주중 주달.png';
-import { useNavigate } from 'react-router-dom';
-
 
 const Section02 = () => {
 
@@ -32,7 +30,6 @@ const Section02 = () => {
   const [isOpen3, setIsOpen3] = useState(false);
   const [isOpen4, setIsOpen4] = useState(false);
   const [isOpen5, setIsOpen5] = useState(false);
-  const [isOpen6, setIsOpen6] = useState(false);
   const [isOpen7, setIsOpen7] = useState(false);
   const [isOpen8, setIsOpen8] = useState(false);
 
@@ -46,14 +43,11 @@ const Section02 = () => {
   const closeModal4 = () => setIsOpen4(false);
   const openModal5 = () => setIsOpen5(true);
   const closeModal5 = () => setIsOpen5(false);
-  const openModal6 = () => setIsOpen6(true);
-  const closeModal6 = () => setIsOpen6(false);
   const openModal7 = () => setIsOpen7(true);
   const closeModal7 = () => setIsOpen7(false);
   const openModal8 = () => setIsOpen8(true);
   const closeModal8 = () => setIsOpen8(false);
 
-  const navigate = useNavigate();
   const navigateTo = (path) => {
     navigate(path);
   };
@@ -62,6 +56,13 @@ const Section02 = () => {
     closeModal2(); // 모달 닫기
     document.documentElement.scrollTo(0, document.body.scrollHeight); // 페이지 가장 아래로 스크롤
   };
+    const [selectedCircles, setSelectedCircles] = useState(Array(7).fill(false));
+  
+    const handleCircleClick = (index) => {
+      const newSelectedCircles = [...selectedCircles];
+      newSelectedCircles[index] = !newSelectedCircles[index];
+      setSelectedCircles(newSelectedCircles);
+    };
 
   const customStyles = {
     overlay: {
@@ -178,14 +179,41 @@ const Section02 = () => {
         <K.ModalTitle>출석체크</K.ModalTitle>
         <K.ModalContent>출석일을 늘려 주기적으로 음주 생활을 관리해 나가요.</K.ModalContent>
         <K.BorderedTextSmall>2024년 8월 10일</K.BorderedTextSmall>
+        <K.CircleContainer>
+      {selectedCircles.slice(0, 3).map((isSelected, index) => (
+        <K.RatingCircle
+          key={index}
+          className={isSelected ? 'selected' : ''}
+          onClick={() => handleCircleClick(index)}
+        />
+      ))}
+    </K.CircleContainer>
+    <K.CircleContainer>
+        {selectedCircles.slice(3).map((isSelected, index) => (
+          <K.RatingCircle
+            key={index + 3}
+            className={isSelected ? 'selected' : ''}
+            onClick={() => handleCircleClick(index + 3)}
+          />
+        ))}
+      </K.CircleContainer>
+      <K.AttendanceContainer>
+      <K.AttendanceTextContainer>
+          <h5>누적접속</h5>
+          <K.bigText>8일</K.bigText>
+          </K.AttendanceTextContainer>
+      <K.AttendanceButton>출석하기</K.AttendanceButton>
+      </K.AttendanceContainer>
+    
+      
       </Modal>
 
       <Modal ariaHideApp={false} isOpen={isOpen3} onRequestClose={closeModal3} style={customStyles}>
         <K.CloseIcon src={closeIcon} alt="Close" onClick={closeModal3} />
         <K.ModalTitle3>나만의 미션</K.ModalTitle3>
         <K.ModalContent>나만의 미션으로 절주챌린지와 금주챌린지에 도전해봐요.</K.ModalContent>
-        <K.BorderedText onClick={openModal4}>절주챌린지 도전</K.BorderedText>
-        <K.BorderedText onClick={openModal5}>금주챌린지 도전</K.BorderedText>
+        <K.BorderedBtn onClick={openModal4}>절주챌린지 도전</K.BorderedBtn>
+        <K.BorderedBtn onClick={openModal5}>금주챌린지 도전</K.BorderedBtn>
       </Modal>
 
       <Modal ariaHideApp={false} isOpen={isOpen4} onRequestClose={closeModal4} style={customStyles}>
@@ -219,19 +247,6 @@ const Section02 = () => {
         <K.SubmitButton onClick={HandleredHome}>즉시 시작하기</K.SubmitButton>
       </Modal>
 
-      <Modal ariaHideApp={false} isOpen={isOpen6} onRequestClose={closeModal6} style={customStyles}>
-        <K.CloseIcon src={closeIcon} alt="Close" onClick={closeModal6} />
-        <K.ModalTitle6>금주챌린지</K.ModalTitle6>
-        <K.ModalContent>2주동안 금주를 실천하는 챌린지, 솔직하게 임하길.</K.ModalContent>
-        <K.JudalImage2 src={judalIcon2}></K.JudalImage2>
-        <K.GemjuContainer>
-          <h4>성공까지</h4>
-          <K.H1>8일</K.H1>
-          <h4>남았어요.</h4>
-        </K.GemjuContainer>
-        <K.SubmitButton>포기하기</K.SubmitButton>
-      </Modal>
-
       <Modal ariaHideApp={false} isOpen={isOpen7} onRequestClose={closeModal7} style={customStyles}>
         <K.CloseIcon src={closeIcon} alt="Close" onClick={closeModal7} />
         <K.ModalTitle6>절주챌린지</K.ModalTitle6>
@@ -246,6 +261,6 @@ const Section02 = () => {
       </Modal>
     </S.MainContainer>
   );
-}
+};
 
 export default Section02;
