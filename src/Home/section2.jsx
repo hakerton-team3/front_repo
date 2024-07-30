@@ -56,6 +56,13 @@ const Section02 = () => {
     closeModal2(); // 모달 닫기
     document.documentElement.scrollTo(0, document.body.scrollHeight); // 페이지 가장 아래로 스크롤
   };
+    const [selectedCircles, setSelectedCircles] = useState(Array(7).fill(false));
+  
+    const handleCircleClick = (index) => {
+      const newSelectedCircles = [...selectedCircles];
+      newSelectedCircles[index] = !newSelectedCircles[index];
+      setSelectedCircles(newSelectedCircles);
+    };
 
   const customStyles = {
     overlay: {
@@ -172,6 +179,33 @@ const Section02 = () => {
         <K.ModalTitle>출석체크</K.ModalTitle>
         <K.ModalContent>출석일을 늘려 주기적으로 음주 생활을 관리해 나가요.</K.ModalContent>
         <K.BorderedTextSmall>2024년 8월 10일</K.BorderedTextSmall>
+        <K.CircleContainer>
+      {selectedCircles.slice(0, 3).map((isSelected, index) => (
+        <K.RatingCircle
+          key={index}
+          className={isSelected ? 'selected' : ''}
+          onClick={() => handleCircleClick(index)}
+        />
+      ))}
+    </K.CircleContainer>
+    <K.CircleContainer>
+        {selectedCircles.slice(3).map((isSelected, index) => (
+          <K.RatingCircle
+            key={index + 3}
+            className={isSelected ? 'selected' : ''}
+            onClick={() => handleCircleClick(index + 3)}
+          />
+        ))}
+      </K.CircleContainer>
+      <K.AttendanceContainer>
+      <K.AttendanceTextContainer>
+          <h5>누적접속</h5>
+          <K.bigText>8일</K.bigText>
+          </K.AttendanceTextContainer>
+      <K.AttendanceButton>출석하기</K.AttendanceButton>
+      </K.AttendanceContainer>
+    
+      
       </Modal>
 
       <Modal ariaHideApp={false} isOpen={isOpen3} onRequestClose={closeModal3} style={customStyles}>
@@ -227,6 +261,6 @@ const Section02 = () => {
       </Modal>
     </S.MainContainer>
   );
-}
+};
 
 export default Section02;

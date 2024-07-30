@@ -3,7 +3,7 @@ import memoIcone from './image/메모장.png';
 import starIcone from './image/별점.png';
 import calenderIcone from './image/달력이미지.png';
 import pencilIcone from './image/연필3d.png';
-import handIcone from './image/손.png';
+import handIcone from './image/합쳐진별원폰.svg';
 import styled, { createGlobalStyle } from 'styled-components';
 
 const Container = styled.div`
@@ -53,7 +53,7 @@ const Underline2 = styled.div`
   width: 80%;
   height: 1px;
   background-color: #E7E7E7;
-  margin: -6px auto 0 auto; 
+  margin: -19px auto 0 auto; 
   z-index: 2; /* 설정 추가 */
   position: relative; /* z-index를 적용하기 위해 추가 */
 `;
@@ -112,14 +112,13 @@ const GradientContainer = styled.div`
 
 const ShadowContainer = styled.div`
   width:350px;
-  height: 400px;
+  height: 380px;
   background-color: #FCFCFC;
   border-radius: 10px; // 모서리 둥글게
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // 그림자 효과
   margin-top: 90px;
   margin-left: 8%;
   color: #000;
-  font-weight: bold;
   padding: 5px;
   position: relative;
   z-index: 2; /* 설정 추가 */
@@ -127,7 +126,8 @@ const ShadowContainer = styled.div`
   p {
     text-align: left; // p 태그를 왼쪽 정렬
     margin-bottom: 13px;
-    margin-left: 20px;
+    margin-left: 30px;
+    font-size: 14px;
   }
 `;
 
@@ -137,7 +137,8 @@ const BorderedText = styled.div`
   align-items: center;    /* 수직 가운데 정렬 */
   border-radius: 16px; /* 둥근 모서리 */
   padding: 10px; /* 텍스트와 테두리 사이의 여백 */
-  font-size: 17px; /* 텍스트 크기 */
+  font-size: 15px; /* 텍스트 크기 */
+  font-weight: bold;
   color: #000000; /* 텍스트 색상 */
   height: 30px;
   width: 300px;
@@ -153,7 +154,8 @@ const BorderedTextRed = styled.div`
   align-items: center;    /* 수직 가운데 정렬 */
   border-radius: 16px; /* 둥근 모서리 */
   padding: 10px; /* 텍스트와 테두리 사이의 여백 */
-  font-size: 17px; /* 텍스트 크기 */
+  font-size: 15px; /* 텍스트 크기 */
+  font-weight: bold;
   color: #FFFFFF; /* 텍스트 색상 */
   height: 30px;
   width: 300px;
@@ -272,13 +274,13 @@ function Statistics() {
         </Weektext>
         
         <ShadowContainer>
-          <p>김서경 님의 기본 주량을 넘긴 날은,</p>
+          <p>김서경 님의 기본 주량을 <strong>넘긴 날은,</strong></p>
           <BorderedText>8월 2일, 친구들과 일본여행</BorderedText>
-          <p>이번 주 금주의 날은,</p>
+          <p>이번 주 <strong>금주의 날은,</strong></p>
           <BorderedTextRed>"없었습니다."</BorderedTextRed>
-          <p>JRMT 주량마스터의 기본설정과 비교해,</p>
+          <p>JRMT 주량마스터의 기본설정과 <strong>비교해,</strong></p>
           <BorderedText>절주가 필요한 상황입니다.</BorderedText>
-          <p>음주 예정일은, 일주일 평균</p>
+          <p>음주 예정일은, <strong>일주일 평균</strong></p>
           <BorderedText>3일입니다.</BorderedText>
         </ShadowContainer>
 
