@@ -199,6 +199,7 @@ export const TransparentContainer = styled.div`
 
 // Image style
 export const Image = styled.img`
+
   width: 70%; /* 이미지의 크기를 조정 */
   height: auto;
   position: absolute; /* 절대 위치 */
