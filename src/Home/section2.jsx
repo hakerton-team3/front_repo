@@ -2,6 +2,7 @@
 import * as S from './Section2.styled';
 import * as K from './Section2.styled';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import closeIcon from '../image/닫기버튼.png';
 import badgeIcon1 from '../image/미획득뱃지1.svg';
@@ -23,6 +24,7 @@ const Section02 = () => {
   const [isOpen5, setIsOpen5] = useState(false);
   const [isOpen6, setIsOpen6] = useState(false);
   const [isOpen7, setIsOpen7] = useState(false);
+  const [isOpen8, setIsOpen8] = useState(false);
 
   const openModal1 = () => setIsOpen1(true);
   const closeModal1 = () => setIsOpen1(false);
@@ -38,6 +40,18 @@ const Section02 = () => {
   const closeModal6 = () => setIsOpen6(false);
   const openModal7 = () => setIsOpen7(true);
   const closeModal7 = () => setIsOpen7(false);
+  const openModal8 = () => setIsOpen8(true);
+  const closeModal8 = () => setIsOpen8(false);
+
+  const navigate = useNavigate();
+  const navigateTo = (path) => {
+    navigate(path);
+  };
+
+  const handleScrollAndClose = () => {
+    closeModal2(); // 모달 닫기
+    document.documentElement.scrollTo(0, document.body.scrollHeight); // 페이지 가장 아래로 스크롤
+  };
 
   const customStyles = {
     overlay: {
@@ -144,9 +158,16 @@ const Section02 = () => {
         <K.CloseIcon src={closeIcon} alt="Close" onClick={closeModal2} />
         <K.ModalTitle>오늘의 미션</K.ModalTitle>
         <K.ModalContent>앱 사용과 음주 습관 관리법까지 한 번에 익혀보도록 합시다.</K.ModalContent>
-        <K.BorderedText>출석체크 하기</K.BorderedText>
-        <K.BorderedText>안주 추천 받기 기능 사용하기</K.BorderedText>
-        <K.BorderedText>주량 재설정하기</K.BorderedText>
+        <K.BorderedBtn onClick={openModal8}>출석체크 하기</K.BorderedBtn>
+        <K.BorderedBtn onClick={handleScrollAndClose}>안주 추천 받기 기능 사용하기</K.BorderedBtn>
+        <K.BorderedBtn onClick={() => navigateTo('/calendar')}>음주 기록하기</K.BorderedBtn>
+      </Modal>
+
+      <Modal ariaHideApp={false} isOpen={isOpen8} onRequestClose={closeModal8} style={customStyles}>
+        <K.CloseIcon src={closeIcon} alt="Close" onClick={closeModal8} />
+        <K.ModalTitle>출석체크</K.ModalTitle>
+        <K.ModalContent>출석일을 늘려 주기적으로 음주 생활을 관리해 나가요.</K.ModalContent>
+        <K.BorderedTextSmall>2024년 8월 10일</K.BorderedTextSmall>
       </Modal>
 
       <Modal ariaHideApp={false} isOpen={isOpen3} onRequestClose={closeModal3} style={customStyles}>

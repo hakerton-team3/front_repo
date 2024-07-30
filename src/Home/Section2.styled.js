@@ -158,16 +158,47 @@ export const BadgeText = styled.div`
 
 export const BorderedText = styled.div`
   display: flex;
-  justify-content: center; /* 수평 가운데 정렬 */
-  align-items: center;    /* 수직 가운데 정렬 */
-  border: 2px solid #FFCE4F; /* 테두리 색상과 두께 */
-  border-radius: 12px; /* 둥근 모서리 */
-  padding: 10px; /* 텍스트와 테두리 사이의 여백 */
-  font-size: 16px; /* 텍스트 크기 */
-  color: #000000; /* 텍스트 색상 */
+  justify-content: center; 
+  align-items: center;    
+  border: 2px solid #FFCE4F; 
+  border-radius: 12px; 
+  padding: 10px; 
+  font-size: 16px; 
+  color: #000000; 
   height: 30px;
   width: 300px;
-  background-color: #ffffff; /* 배경 색상 (선택 사항) */
+  background-color: #ffffff;
+  margin-top: 30px;
+`;
+
+export const BorderedTextSmall = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;   
+  border-radius: 30px;
+  padding: 10px; 
+  font-size: 16px; 
+  font-weight: bold;
+  color: #000000; 
+  height: 29px;
+  width: 156px;
+  background-color: #ffffff; 
+  margin-top: 30px;
+`;
+
+
+export const BorderedBtn = styled.button`
+  display: flex;
+  justify-content: center; 
+  align-items: center;    
+  border: 2px solid #FFCE4F; 
+  border-radius: 12px; 
+  padding: 25px; 
+  font-size: 16px; 
+  color: #000000; 
+  height: 30px;
+  width: 320px;
+  background-color: #ffffff; 
   margin-top: 30px;
 `;
 
@@ -230,7 +261,6 @@ export const JudalImage = styled.img`
 export const JudalImage2 = styled.img`
   width: 260px;
   height: 140px;
-  margin-left: 50px;
   margin-top: 10px;
 `;
 
