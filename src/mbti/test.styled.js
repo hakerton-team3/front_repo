@@ -13,33 +13,22 @@ export const MainContainer = styled.div`
   width: 100%;
   height: 100vh;
   background: white;
-  display: flex;
+  
   flex-direction: column;
   align-items: center;
+   overflow-x: hidden;
 `;
 
 export const Title = styled.h1`
   font-family: 'chab';
-  font-size: 60px;
+  font-size: 70px;
   font-weight: bold;
   text-align: center;
   color: black;
   margin-top: 20%;
+  margin-right: 40%;
  
-`;
-
-export const QuestionSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-`;
-
-export const QuestionText = styled.p`
-  font-size: 18px;
-  margin-bottom: 10px;
-`;
-
+`; 
 export const RatingContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -47,45 +36,7 @@ export const RatingContainer = styled.div`
   gap: 20px;
 `;
 
-export const RatingItem = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-`;
-
-export const RatingCircle = styled.div`
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background-color: white;
-  transition: background-color 0.3s, width 0.3s, height 0.3s;
-  border: 2px solid #FFCE4F;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &.selected::before {
-    content: '';
-    display: block;
-    width: 40px;
-    height: 40px;
-    background-color: #FFCE4F;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-`;
-
-export const RatingText = styled.div`
-  font-size: 14px;
-  margin-top: 5px;
-  text-align: center;
-`;
-
+   
 export const Bubble = styled.div`
   background-color: #FFCE4F;
   border-radius: 15px;
@@ -98,17 +49,13 @@ export const Bubble = styled.div`
   text-align: center;
 `;
 
-export const Divider = styled.div`
-  width: 80%;
-  height: 1px;
-  background-color: #ddd;
-  margin: 20px 0;
-`;
-
+ 
 export const Image = styled.img`
   width: 50%; /* 이미지의 크기를 조정 */
   height: auto;
   margin-bottom: 5%;
+  margin-top: 5%;
+ 
 `;
 
 export const BackContainer = styled.div`
@@ -225,4 +172,95 @@ export const Highlight = styled.span`
 export const SubHighlight = styled.span`
   color: #FFCE4F;
   font-family: 'chab';
+`;
+
+
+
+export const BubbleContainer = styled.span`
+position: relative;
+background: #FFCE4F;
+border-radius: 1.0em;
+padding: 3% 3%; /* 필요에 따라 패딩을 조정하세요 */
+color: black;
+margin-left: 10%;
+font-size: 10px;
+width: 60%;
+margin-right: 25%;
+height: 60px; /* 원하는 높이로 설정 */
+display: flex;
+flex-direction: column;
+justify-content: center; /* 자식 요소를 수직 중앙 정렬 */
+align-items: flex-start; /* 자식 요소를 왼쪽 정렬 */
+`;
+
+
+export const BubbleContainertext = styled.text`
+font-size: 14px;
+  font-weight: bold;
+    color: black;
+`;
+
+
+export const BubbleContainertext2 = styled.text`
+font-size: 13px;
+    color: black;
+    text-align: start;
+`;
+
+
+export const BubbleContainer2 = styled.span`
+position: relative;
+background: #FFCE4F;
+border-radius: 1.0em;
+padding: 3% 3%; /* 필요에 따라 패딩을 조정하세요 */
+color: black;
+margin-left: 10%;
+font-size: 10px;
+width: 65%;
+margin-right: 20%;
+height: 30px; /* 원하는 높이로 설정 */
+display: flex;
+flex-direction: column;
+justify-content: center; /* 자식 요소를 수직 중앙 정렬 */
+align-items: flex-start; /* 자식 요소를 왼쪽 정렬 */
+margin-top: 5%;
+`;
+export const Divider = styled.div`
+
+width: 80%; /* 구분선의 너비 */
+height: 1px; /* 구분선의 높이 */
+background-color: black; /* 구분선 색상 */
+ margin: 15% auto; /* 구분선을 수평 중앙으로 정렬 */
+`;
+
+export const Container3 = styled.div`
+  width: 350px;
+  height: 190px;
+  display: flex;
+  justify-content: center; /* 자식 요소를 수평 중앙 정렬 */
+  align-items: center; /* 자식 요소를 수직 중앙 정렬 */
+  flex-direction: column; /* 컬럼 방향으로 정렬 */
+   margin: -10% auto; /* 구분선을 수평 중앙으로 정렬 */
+`;
+
+export const BubbleContainer3 = styled.span`
+position: relative;
+background: #FFCE4F;
+border-radius: 3.0em;
+padding: 3% 3%; /* 필요에 따라 패딩을 조정하세요 */
+color: black;
+font-size: 10px;
+width: 90%;
+height: 30px; /* 원하는 높이로 설정 */
+display: flex;
+flex-direction: column;
+justify-content: center; /* 자식 요소를 수직 중앙 정렬 */
+margin-top: 5%;
+`;
+
+export const BubbleContainertext3 = styled.text`
+font-size: 13px;
+    color: black;
+      font-weight: bold;
+    text-align: center;
 `;

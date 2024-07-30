@@ -47,3 +47,17 @@ export const StyledLink = styled(NavLink)`
      
   }
 `;
+
+export const BackButton = styled.button`
+  background-color: #FFCE4F;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  color: black;
+
+  &:hover {
+    background-color: #FFC107;
+  }
+`;

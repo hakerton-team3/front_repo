@@ -58,7 +58,7 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-  width: 100%;
+  width: 50%;
   max-width: 320px;
   padding: 10px;
   height: 8%;
@@ -135,3 +135,35 @@ width: 100%;
   justify-content: center;
   `;
 
+
+
+  export const IconContainer2 = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+ 
+`;
+
+export const Image2 = styled.img`
+ 
+  width: 100%; /* 이미지의 크기를 조정 */
+  height: auto;
+  margin-left: 10%;
+  margin-bottom: 5%;
+  margin-top: 10%;
+`;
+
+
+export const Button2 = styled.button`
+  width: 50%;
+  max-width: 320px;
+  height: 8%;
+  background-color: #FFFFFF;
+  color: black;
+  border: 2px solid white; /* 여기서 색상을 변경할 수 있습니다 */
+  border-radius: 20px;  
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 5%;
+  box-shadow: 0px 0px 3.4px rgba(0, 0, 0, 0.25);
+`;
