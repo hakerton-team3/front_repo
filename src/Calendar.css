@@ -618,13 +618,12 @@ background-color: #9EDC60;
   border: none;
 
   padding: 20px; 
-  border-radius: 15px;
+  border-radius: 15% !important;
   width: 340px;
   height: 60px;
   margin-left: 10%;
 
   max-width: 600px;
-  border-radius: 15px;
   margin-top: 0%;
   margin-left: 1%;
   margin-bottom: 3%;

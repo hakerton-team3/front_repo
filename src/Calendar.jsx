@@ -152,7 +152,7 @@ const CustomCalendar = () => {
             <div className="info-right">
               <div className="bottle-image"></div>
               <div style={{fontSize:'12px', marginLeft:'5%'}}>
-                예상 음주량
+                음주량
                 <div className="number-container">
                   <button onClick={decreaseNumber} className="number-button">-</button>
                   <input type="text" value={numberValue.toFixed(1)} readOnly className="number-input" />
