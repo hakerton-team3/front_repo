@@ -56,6 +56,7 @@ export const BestContainer = styled.div`
   padding: 0;
   width: 100%;
   box-sizing: border-box;
+  
 `;
 
 export const Best = styled.div`
@@ -118,17 +119,18 @@ export const ItemContainer = styled.div`
   transition: transform 0.3s ease;
   
   &.active {
-    transform: scale(1.1);
+    transform: scale(1);
   }
   
   &.inactive {
-    transform: scale(1);
+    transform: scale(0.8);
   }
 `;
 
 export const ItemBackground = styled.div`
-  width: 250px;
-  height: 180px;
+  width: 230px;
+  height: 200px;
+  margin-top: 10px;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -142,7 +144,6 @@ export const Content = styled.div`
   color: #333;
   padding: 10px;
   border-radius: 5px;
-  margin-top: 10px;
   text-align: center;
 `;
 
@@ -244,6 +245,18 @@ export const Text = styled.div`
   flex-direction: column;
   text-align: left;
   line-height: 3px;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  - display: -webkit-box !important; /* Flexbox 사용 */ 
+  -webkit-line-clamp: 1 !important; /* 한 줄로 제한 */
+  -webkit-box-orient: vertical !important; /* 세로 방향 설정 */
+  word-break: keep-all !important;
+`
+
+export const Text2 = styled.div`
+  flex-direction: column;
+  text-align: left;
+  line-height: 10px;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   - display: -webkit-box !important; /* Flexbox 사용 */ 
