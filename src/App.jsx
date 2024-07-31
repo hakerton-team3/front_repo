@@ -1,4 +1,3 @@
-// App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import * as S from './App.styled';
@@ -19,7 +18,7 @@ const App = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const isAuthRoute = location.pathname === '/' || location.pathname === '/register'  || location.pathname === '/test' || location.pathname === '/result';
+  const isAuthRoute = location.pathname === '/' || location.pathname === '/register' || location.pathname === '/test' || location.pathname === '/result';
 
   const handleBackClick = () => {
     navigate(-1); // 뒤로가기
