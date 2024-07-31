@@ -96,7 +96,7 @@ export const RecommendationContainer = styled.div`
 
 export const EmphasizedText = styled.span`
   font-weight: bold;
-  color: #ff6347;
+  color: black;
 `;
 
 export const Recommandtitle = styled.div`
