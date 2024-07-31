@@ -62,7 +62,8 @@ export const WhiteSubContainer = styled.div`
   flex-direction: column; /* 세로 정렬 */
   align-items: flex-start; /* 왼쪽 정렬 */
   padding: 5%;
-  margin: 5%;
+  margin: 10%;
+  padding-bottom: 10%;
 `;
 
 // Icon wrapper style
