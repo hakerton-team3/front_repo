@@ -2,7 +2,6 @@
 import * as S from './Section2.styled';
 import * as K from './Section2.styled';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import closeIcon from '../image/닫기버튼.png';
 import badgeIcon1 from '../image/미획득뱃지1.svg';
@@ -16,6 +15,8 @@ import badgeIcon8 from '../image/미획득뱃지8.svg';
 import judalIcon from '../image/금주 주달.png';
 import judalIcon2 from '../image/금주중 주달.png';
 
+import { useNavigate } from 'react-router-dom';
+ 
 
 const Section02 = () => {
 
