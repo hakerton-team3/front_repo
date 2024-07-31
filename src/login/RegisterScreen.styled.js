@@ -60,10 +60,11 @@ export const Button = styled.button`
   font-size: 16px;
   margin: 20px 0;
   font-color: black;
-display: flex;
+  
   flex-direction: column;
   align-items: center;
-justify-content: center;
+  justify-content: center;
+
 `;
 
 export const Link = styled.a`
