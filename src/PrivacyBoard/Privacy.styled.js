@@ -91,7 +91,7 @@ export const Content = styled.div`
   margin-top: 45%;
   position: absolute;
   text-align: center;
-  font-size: 10px;
+  font-size: 9px;
   color: black;
   padding: 20px;
   background-color: #f8f8f8;

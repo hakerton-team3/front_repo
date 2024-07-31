@@ -15,6 +15,7 @@ import badgeIcon7 from '../image/미획득뱃지7.svg';
 import badgeIcon8 from '../image/미획득뱃지8.svg';
 import judalIcon from '../image/금주 주달.png';
 import judalIcon2 from '../image/금주중 주달.png';
+ 
 
 const Section02 = () => {
 
