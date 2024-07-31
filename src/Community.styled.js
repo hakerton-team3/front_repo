@@ -234,13 +234,9 @@ export const Try = styled.div`
 export const PostListContainer = styled.div`
 display: flex;
   flex-direction: column; /* 자식 요소들을 세로로 배치 */
-
-
-
-export const PostContainer = styled.div`
-  display: flex;
-  flex-direction: column; /* 자식 요소들을 세로로 배치 */
 `
+
+ 
 export const Text = styled.div`
   flex-direction: column;
   text-align: left;
