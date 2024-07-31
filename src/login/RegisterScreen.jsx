@@ -28,7 +28,7 @@ const RegisterScreen = () => {
     try {
       const response = await axiosInstance.post('/users', formData);
       console.log('User created:', response.data);
-      navigate('/'); // 회원가입 성공 시 로그인 화면으로 이동
+      navigate('/test'); // 회원가입 성공 시 로그인 화면으로 이동
     } catch (error) {
       console.error('Error creating user:', error);
     }
