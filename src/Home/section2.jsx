@@ -2,7 +2,6 @@
 import * as S from './Section2.styled';
 import * as K from './Section2.styled';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
 import closeIcon from '../image/닫기버튼.png';
 import badgeIcon1 from '../image/미획득뱃지1.svg';
