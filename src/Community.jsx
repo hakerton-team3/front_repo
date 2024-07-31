@@ -33,8 +33,15 @@ const HorizontalScroll = ({ posts }) => {
           className={index === activeIndex ? 'active' : 'inactive'}
         >
           <S.ItemBackground>
+            <S.Like><S.YH src="/public/yellowheart.png" alt="Hot"></S.YH>7명이 공감했습니다.</S.Like>
             <S.Text2>{post.title}</S.Text2>
             <S.Content>{post.memo}</S.Content>
+            <S.TagGroup2>
+              <S.HotTag src="/public/Hot.png" alt="Hot"></S.HotTag>
+              {post.tags.map((tag, tagIndex) => (
+              <S.Tag2 key={tagIndex}>{tag}</S.Tag2>
+          ))}
+        </S.TagGroup2>
           </S.ItemBackground>
         </S.ItemContainer>
       ))}
