@@ -62,6 +62,8 @@ const CustomCalendar = () => {
     setIsModalVisible(false);
   };
   
+    // 오늘 날짜를 포맷하여 가져오기
+    const todayDate = moment().format('M/D'); // 예: '7/30'
 
   return (
     <div className={`react-calendar-wrapper ${isSwitchOn ? 'switch-on' : ''}`}>
@@ -75,7 +77,7 @@ const CustomCalendar = () => {
           <div className="event-circle"></div>
         </div>
         <div className="event-button">
-          오늘 18:00 | 동아리 회식자리
+        오늘 {todayDate}자 | 동아리 회식자리
         </div>
       </div>
 
@@ -209,7 +211,7 @@ const CustomCalendar = () => {
             <div className="modal-info-right">
               <div className="modal-bottle-image"></div>
               <div style={{fontSize:'12px', marginLeft:'5%'}}>
-                예상 음주량
+                음주량
                 <div className="modal-number-container">
                   <button onClick={decreaseNumber} className="modal-number-button">-</button>
                   <input type="text" value={numberValue.toFixed(1)} readOnly className="modal-number-input" />

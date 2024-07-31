@@ -13,9 +13,9 @@
 
 .header-text {
   display: flex;
+  flex-direction: row;
   justify-content: flex-start;
   width: 100%;
-  max-width: 100%;
 }
 
 .event-text {
@@ -23,19 +23,13 @@
   font-size: 30px;
   margin: 0;
   margin-left:2%;
-  margin-right: 3%;
-  margin-bottom: 5%;
-  margin-top: 5%;
 }
 
 .event-circle {
-  width: 120px;
+  width: 130px;
   height: 120px;
-  border-radius: 50%;
-  background: #FFCE4F;
-  background: linear-gradient(to bottom, #FFCE4F 0%, #FFCE4F 5%, white 100%);
-  display: flex;
-  margin-top: 10%;
+  background-image: url('/public/sun.png');
+  background-size: cover; /* 이미지 크기 조정 */
 }
 
 .event-button {
@@ -79,7 +73,7 @@
 
 .react-calendar__month-view__weekdays__weekday {
   color: black;
-  font-size: 18px;
+  font-size: 12px;
   margin-bottom: 10px;
   border-bottom: none !important;
   text-decoration: none !important;
@@ -87,7 +81,7 @@
 
 .react-calendar__month-view__days__day--weekend {
   color: black;
-  font-size: 18px;
+  font-size: 15px;
   width: 44px;
   height: 44px;
   text-align: center;
@@ -95,8 +89,9 @@
 
 .react-calendar__tile {
   background-color: white;
+  
   color: black;
-  font-size: 18px;
+  font-size: 16px;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -105,7 +100,7 @@
 
 .react-calendar__month-view__days__day--neighboringMonth {
   color: lightgrey;
-  font-size: 18px;
+  font-size: 16px;
   width: 44px;
   height: 44px;
 }
@@ -114,14 +109,14 @@
   background-color: #FFCE4F;
   color: white;
   font-size: 18px;
-  border-radius: 30%;
+  border-radius: 50%;
 }
 
 .react-calendar__tile--active {
   background-color: #FFCE4F;
   color: white;
   font-size: 18px;
-  border-radius: 30%;
+  border-radius: 50%;
   border: none;
 }
 
@@ -138,7 +133,7 @@
   height: 8px;
   width: 8px;
   background-color: #FFCE4F;
-  border-radius: 30%;
+  border-radius: 50%;
   text-align: center;
   margin-top: 3px;
 }
@@ -367,19 +362,16 @@
   color: black;
   border: none;
 
-  padding: 20px; 
   border-radius: 15px;
   width: 340px;
   height: 60px;
   margin-left: 10%;
 
-  max-width: 600px;
-  border-radius: 5px;
   margin-top: 0%;
   margin-bottom: 10%;
   
   
-  font-size: 15px;
+  font-size: 20px;
   font-weight: bold;
   text-align: center !important;
 }
@@ -617,19 +609,14 @@ background-color: #9EDC60;
   color: black;
   border: none;
 
-  padding: 20px; 
-  border-radius: 15% !important;
+  border-radius: 15px;
   width: 340px;
   height: 60px;
-  margin-left: 10%;
 
-  max-width: 600px;
-  margin-top: 0%;
-  margin-left: 1%;
   margin-bottom: 3%;
   
   
-  font-size: 15px;
+  font-size: 20px;
   font-weight: bold;
   text-align: center !important;
 }

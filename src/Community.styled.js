@@ -114,7 +114,7 @@ export const ItemContainer = styled.div`
   display: inline-block;
   width: 270px;
   height:215px;
-  margin: 0 10px;
+  margin: 5px 10px;
   text-align: center;
   transition: transform 0.3s ease;
   
@@ -131,20 +131,77 @@ export const ItemBackground = styled.div`
   width: 230px;
   height: 200px;
   margin-top: 10px;
-  background-color: white;
+  background-color: #FBFBFB;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 10px; 
+  overflow: hidden; /* 추가: 내용을 흰색 배경 안에 가두기 위해 */
+
 `;
 
+export const YH = styled.img`
+margin-right: 5px;
+`
+
+export const Like = styled.div`
+  margin-top: 20px;
+  font-size: 12px;
+  color: #999999;
+
+`
+
+
+export const Text2 = styled.div`
+  margin-top: 30px;
+  width: 150px;
+  flex-direction: column;
+  text-align: center;
+  line-height: 15px;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  - display: -webkit-box !important; /* Flexbox 사용 */ 
+  -webkit-line-clamp: 1 !important; /* 한 줄로 제한 */
+  -webkit-box-orient: vertical !important; /* 세로 방향 설정 */
+  word-break: keep-all !important;
+`
+
 export const Content = styled.div`
-  font-size: 16px;
+  width: 150px;
+  font-size: 14px;
   color: #333;
   padding: 10px;
   border-radius: 5px;
   text-align: center;
+  overflow: hidden; /* 추가: 넘치는 텍스트를 숨기기 위해 */
+  text-overflow: ellipsis; /* 추가: 넘치는 텍스트에 생략 부호(...)를 표시 */
+  white-space: nowrap; /* 추가: 텍스트를 한 줄로 표시하고 줄바꿈을 하지 않도록 */
+`;
+
+export const TagGroup2 = styled.div`
+  display: flex;
+  gap: 10px;
+  margin-top: 30px;
+  flex-wrap: wrap;  /* 태그들이 가로로 나열되고 넘치면 줄바꿈되도록 설정 */
+`;
+
+export const HotTag = styled.img`
+  width: 40px;
+  height: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+`;
+
+export const Tag2 = styled.div`
+  padding: 3px 8px;
+  border: none;
+  border-radius: 5px;
+  background-color: #FFFFFF;
+  cursor: pointer;
+  font-size: 10px;
+  color: #FFCE4F;
 `;
 
 export const KeywordContainer = styled.div`
@@ -232,8 +289,11 @@ export const Try = styled.div`
 `
 
 export const PostListContainer = styled.div`
-display: flex;
+  display: flex;
   flex-direction: column; /* 자식 요소들을 세로로 배치 */
+
+`
+export const PostContainer = styled.div`
 `
 
  
@@ -249,17 +309,7 @@ export const Text = styled.div`
   word-break: keep-all !important;
 `
 
-export const Text2 = styled.div`
-  flex-direction: column;
-  text-align: left;
-  line-height: 10px;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  - display: -webkit-box !important; /* Flexbox 사용 */ 
-  -webkit-line-clamp: 1 !important; /* 한 줄로 제한 */
-  -webkit-box-orient: vertical !important; /* 세로 방향 설정 */
-  word-break: keep-all !important;
-`
+
 export const Box = styled.div`
   margin-top: 10px;
   display: flex;
@@ -335,10 +385,10 @@ export const TitleBox = styled.input`
 `;
 
 export const Underline = styled.div`
-  margin-left: 25px;
-  width: 80%;
+  margin-left: 0px;
+  width: 100%;
   height: 1px;
-  background-color: #E7E7E7;
+  background-color: black;
 `;
 
 export const MemoBox = styled.textarea`
