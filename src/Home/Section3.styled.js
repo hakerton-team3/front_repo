@@ -26,6 +26,7 @@ export const Title = styled.h1`
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 10px;
+  color: black;
 `;
 
 export const SubTitle = styled.h2`
@@ -34,6 +35,7 @@ export const SubTitle = styled.h2`
   margin-bottom: 10px;
   line-height: 1.5;
   white-space: pre-wrap;
+  color: black;
 `;
 
  
