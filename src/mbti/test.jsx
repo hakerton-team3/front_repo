@@ -15,29 +15,29 @@ const Test = () => {
   };
 
   const handleresultLogin = () => {
-    const result = calculateResult(answers);
-    navigate('/result', { state: { result } });
+    const resultIndex = calculateResult(answers);
+    navigate('/result', { state: { resultIndex } });
   };
 
   const calculateResult = (answers) => {
     if (answers[0] === 0 && answers[1] === 0 && answers[2] === 0) {
-      return "번개 술꾼";
+      return 0;
     } else if (answers[0] === 1 && answers[1] === 1 && answers[2] === 1) {
-      return "알코올 애호가";
+      return 1;
     } else if (answers[0] === 0 && answers[1] === 0 && answers[2] === 1) {
-      return "감성 타는 혼술러";
+      return 2;
     } else if (answers[0] === 0 && answers[1] === 1 && answers[2] === 0) {
-      return "꼬꼬마 술애호가";
+      return 3;
     } else if (answers[0] === 0 && answers[1] === 1 && answers[2] === 1) {
-      return "술 먹자 빌런";
+      return 4;
     } else if (answers[0] === 1 && answers[1] === 0 && answers[2] === 0) {
-      return "술약속의 선도자";
+      return 5;
     } else if (answers[0] === 1 && answers[1] === 0 && answers[2] === 1) {
-      return "모임 충성론자";
+      return 6;
     } else if (answers[0] === 1 && answers[1] === 1 && answers[2] === 0) {
-      return "절제의 달인";
+      return 7;
     } else {
-      return "결과 없음";
+      return -1; // 결과 없음
     }
   };
 

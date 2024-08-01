@@ -32,6 +32,8 @@ export const Maintext = styled.h1`
   color: #FFCE4F;
   text-align: center; /* 텍스트 가운데 정렬 */
    width: 100%;
+   margin: 5px 0 30px 0;
+ 
 `;
 
 export const Graycontainer = styled.div`
@@ -179,10 +181,43 @@ export const Button = styled.button`
   justify-content: center;
 `;
 
+export const FooterText2 = styled.p`
+  font-size: 14px;
+  color: white;
+   font-weight: bold;
+  text-align: center;
+  margin: 0; /* 추가: 상하 여백 제거 */
+  line-height: 15px; /* 추가: 높이와 동일하게 설정하여 중앙 정렬 */
+  
+`;
+
+export const MiniContainer = styled.div`
+  display: flex; /* 추가: Flexbox 사용 */
+  align-items: center; /* 추가: 수직 중앙 정렬 */
+  justify-content: center; /* 추가: 수평 중앙 정렬 */
+  background: #FFCE4F;
+  border-radius: 3.0em;
+  padding: 2%;
+  color: white;
+  font-size: 10px;
+  width: 30%;
+  height: 15px;
+  margin: 10px auto;
+
+`;
 
 export const FooterText = styled.p`
   font-size: 14px;
   color: black;
   text-align: center;
+  margin: 0; /* 추가: 상하 여백 제거 */
+  line-height: 15px; /* 추가: 높이와 동일하게 설정하여 중앙 정렬 */
+`;
+
+export const Subtext = styled.p`
+  font-size: 10px;
+  color: black;
+  text-align: center;
+  margin: 0; /* 추가: 상하 여백 제거 */
   
 `;
