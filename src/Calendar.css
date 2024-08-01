@@ -28,7 +28,7 @@
 .event-circle {
   width: 130px;
   height: 120px;
-  background-image: url('/public/sun.png');
+  background-image: url('/src/image/sun.png');
   background-size: cover; /* 이미지 크기 조정 */
 }
 
@@ -320,7 +320,7 @@
 }
 
 .bottle-image {
-  background-image: url('/노란술병.png');
+  background-image: url('/src/image/노란술병.png');
   width: 80px;
   height: 80px;
   margin-top: 40%;
@@ -393,7 +393,7 @@ background-color: #9EDC60;
 }
 
 .react-calendar-wrapper.switch-on .bottle-image {
-  background-image: url('/초록술병.png');
+  background-image: url('/src/image/초록술병.png');
 }
 
 /* 기본 상태: 스위치 색상이 #FFCE4F일 때 선택된 circle 색상 */
@@ -549,7 +549,7 @@ background-color: #9EDC60;
 }
 
 .modal-bottle-image {
-  background-image: url('/기타술병.png');
+  background-image: url('/src/image/기타술병.png');
   width: 80px;
   height: 80px;
   margin-top: 40%;

@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Community.styled'; 
 
+
 const HorizontalScroll = ({ posts }) => {
   const scrollRef = useRef();
   const [activeIndex, setActiveIndex] = useState(0);
@@ -33,11 +34,11 @@ const HorizontalScroll = ({ posts }) => {
           className={index === activeIndex ? 'active' : 'inactive'}
         >
           <S.ItemBackground>
-            <S.Like><S.YH src="/public/yellowheart.png" alt="Hot"></S.YH>7명이 공감했습니다.</S.Like>
+            <S.Like><S.YH src="/src/image/yellowheart.png" alt="Hot"></S.YH>7명이 공감했습니다.</S.Like>
             <S.Text2>{post.title}</S.Text2>
             <S.Content>{post.memo}</S.Content>
             <S.TagGroup2>
-              <S.HotTag src="/public/Hot.png" alt="Hot"></S.HotTag>
+              <S.HotTag src="/src/image/Hot.png" alt="Hot"></S.HotTag>
               {post.tags.map((tag, tagIndex) => (
               <S.Tag2 key={tagIndex}>{tag}</S.Tag2>
           ))}
@@ -133,16 +134,16 @@ function Community() {
       <S.CommunityContainer>
         <S.ButtonContainer>
           <S.ImageButton onClick={() => navigateTo('/community')}>
-            <img src="/단체게시판.png" alt="Community Board" />
+            <img src="/src/image/단체게시판.png" alt="Community Board" />
           </S.ImageButton>
           <S.ImageButton onClick={() => navigateTo('/privacy')}>
-            <img src="/혼잣말게시판.png" alt="Personal Board" />
+            <img src="/src/image/혼잣말게시판.png" alt="Personal Board" />
           </S.ImageButton>
         </S.ButtonContainer>
         <S.BestContainer>
           <S.Best>
             <S.Title>오늘의 흑역사 베스트</S.Title> 
-            <S.Heart src="/public/베스트.png" alt="Best" />
+            <S.Heart src="/src/image/베스트.png" alt="Best" />
           </S.Best>
           <S.BestSection>
             <HorizontalScroll posts={postsWithTag} />
@@ -151,7 +152,7 @@ function Community() {
         <S.KeywordContainer>
           <S.Keyword>
             <S.Title style={{marginTop:'10px'}}>키워드를 검색해 주세요</S.Title>
-            <S.Search src="/public/검색.png" alt="Search" />
+            <S.Search src="/src/image/검색.png" alt="Search" />
           </S.Keyword>
           <S.InputContainer>
             <S.StyledInput 
@@ -160,8 +161,8 @@ function Community() {
               onChange={onChange} 
               placeholder="@솔로샷러 가 작성한 오늘의 게시글은?" 
             />
-            <S.SearchIcon src="/public/돋보기.png" alt="Search Icon" />
-            <S.WriteIcon src="/public/작성.png" alt="Write Icon" onClick={toggleModal} />
+            <S.SearchIcon src="/src/image/돋보기.png" alt="Search Icon" />
+            <S.WriteIcon src="/src/image/작성.png" alt="Write Icon" onClick={toggleModal} />
           </S.InputContainer>
           <S.Try>@를 이용해 관심 있는 술BTI에 대해서도 찾아보아요!</S.Try>
         </S.KeywordContainer>
@@ -234,7 +235,7 @@ function Community() {
                   ))}
                   <S.LikeButton onClick={toggleLike}>
                     <S.HeartButton 
-                      src={liked ? "/public/redheart.png" : "/public/whiteheart.png"} 
+                      src={liked ? "/src/image/redheart.png" : "/src/image/whiteheart.png"} 
                       alt="HeartButton"
                     />
                   </S.LikeButton>
