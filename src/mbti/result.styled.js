@@ -98,7 +98,7 @@ export const BubbleContainer = styled.div`
   }
 `;
 
-export const BubbleContainertext = styled.text`
+export const BubbleContainertext = styled.span`
 font-size: 12px;
   font-weight: bold;
     color: black;
