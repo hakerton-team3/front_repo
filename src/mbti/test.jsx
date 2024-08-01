@@ -1,14 +1,44 @@
 import React, { useState } from 'react';
 import * as S from './test.styled';
 import Beerimage from '../images/6.png';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import Question from './Question';
 
 const Test = () => {
   const navigate = useNavigate();
+  const [answers, setAnswers] = useState(Array(10).fill(null));
+
+  const handleAnswerChange = (questionIndex, optionIndex) => {
+    const newAnswers = [...answers];
+    newAnswers[questionIndex] = optionIndex;
+    setAnswers(newAnswers);
+  };
 
   const handleresultLogin = () => {
-    navigate('/result');  
+    const result = calculateResult(answers);
+    navigate('/result', { state: { result } });
+  };
+
+  const calculateResult = (answers) => {
+    if (answers[0] === 0 && answers[1] === 0 && answers[2] === 0) {
+      return "번개 술꾼";
+    } else if (answers[0] === 1 && answers[1] === 1 && answers[2] === 1) {
+      return "알코올 애호가";
+    } else if (answers[0] === 0 && answers[1] === 0 && answers[2] === 1) {
+      return "감성 타는 혼술러";
+    } else if (answers[0] === 0 && answers[1] === 1 && answers[2] === 0) {
+      return "꼬꼬마 술애호가";
+    } else if (answers[0] === 0 && answers[1] === 1 && answers[2] === 1) {
+      return "술 먹자 빌런";
+    } else if (answers[0] === 1 && answers[1] === 0 && answers[2] === 0) {
+      return "술약속의 선도자";
+    } else if (answers[0] === 1 && answers[1] === 0 && answers[2] === 1) {
+      return "모임 충성론자";
+    } else if (answers[0] === 1 && answers[1] === 1 && answers[2] === 0) {
+      return "절제의 달인";
+    } else {
+      return "결과 없음";
+    }
   };
 
   const questions = [
@@ -82,29 +112,33 @@ const Test = () => {
         "2병 먹으면 취한다"
       ]
     },
-    
   ];
 
   return (
     <S.MainContainer>
       <S.Title>잠깐,</S.Title>
       <S.BubbleContainer>
-        <S.BubbleContainertext2>
-          <S.BubbleContainertext>승범</S.BubbleContainertext>님의 평소음주 습관을
-        </S.BubbleContainertext2>
-        <S.BubbleContainertext2>
+        <S.BubbleContainerText2>
+          <S.BubbleContainerText2>승범</S.BubbleContainerText2>님의 평소음주 습관을
+        </S.BubbleContainerText2>
+        <S.BubbleContainerText2>
           보다 재미있게 돌이켜 보면 어떨까요?
-        </S.BubbleContainertext2>
+        </S.BubbleContainerText2>
       </S.BubbleContainer>
       <S.BubbleContainer2>
-        <S.BubbleContainertext2>
-          최근 음주 스타일 바탕으로 <S.BubbleContainertext>술비티아이</S.BubbleContainertext>에 임해주세요.
-        </S.BubbleContainertext2>
+        <S.BubbleContainerText2>
+          최근 음주 스타일 바탕으로 <S.BubbleContainerText>술비티아이</S.BubbleContainerText>에 임해주세요.
+        </S.BubbleContainerText2>
       </S.BubbleContainer2>
       <S.Divider />
       {questions.map((question, index) => (
         <React.Fragment key={index}>
-          <Question questionText={question.questionText} options={question.options} />
+          <Question
+            questionText={question.questionText}
+            options={question.options}
+            selectedOption={answers[index]} // 선택된 옵션을 전달
+            onAnswerChange={(optionIndex) => handleAnswerChange(index, optionIndex)}
+          />
           <S.Divider />
         </React.Fragment>
       ))}

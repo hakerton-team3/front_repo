@@ -6,20 +6,21 @@ import Waringimage from '../images/warining.png';
 import Starimage from '../images/star.png';
 import Bellimage from '../images/bell.png';
 import GrayContainerComponent from './GrayContainerComponent';
-import { useNavigate} from 'react-router-dom'; 
- 
+import { useLocation,useNavigate} from 'react-router-dom'; 
 const Result = () => {
-  const navigate = useNavigate();
+const location = useLocation();
+const { result } = location.state || { result: "결과 없음" };
+const navigate = useNavigate();
 
-  const handlehome = () => {
-    navigate('/Home');
-  };
+const handlehome = () => {
+  navigate('/Home');
+};
   return (
     <S.MainContainer>
       <S.Title>당신은</S.Title>
       <S.BubbleContainer><S.BubbleContainertext>JRMT</S.BubbleContainertext>의 술비티아이가 나왔습니다.</S.BubbleContainer>
       <S.Image src={Kingimage} alt="logo" />
-      <S.Maintext>주량마스터</S.Maintext>
+      <S.Maintext>{result}</S.Maintext>
       <S.RowContainer>
         <GrayContainerComponent 
           imageSrc={Waringimage} 
