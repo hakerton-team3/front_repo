@@ -1,5 +1,5 @@
 import React from 'react';
-import * as S from '../Contact/Contact.styled';
+import * as S from './Contact.styled';
 
 const ContactItem = ({ name, phone }) => {
   return (

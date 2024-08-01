@@ -1,19 +1,30 @@
-import React, { useState } from 'react'; 
-import * as S from '../Contact/Contact.styled';
-import ContactItem from './ContacIitem';
+// src/Contact/Contact.jsx
+import React, { useState, useEffect } from 'react'; 
+import * as S from './Contact.styled';
+import ContactItem from './ContactItem';
 import { useNavigate } from 'react-router-dom';
+import { getContacts, createContact, deleteContact, updateContact } from '../api/contactApi';
 
 const Contact = () => {
   const [isPopupOpen, setPopupOpen] = useState(false);
-  const [contacts, setContacts] = useState([
-    { name: '홍길동', phone: '010-1234-1234' },
-    { name: '김서경', phone: '010-5678-5678' },
-    { name: '이순신', phone: '010-9876-5432' }
-  ]);
+  const [contacts, setContacts] = useState([]);
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchContacts = async () => {
+      try {
+        const contactsData = await getContacts();
+        setContacts(contactsData);
+      } catch (error) {
+        console.error('Failed to fetch contacts:', error);
+      }
+    };
+
+    fetchContacts();
+  }, []);
 
   const handleButtonClick = () => {
     setPopupOpen(true);
@@ -35,12 +46,41 @@ const Contact = () => {
     setPhone(event.target.value);
   };
 
-  const handleSaveContact = () => {
+  const handleSaveContact = async () => {
     if (name && phone) {
-      setContacts([...contacts, { name, phone }]);
-      setName('');
-      setPhone('');
-      setPopupOpen(false);
+      try {
+        const newContact = { 
+          name, 
+          number: phone,  // 서버가 요구하는 필드명에 맞춰 변경
+          isMain: false  // 기본값 설정
+        }; 
+        console.log('Saving contact with data:', newContact); // 로그 추가
+        const savedContact = await createContact(newContact);
+        setContacts([...contacts, savedContact]);
+        setName('');
+        setPhone('');
+        setPopupOpen(false);
+      } catch (error) {
+        console.error('Failed to save contact:', error);
+      }
+    }
+  };
+
+  const handleDeleteContact = async (contactId) => {
+    try {
+      await deleteContact(contactId);
+      setContacts(contacts.filter(contact => contact.id !== contactId));
+    } catch (error) {
+      console.error('Failed to delete contact:', error);
+    }
+  };
+
+  const handleUpdateContact = async (contactId, updatedContact) => {
+    try {
+      const updated = await updateContact(contactId, updatedContact);
+      setContacts(contacts.map(contact => (contact.id === contactId ? updated : contact)));
+    } catch (error) {
+      console.error('Failed to update contact:', error);
     }
   };
 
@@ -66,13 +106,17 @@ const Contact = () => {
         </S.ButtonContainer>
       </S.NotificationContainer>
 
-     
-        <ContactItem name="홍길동" phone="010-1234-1234" />
-        <ContactItem name="김서경" phone="010-5678-5678" />
-        <ContactItem name="이순신" phone="010-9876-5432" />
-        {/* 필요한 만큼 ContactItem을 추가 */}
-          
-        {isPopupOpen && (
+      {contacts.map((contact, index) => (
+        <ContactItem 
+          key={index} 
+          name={contact.name} 
+          phone={contact.number}  // 서버에서 반환하는 데이터 형식에 맞춰 변경
+          onDelete={() => handleDeleteContact(contact.id)}
+          onUpdate={(updatedContact) => handleUpdateContact(contact.id, updatedContact)}
+        />
+      ))}
+      
+      {isPopupOpen && (
         <S.PopupOverlay>
           <S.PopupContainer>
             <S.CloseButton onClick={handleCloseClick} />
