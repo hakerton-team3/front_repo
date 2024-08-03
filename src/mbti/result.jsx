@@ -29,7 +29,10 @@ const Result = () => {
       <S.BubbleContainer>
         <S.BubbleContainertext>{resultData.title}</S.BubbleContainertext>의 술비티아이가 나왔습니다.
       </S.BubbleContainer>
+      <S.GradientContainer>
       <S.Image src={Kingimage} alt="logo" />
+      <S.GradientOverlay />
+      </S.GradientContainer>
       <S.MiniContainer><S.FooterText2>{resultData.hashTag}</S.FooterText2></S.MiniContainer>
       <S.Subtext>{resultData.mainDescription}</S.Subtext>
       <S.Maintext>{resultData.title}</S.Maintext>

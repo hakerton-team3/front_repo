@@ -1,17 +1,18 @@
 import React, { useState } from 'react'; 
-import * as S from '../Contact/Contact.styled';
+import * as S from './Contact.styled';
 import ContactItem from './ContactItem';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Contact = () => {
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [contacts, setContacts] = useState([
-    
-    { name: '김서경', number: '010-5678-5678' },
-    { name: '이순신', number: '010-9876-5432' }
+     
   ]);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
+ 
   
   const navigate = useNavigate();
 
@@ -35,14 +36,29 @@ const Contact = () => {
     setNumber(event.target.value);
   };
 
-  const handleSaveContact = () => {
+  const handleSaveContact = async () => {
     if (name && number) {
-      setContacts([...contacts, { name, number }]);
-      setName('');
-      setNumber('');
-      setPopupOpen(false);
+      const newContact = { name, number };
+
+      try {
+        const response = 
+        await axios.
+        post('http://ec2-43-201-61-252.ap-northeast-2.compute.amazonaws.com:8080/api/v1/contacts',
+           newContact, { withCredentials: true});
+        if (response.status === 200) {
+          setContacts([...contacts, newContact]);
+          setName('');
+          setNumber('');
+          setPopupOpen(false);
+        }  
+      } catch (error) {
+        console.error('Error saving contact:', error);
+      }
     }
   };
+
+
+ 
 
   return (
     <S.MainContainer>

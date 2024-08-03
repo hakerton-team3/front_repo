@@ -10,7 +10,7 @@ export const MainContainer = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-family: 'chab';
+  font-family: 'LotteriaChab';
   font-size: 60px;
   font-weight: bold;
   text-align: start;
@@ -18,15 +18,31 @@ export const Title = styled.h1`
   margin-top: 20%;
   margin-left: 10%;
 `;
-
-export const Image = styled.img`
-  width: 100%; /* 이미지의 크기를 조정 */
+export const GradientContainer = styled.div`
+  position: relative;
+  width: 100%;
   height: auto;
-  
+  overflow: hidden;
 `;
 
+export const Image = styled.img`
+  width: 100%;
+  height: auto;
+  display: block;
+`;
+
+export const GradientOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0) 80%, rgba(255, 255, 255, 1) 100%);
+  z-index: 1;
+`;
 export const Maintext = styled.h1`
-  font-family: 'chab';
+  font-family: 'LotteriaChab';
   font-size: 40px;
   font-weight: bold;
   color: #FFCE4F;

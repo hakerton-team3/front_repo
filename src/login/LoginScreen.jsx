@@ -71,15 +71,20 @@ const LoginScreen = () => {
       />
       <S.Button onClick={handleLogin}>회원으로 로그인하기</S.Button>
       <S.LinkContainer>
-        <S.Link href="calendar">비밀번호 찾기</S.Link>
-        <S.Textdiv>|</S.Textdiv>
+         
         <S.Link href="/register">추적주적 회원가입</S.Link>
       </S.LinkContainer>
       <S.Button2 onClick={handleGuestLogin}>3초만에 시작하기🚀</S.Button2>
       <S.IconContainer2>
-        <S.Image2 src={Naverimage} alt="logo" />
-        <S.Image2 src={Kakaoimage} alt="logo" />
-        <S.Image2 src={Googleimage} alt="logo" />
+      <S.Link href="http://ec2-43-201-61-252.ap-northeast-2.compute.amazonaws.com:8080/api/v1/oauth2/authorization/naver" target="_blank" rel="noopener noreferrer">
+        <S.Image2 src={Naverimage} alt="Naver logo" />
+      </S.Link>
+      <S.Link href="http://ec2-43-201-61-252.ap-northeast-2.compute.amazonaws.com:8080/api/v1/oauth2/authorization/kakao" target="_blank" rel="noopener noreferrer">
+        <S.Image2 src={Kakaoimage} alt="Kakao logo" />
+      </S.Link>
+      <S.Link href="http://ec2-43-201-61-252.ap-northeast-2.compute.amazonaws.com:8080/api/v1/oauth2/authorization/google" target="_blank" rel="noopener noreferrer">
+        <S.Image2 src={Googleimage} alt="Google logo" />
+        </S.Link>
       </S.IconContainer2>
       <S.BackContainer>
         <S.FooterText>주적<br />酒적</S.FooterText>

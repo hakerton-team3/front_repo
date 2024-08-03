@@ -51,20 +51,17 @@ export const Input = styled.input`
 export const Button = styled.button`
   width: 320px;
   height: 50px;
-  padding: 10px;
   background-color: #FFCE4F;
   color: white;
   border: none;
   border-radius: 10px;
-  cursor: pointer;
   font-size: 16px;
-  margin: 20px 0;
+  margin: 10px auto;
   font-color: black;
-  
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-
+  display:flex;
+  
 `;
 
 export const Link = styled.a`
@@ -75,7 +72,7 @@ export const Link = styled.a`
   &:hover {
     text-decoration: underline;
   }
-  margin-left: 30%;
+  margin-left: 40%;
 `;
 
 export const IconContainer = styled.div`
@@ -93,8 +90,7 @@ export const Icon = styled.img`
 export const FooterText = styled.p`
   font-size: 14px;
   color: black;
-  text-align: center;
-  
+   
 `;
 export const Divider = styled.div`
   width: 100%; /* 구분선의 너비 */

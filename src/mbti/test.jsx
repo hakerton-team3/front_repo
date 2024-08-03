@@ -3,6 +3,8 @@ import * as S from './test.styled';
 import Beerimage from '../images/6.png';
 import { useNavigate } from 'react-router-dom';
 import Question from './Question';
+import axiosInstance from '../axios/axiosInstance';
+import answer from './answer'; // answer 배열 임포트
 
 const Test = () => {
   const navigate = useNavigate();
@@ -14,9 +16,30 @@ const Test = () => {
     setAnswers(newAnswers);
   };
 
-  const handleresultLogin = () => {
+  const handleresultLogin = async () => {
     const resultIndex = calculateResult(answers);
-    navigate('/result', { state: { resultIndex } });
+    if (resultIndex === -1) {
+      alert('결과를 계산할 수 없습니다.');
+      return;
+    }
+    const resultData = answer[resultIndex];
+
+    const formData = {
+      title: resultData.title,
+      description: resultData.mainDescription,
+      detail: resultData.hashTag,
+      improvingDescription1: resultData.improvingDescription1,
+      improvingDescription2: resultData.improvingDescription2,
+      improvingDescription3: resultData.improvingDescription3
+    };
+
+    try {
+      const response = await axiosInstance.post('/abtis', formData);
+      console.log('Response:', response.data);
+      navigate('/result', { state: { resultIndex } });
+    } catch (error) {
+      console.error('Error posting data:', error);
+    }
   };
 
   const calculateResult = (answers) => {

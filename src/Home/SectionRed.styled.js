@@ -202,11 +202,11 @@ export const TransparentContainer = styled.div`
 
 // Image style
 export const Image = styled.img`
-  width: 70%; /* 이미지의 크기를 조정 */
-  height: 70%;
+  width: 220px; /* 이미지의 크기를 조정 */
+  height: 234px;
   position: absolute; /* 절대 위치 */
   right: -40%; /* 부모 컨테이너의 오른쪽 밖으로 나가도록 설정 */
-  bottom: -30%; /* 부모 컨테이너의 아래쪽 밖으로 나가도록 설정 */
+  bottom: -15%; /* 부모 컨테이너의 아래쪽 밖으로 나가도록 설정 */
 `;
 
 export const Button = styled.button`
