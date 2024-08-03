@@ -1,0 +1,186 @@
+.Soju-top-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center !important;
+    gap: 10px;
+    width: 100%;
+    margin-left: 10%;
+  }
+  
+  .soju-text {
+    margin-left: 5%;
+    font-size: 13px;
+  }
+    
+  .Soju-info-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items to the start */
+    background-color: #9EDC60;
+    padding: 20px; /* 적절한 패딩 값 */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 300px;
+    margin-top: 10px;
+    margin-left: 10%;
+  }
+  
+  .Soju-info-left {
+    display: flex;
+    flex-direction: column; /* 위에서 아래로 배열 */
+    align-items: flex-start;
+    gap: 10px; /* 요소들 사이의 간격 */
+  }
+  
+  .Soju-left-align {
+    text-align: left;
+  }
+  
+  .Soju-memo-button {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 15px;
+    width: 210px;
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  .Soju-memo-input {
+    margin-left: 5px;
+    width: 100px;
+    border: none;
+  }
+  
+  .Soju-pencil {
+    width: 14px;
+    margin-left: 3px;
+  }
+  
+  .Soju-condition-box{
+    border-radius: 15px;
+    background-color: white;
+    padding: 5px;
+    text-align: left;
+  }
+  
+  
+  .Soju-rating-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    margin-bottom: 3%;
+    }
+    
+    .Soju-rating-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+    
+    .Soju-rating-circle {
+    margin-top: 20%;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, width 0.3s, height 0.3s;
+    border: 2px solid #9EDC60;
+    position: relative; /* Ensure positioning for the pseudo-element */
+    }
+    
+    .Soju-rating-circle.selected::before {
+        content: '';
+        display: block;
+        width: 20px;
+        height: 20px;
+        background-color: #9EDC60;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* Center the 20px circle within the 30px circle */
+        }
+
+    .Soju-rating-label {
+    color: black;
+    font-size: 12px;
+    margin-top: 5px; /* Add some space between the circle and the label */
+    }
+    
+  
+    
+  .Soju-info-right {
+    .info-right {
+      display: flex;
+      flex-direction: column; /* 위에서 아래로 배열 */
+      align-items: center; /* 가운데 정렬 */
+      justify-content: center;
+      gap: 10px; 
+    }
+  }
+  
+  .Soju-bottle-image {
+    background-image: url('/src/image/초록술병.png');
+    width: 80px;
+    height: 80px;
+    margin-top: 40%;
+    margin-left: 30%;
+    margin-bottom: 10%;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  
+  .Soju-number-container {
+    margin-left: 5%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    justify-content: center; /* 가운데 정렬 */
+  }
+  
+  .Soju-number-button {
+    font-weight: bold;
+    background-color: #9EDC60;
+    border: none;
+    color: black;
+    padding: 0px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  .Soju-number-input {
+    text-align: center;
+    width: 30px;
+    font-size: 15px;
+  }
+  
+  
+  .Soju-save-button{
+    background-color: #FFCE4F;
+    color: black;
+    border: none;
+  
+    border-radius: 15px;
+    width: 340px;
+    height: 60px;
+    margin-left: 0%;
+  
+    margin-top: 0%;
+    margin-bottom: 10%;
+    
+    
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center !important;
+  }
+  
+  
