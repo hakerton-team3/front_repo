@@ -35,7 +35,7 @@ const LoginScreen = () => {
       if (accessToken) {
         
         localStorage.setItem('accessToken', accessToken);
-
+        console.log(accessToken);
         console.log('Login successful');
         navigate('/home');
       }
