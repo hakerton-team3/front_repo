@@ -7,8 +7,44 @@ import sudolImage from  '../image/redsudol.png';
 import judalIcon2 from '../image/금주중 주달.png';
 import closeIcon from '../image/닫기버튼.png';
 import Modal from 'react-modal';
+import axiosInstance from '../axios/axiosInstance';
+import GoalDate from './GoalDate';
 
 const Section01 = () => {
+
+  const endChallenges = async () => {  
+    try {
+    
+    const accessToken = localStorage.getItem('accessToken'); 
+    if (!accessToken) {   
+      throw new Error('Access token not found'); 
+    }
+  
+    console.log('Using access token:', accessToken);
+  
+    const response = await axiosInstance.post( 
+      `/challenges/weekly/achieved`,
+      {}, 
+      { 
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        }
+      }
+    );
+  
+    console.log(' 금주 챌린지 종료 완료:', response.data); 
+    }catch (error) { 
+    if (error.response && error.response.status === 404) { 
+      alert('챌린지종료 실패 ');
+    } else {
+      console.error('챌린지종료에러:', error);
+      alert('챌린지종료에러');
+    }
+  }
+  };
+
+  
+  
   const navigate = useNavigate();
 
   const handleEmergencyContactsClick = () => {
@@ -16,9 +52,13 @@ const Section01 = () => {
   };
 
   const [isOpen6, setIsOpen6] = useState(false);
+  const [isOpen9, setIsOpen9] = useState(false);
+  const [goalDate, setGoalDate] = useState(null); // GoalDate에서 전달받은 값을 저장할 상태
 
   const openModal6 = () => setIsOpen6(true);
   const closeModal6 = () => setIsOpen6(false);
+  const openModal9 = () => setIsOpen9(true);
+  const closeModal9 = () => setIsOpen9(false);
 
   const customStyles = {
     overlay: {
@@ -56,7 +96,7 @@ const Section01 = () => {
           </S.Title>
           <S.FontChab> 음주정보 </S.FontChab>
           <S.WhiteContainer>
-            <S.Subtitle onClick={openModal6}>
+            <S.Subtitle onClick={goalDate === 0 ? openModal9 : openModal6}>
               2주 간의 금주챌린지 중
             </S.Subtitle>
           </S.WhiteContainer>
@@ -80,10 +120,23 @@ const Section01 = () => {
         <K.JudalImage2 src={judalIcon2}></K.JudalImage2>
         <K.GemjuContainer>
           <h4>성공까지</h4>
-          <K.H1>8일</K.H1>
-          <h4>남았어요.</h4>
+          <GoalDate setGoalDate={setGoalDate}/>
+          <h4>남았어요.</h4> 
         </K.GemjuContainer>
-        <K.SubmitButton>포기하기</K.SubmitButton>
+        <K.SubmitButton onClick={endChallenges}>종료하기</K.SubmitButton>
+      </Modal>
+
+      <Modal ariaHideApp={false} isOpen={isOpen9} onRequestClose={closeModal9} style={customStyles}>
+        <K.CloseIcon src={closeIcon} alt="Close" onClick={closeModal9} />
+        <K.ModalTitle6>금주챌린지성공</K.ModalTitle6>
+        <K.ModalContent>2주동안 금주를 실천하는 챌린지, 솔직하게 임하길.</K.ModalContent>
+        <K.JudalImage2 src={judalIcon2}></K.JudalImage2>
+        <K.GemjuContainer>
+          <h4>성공까지</h4>
+          <GoalDate setGoalDate={setGoalDate}/>
+          <h4>남았어요.</h4> 
+        </K.GemjuContainer>
+        <K.SubmitButton onClick={endChallenges}>챌린지 끝내기</K.SubmitButton>
       </Modal>
         
         

@@ -89,6 +89,7 @@ export const Hole = styled.div`
 
 
 export const ModalTitle = styled.div`
+  font-family: 'chab';
   font-size: 40px;
   color: #FFCE4F;
   text-align: center;
@@ -107,6 +108,7 @@ export const ModalTitle3 = styled.div`
 
 export const ModalTitle6 = styled.div`
   font-size: 40px;
+  font-family: 'chab';
   color: #EF4444;
   text-align: center;
   font-weight: bold;
@@ -161,15 +163,16 @@ export const BorderedTextSmall = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;   
+  border: 2px solid #FFCE4F; 
   border-radius: 30px;
-  padding: 10px; 
+  padding: 5px; 
   font-size: 16px; 
   font-weight: bold;
   color: #000000; 
-  height: 29px;
+  height: 20px;
   width: 156px;
+  margin-top: 10px;
   background-color: #ffffff; 
-  margin-top: 20px;
 `;
 
 
@@ -251,6 +254,18 @@ export const JudalImage2 = styled.img`
   margin-top: 10px;
 `;
 
+export const JudalImage3 = styled.img`
+  width: 350px;
+  height: 190px;
+  margin: 0px;
+`;
+
+export const JudalImage4 = styled.img`
+  width: 350px;
+  height: 190px;
+  margin: 10px;
+`;
+
 export const SubmitButton = styled.button`
   background-color: #FFCE4F;
   color: #000;
@@ -278,8 +293,9 @@ export const GemjuContainer = styled.div`
   align-items: center;    /* 수직 가운데 정렬 */
   `;
 
-export const H1 = styled.h1`
+export const H1 = styled.p`
     margin: 10px;
+    font-size: 30px;
     color: #EF4444;
     font-family: 'chab';
   `;
@@ -362,5 +378,5 @@ export const bigText = styled.p`
     margin: 10px;
     color: #FFCE4F;
     font-family: 'chab';
-    font-size: 26px;
+    font-size: 30px;
   `;

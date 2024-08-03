@@ -14,17 +14,130 @@ import badgeIcon7 from '../image/미획득뱃지7.svg';
 import badgeIcon8 from '../image/미획득뱃지8.svg';
 import judalIcon from '../image/금주 주달.png';
 import judalIcon2 from '../image/금주중 주달.png';
-
+import judalIcon3 from '../image/출석전주다리.svg';
+import judalIcon4 from '../image/출석체크 완료이미지.svg';
+import axiosInstance from '../axios/axiosInstance';
 import { useNavigate } from 'react-router-dom';
+import AttendanceDays from './AttendanceDays.jsx';
+import DateComponent from './GetCurrentDate.jsx';
+
+
  
 
 const Section02 = () => {
+  const postMissionClear = async (missionId) => {  
+      try {
+      
+      const accessToken = localStorage.getItem('accessToken'); 
+      if (!accessToken) {   
+        throw new Error('Access token not found'); 
+      }
+
+      console.log('Using access token:', accessToken);
+
+      const response = await axiosInstance.post( 
+        `/missions/${missionId}/clear`,
+        {}, 
+        { 
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          }
+        }
+      );
+
+      console.log('Mission cleared:', response.data); 
+      }catch (error) { 
+      if (error.response && error.response.status === 404) { 
+        alert('mission 실패: 아이디와 비밀번호를 확인하세요.');
+      } else {
+        console.error('미션에러:', error);
+        alert('이미 완료한 미션입니다.');
+      }
+    }
+  };
+
+  const attendance = async (setImageSrc) => {  
+    try {
+    
+    const accessToken = localStorage.getItem('accessToken'); 
+    if (!accessToken) {   
+      throw new Error('Access token not found'); 
+    }
+
+    console.log('Using access token:', accessToken);
+
+    const response = await axiosInstance.post( 
+      `/attendance`,
+      {}, 
+      { 
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        }
+      }
+    );
+
+    console.log(' 출석체크 완료:', response.data); 
+    }catch (error) { 
+    if (error.response && error.response.status === 409) { 
+      setImageSrc(judalIcon4);
+    } else {
+      console.error('출석에러:', error);
+      alert('출석에러');
+    }
+  }
+};
+
+const createChallenges = async () => {  
+  try {
+  
+  const accessToken = localStorage.getItem('accessToken'); 
+  if (!accessToken) {   
+    throw new Error('Access token not found'); 
+  }
+
+  console.log('Using access token:', accessToken);
+
+  const response = await axiosInstance.post( 
+    `/challenges/weekly`,
+    {}, 
+    { 
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      }
+    }
+  );
+
+  console.log(' 금주 챌린지 생성 완료:', response.data); 
+  }catch (error) { 
+  if (error.response && error.response.status === 404) { 
+    alert('챌린지생성 실패 ');
+  } else {
+    console.error('챌린지생성에러:', error);
+    alert('챌린지생성에러');
+  }
+}
+};
+ 
+
+    const handleButtonClick = (missionId) => { 
+      postMissionClear(missionId); 
+    };
 
   const navigate = useNavigate();
+  
 
   const HandleredHome = () => {
     navigate('/redhome');
   };
+
+  const handleAttendanceClick = () => {
+    attendance(setImageSrc);
+    console.log('Selected circles:', selectedCircles);
+    alert('출석이 저장되었습니다.');
+    setIsCircleClickedToday(true);
+  };
+
+  const [imageSrc, setImageSrc] = useState(judalIcon3); 
 
 
   const [isOpen1, setIsOpen1] = useState(false);
@@ -58,13 +171,7 @@ const Section02 = () => {
     closeModal2(); // 모달 닫기
     document.documentElement.scrollTo(0, document.body.scrollHeight); // 페이지 가장 아래로 스크롤
   };
-    const [selectedCircles, setSelectedCircles] = useState(Array(7).fill(false));
   
-    const handleCircleClick = (index) => {
-      const newSelectedCircles = [...selectedCircles];
-      newSelectedCircles[index] = !newSelectedCircles[index];
-      setSelectedCircles(newSelectedCircles);
-    };
 
   const customStyles = {
     overlay: {
@@ -171,44 +278,26 @@ const Section02 = () => {
         <K.CloseIcon src={closeIcon} alt="Close" onClick={closeModal2} />
         <K.ModalTitle>오늘의 미션</K.ModalTitle>
         <K.ModalContent>앱 사용과 음주 습관 관리법까지 한 번에 익혀보도록 합시다.</K.ModalContent>
-        <K.BorderedBtn onClick={openModal8}>출석체크 하기</K.BorderedBtn>
-        <K.BorderedBtn onClick={handleScrollAndClose}>안주 추천 받기 기능 사용하기</K.BorderedBtn>
-        <K.BorderedBtn onClick={() => navigateTo('/calendar')}>음주 기록하기</K.BorderedBtn>
+        <K.BorderedBtn onClick={() => { openModal8();  }}>출석체크 하기</K.BorderedBtn>
+        <K.BorderedBtn onClick={() => { handleScrollAndClose();  handleButtonClick(2); }}>안주 추천 받기 기능 사용하기</K.BorderedBtn>
+        <K.BorderedBtn onClick={() => {navigateTo('/calendar'); handleButtonClick(3);}}>음주 기록하기</K.BorderedBtn>
       </Modal>
 
       <Modal ariaHideApp={false} isOpen={isOpen8} onRequestClose={closeModal8} style={customStyles}>
-        <K.CloseIcon src={closeIcon} alt="Close" onClick={closeModal8} />
-        <K.ModalTitle>출석체크</K.ModalTitle>
-        <K.ModalContent>출석일을 늘려 주기적으로 음주 생활을 관리해 나가요.</K.ModalContent>
-        <K.BorderedTextSmall>2024년 8월 10일</K.BorderedTextSmall>
-        <K.CircleContainer>
-      {selectedCircles.slice(0, 3).map((isSelected, index) => (
-        <K.RatingCircle
-          key={index}
-          className={isSelected ? 'selected' : ''}
-          onClick={() => handleCircleClick(index)}
-        />
-      ))}
-    </K.CircleContainer>
-    <K.CircleContainer>
-        {selectedCircles.slice(3).map((isSelected, index) => (
-          <K.RatingCircle
-            key={index + 3}
-            className={isSelected ? 'selected' : ''}
-            onClick={() => handleCircleClick(index + 3)}
-          />
-        ))}
-      </K.CircleContainer>
-      <K.AttendanceContainer>
-      <K.AttendanceTextContainer>
-          <h5>누적접속</h5>
-          <K.bigText>8일</K.bigText>
-          </K.AttendanceTextContainer>
-      <K.AttendanceButton>출석하기</K.AttendanceButton>
-      </K.AttendanceContainer>
-    
+      <K.CloseIcon src={closeIcon} alt="Close" onClick={closeModal8} />
+      <K.ModalTitle>출석체크</K.ModalTitle>
+      <K.ModalContent>출석일을 늘려 주기적으로 음주 생활을 관리해 나가요.</K.ModalContent>
+      <K.JudalImage3 src={imageSrc}></K.JudalImage3>
+      <DateComponent />
       
-      </Modal>
+      <K.AttendanceContainer>
+        <K.AttendanceTextContainer>
+          <h5>누적접속</h5>
+          <AttendanceDays />
+        </K.AttendanceTextContainer>
+        <K.AttendanceButton onClick={handleAttendanceClick}>출석하기</K.AttendanceButton>
+      </K.AttendanceContainer>
+    </Modal>
 
       <Modal ariaHideApp={false} isOpen={isOpen3} onRequestClose={closeModal3} style={customStyles}>
         <K.CloseIcon src={closeIcon} alt="Close" onClick={closeModal3} />
@@ -246,7 +335,7 @@ const Section02 = () => {
         <K.ModalTitle>금주챌린지</K.ModalTitle>
         <K.ModalContent>2주동안 금주를 실천하는 챌린지, 솔직하게 임하길.</K.ModalContent>
         <K.JudalImage src={judalIcon}></K.JudalImage>
-        <K.SubmitButton onClick={HandleredHome}>즉시 시작하기</K.SubmitButton>
+        <K.SubmitButton  onClick={() => { HandleredHome();  createChallenges(); }}>즉시 시작하기</K.SubmitButton>
       </Modal>
 
       <Modal ariaHideApp={false} isOpen={isOpen7} onRequestClose={closeModal7} style={customStyles}>
@@ -264,5 +353,6 @@ const Section02 = () => {
     </S.MainContainer>
   );
 };
+
 
 export default Section02;
