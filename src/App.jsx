@@ -13,6 +13,8 @@ import PrivacyPost from './PrivacyBoard/Privacy';
 import Result from './mbti/result.jsx';
 import RedHome from './RedHome.jsx';
 import Contact from './Contact/Contact.jsx';
+ 
+ 
 
 const App = () => {
   const location = useLocation();
@@ -26,6 +28,7 @@ const App = () => {
 
   return (
     <S.Container>
+     
       {!isAuthRoute && (
         <>
           <S.HeaderText>주적주적</S.HeaderText>

@@ -1,26 +1,18 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
-export const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'chab';
-    src: url('src/fonts/chab.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-  }
-`;
+ 
 
 export const MainContainer = styled.div`
   width: 100%;
   height: 100vh;
   background: white;
-  
   flex-direction: column;
   align-items: center;
    overflow-x: hidden;
 `;
 
 export const Title = styled.h1`
-  font-family: 'chab';
+  font-family: 'LotteriaChab';
   font-size: 70px;
   font-weight: bold;
   text-align: center;
@@ -68,7 +60,7 @@ export const BackContainer = styled.div`
 `;
 
 export const FooterText = styled.p`
-  font-family: 'chab';
+  font-family: 'LotteriaChab';
   font-size: 100px;
   color: white;
   text-align: center;
@@ -154,16 +146,17 @@ export const MainText = styled.div`
   font-size: 36px;
   font-weight: bold;
   color: #000;
+  
 `;
 
 export const Highlight = styled.span`
   color: #FFCE4F; // 노란색
-  font-family: 'chab';  
+  font-family: 'LotteriaChab';
 `;
 
 export const SubHighlight = styled.span`
   color: #FFCE4F;
-  font-family: 'chab';
+  font-family: 'LotteriaChab';
 `;
 
 export const BubbleContainer = styled.span`
@@ -240,7 +233,7 @@ export const BubbleContainer3 = styled.button`
   color: black;
   font-size: 10px;
   width: 90%;
-  height: 30px; /* 원하는 높이로 설정 */
+  height: 50px; /* 원하는 높이로 설정 */
   display: flex;
   flex-direction: column;
   justify-content: center; /* 자식 요소를 수직 중앙 정렬 */

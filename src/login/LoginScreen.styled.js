@@ -24,7 +24,7 @@ export const MainContainer = styled.div`
   width: 100%;
   height: 100vh;
   background: white;
-  display: flex;
+ 
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -44,7 +44,7 @@ export const Subtitle = styled.p`
   color: #666;
   text-align: center;
   margin-bottom: 20px;
-  max-width: 300px;
+   
 `;
 
 export const Input = styled.input`
@@ -75,7 +75,7 @@ export const LinkContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  max-width: 320px;
+   
   margin-top: 10px;
 `;
 
@@ -114,8 +114,7 @@ font-family: 'chab';
 export const Image = styled.img`
   width: auto; /* 이미지의 크기를 조정 */
   height: auto;
-  margin-bottom: 5%;
-  margin-top: 30%;
+  margin: 10%;
 `;
 
 export const Textdiv = styled.div`

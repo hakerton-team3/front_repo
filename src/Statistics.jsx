@@ -4,7 +4,9 @@ import starIcone from './image/별점.png';
 import calenderIcone from './image/달력이미지.png';
 import pencilIcone from './image/연필3d.png';
 import handIcone from './image/합쳐진별원폰.svg';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
+ 
+
 
 const Container = styled.div`
   overflow-x: hidden; /* 가로 스크롤을 숨기기 위해 추가 */
@@ -117,7 +119,7 @@ const ShadowContainer = styled.div`
   border-radius: 10px; // 모서리 둥글게
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // 그림자 효과
   margin-top: 90px;
-  margin-left: 8%;
+  margin-left: 3%;
   color: #000;
   padding: 5px;
   position: relative;
@@ -254,6 +256,8 @@ const HandImage = styled.img`
   z-index: 2; /* 설정 추가 */
   position: relative; /* z-index를 적용하기 위해 추가 */
 `;
+
+ 
 
 function Statistics() {
   return (

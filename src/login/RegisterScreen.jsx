@@ -67,7 +67,7 @@ const RegisterScreen = () => {
           onChange={handleChange}
           required
         />
-        <S.Link href="#">이미 계정을 가지고 있나요?</S.Link>
+        <S.Link href="/">이미 계정을 가지고 있나요?</S.Link>
         <S.Button type="submit">
           <S.FooterText>계정 가입하기</S.FooterText>
         </S.Button>
