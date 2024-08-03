@@ -119,7 +119,7 @@ const ShadowContainer = styled.div`
   border-radius: 10px; // 모서리 둥글게
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // 그림자 효과
   margin-top: 90px;
-  margin-left: 8%;
+  margin-left: 3%;
   color: #000;
   padding: 5px;
   position: relative;
