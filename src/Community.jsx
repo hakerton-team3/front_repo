@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as S from './Community.styled'; 
+import * as S from './Community.styled';
+import axiosInstance from './axios/axiosInstance'; 
 
 const HorizontalScroll = ({ posts }) => {
   const scrollRef = useRef();
   const [activeIndex, setActiveIndex] = useState(0);
+
   
   const handleScroll = () => {
     const scrollLeft = scrollRef.current.scrollLeft;
@@ -71,6 +73,31 @@ function Community() {
     const tagsArray = e.target.value.split(' ').filter(tag => tag.startsWith('#'));
     if (tagsArray.length <= 3) {
       setTags(e.target.value);
+    }
+  };
+  
+
+  const handleSubmit = async () => {
+   
+    try {
+      const accessToken = localStorage.getItem('accessToken'); 
+      if (!accessToken) {   
+        throw new Error('Access token not found'); 
+      }
+      const response = await axiosInstance.post('/group-posts', {
+        title,
+        contents: memo,
+        hashtag: tags
+      },{ 
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        }
+      });
+      console.log('Response:', response.data);
+      alert('데이터가 성공적으로 전송되었습니다.');
+    } catch (error) {
+      console.error('Error:', error);
+      alert('데이터 전송에 실패했습니다.');
     }
   };
 
@@ -194,28 +221,28 @@ function Community() {
         {isModalOpen && (
           <S.ModalOverlay onClick={toggleModal}>
             <S.ModalContent onClick={(e) => e.stopPropagation()}>
-              <S.ModalTitle>커뮤니티</S.ModalTitle>
-              <S.P>@주량마스터 님이 작성 중입니다.</S.P>
-              <S.TitleBox
-                placeholder="제목을 입력해 주세요."
-                value={title}
-                onChange={onTitleChange}
-              />
-              <S.Underline />
-              <S.MemoBox
-                value={memo}
-                onChange={onMemoChange}
-                placeholder="내용을 입력해 주세요."
-              />
-              <S.Underline />
-              <S.ModalBottom>
-                <S.TagBox
-                  placeholder="키워드를 #을 포함해 작성해 주세요. (최대 3개)"
-                  value={tags}
-                  onChange={onTagsChange}
-                />
-                <S.SubmitButton onClick={handleUpload}>업로드</S.SubmitButton>
-              </S.ModalBottom>
+            <S.ModalTitle>커뮤니티</S.ModalTitle>
+      <S.P>@주량마스터 님이 작성 중입니다.</S.P>
+      <S.TitleBox
+        placeholder="제목을 입력해 주세요."
+        value={title}
+        onChange={onTitleChange}
+      />
+      <S.Underline />
+      <S.MemoBox
+        value={memo}
+        onChange={onMemoChange}
+        placeholder="내용을 입력해 주세요."
+      />
+      <S.Underline />
+      <S.ModalBottom>
+        <S.TagBox
+          placeholder="키워드를 #을 포함해 작성해 주세요. (최대 3개)"
+          value={tags}
+          onChange={onTagsChange}
+        />
+        <S.SubmitButton onClick={() => { handleSubmit(); handleUpload(); }}>업로드</S.SubmitButton>
+      </S.ModalBottom>
               <S.CloseButton onClick={toggleModal}>X</S.CloseButton>
             </S.ModalContent>
           </S.ModalOverlay>
