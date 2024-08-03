@@ -541,6 +541,13 @@ export const HeartButton = styled.img`
   margin-top:2px;
 `
 
+export const LikeCount = styled.span`
+  margin-left: 3px;
+  font-size: 10px; 
+  color: #333; 
+`;
+
+
 export const EntireCloseButton = styled.div`
   position: absolute;
   top: 5px;

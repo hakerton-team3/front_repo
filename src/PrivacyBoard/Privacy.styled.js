@@ -68,7 +68,7 @@ export const BackgroundImage = styled.div`
   width: 100%;
   height: 300px;
   background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%),
-  url('../../../public/delicious-candy-arrangement.png');
+  url('../../../src/image/delicious-candy-arrangement.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -81,7 +81,7 @@ export const ForegroundImage = styled.div`
   position: absolute;
   width: 300px;
   height: 300px;
-  background-image: url('../../../public/주다리리.png');
+  background-image: url('../../../src/image/주다리리.png');
   background-size: contain;
   background-repeat: no-repeat;
   margin-top: 80px;

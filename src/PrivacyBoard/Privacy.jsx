@@ -56,10 +56,10 @@ const Privacy = () => {
         <S.ForegroundImage />
         <S.ButtonContainer>
           <S.ImageButton onClick={() => navigateTo('/community')}>
-            <img src="/단체게시판1.png" alt="Community Board" />
+            <img src="/src/image/단체게시판1.png" alt="Community Board" />
           </S.ImageButton>
           <S.ImageButton onClick={() => navigateTo('/privacy')}>
-            <img src="/혼잣말게시판1.png" alt="Personal Board" />
+            <img src="/src/image/혼잣말게시판1.png" alt="Personal Board" />
           </S.ImageButton>
         </S.ButtonContainer>
         <S.Content>
@@ -74,7 +74,7 @@ const Privacy = () => {
 
         <S.MainText>
           <S.Title>나를 되돌아보는 것도 중요해</S.Title>
-          <S.SearchImg src="/public/검색.png" />
+          <S.SearchImg src="/src/image/검색.png" />
           </S.MainText>
         <S.Search>
           <S.SearchContainer>
@@ -84,9 +84,9 @@ const Privacy = () => {
             value={search}
             onChange={onSearchChange} 
             />
-            <S.SearchIcon src="/public/돋보기.png" alt="돋보기" />
+            <S.SearchIcon src="/src/image/돋보기.png" alt="돋보기" />
           </S.SearchContainer>
-            <S.WriteIcon src="/public/작성.png" alt="Write Icon" onClick={toggleModal} /> {/* 모달 열기 */}
+            <S.WriteIcon src="/src/image/작성.png" alt="Write Icon" onClick={toggleModal} /> {/* 모달 열기 */}
 
         </S.Search>
         <S.Underline />
