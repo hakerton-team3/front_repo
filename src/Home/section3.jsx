@@ -6,7 +6,13 @@ import Ramenimage from '../image/ramen.png';
 const Section03 = () => {
   const [showRecommendation, setShowRecommendation] = useState(false);
   const [currentRecommendation, setCurrentRecommendation] = useState(null);
+  const resultTitle = localStorage.getItem('resultTitle');
+  const userData = JSON.parse(localStorage.getItem('userData'));
 
+
+  if (!resultTitle) {
+    return <div>결과를 찾을 수 없습니다.</div>;
+  }
   const recommendations = [
     {
       title: "매콤한 맛이 일품!",
@@ -108,7 +114,7 @@ const Section03 = () => {
       ) : (
         <S.ContentContainer>
           <S.Image src={Gittimage} alt="gift" />
-          <S.Title>JRMT 서경 님,</S.Title>
+          <S.Title>{resultTitle} {userData.name}</S.Title>
           <S.SubTitle>
             술자리를 즐기고 주량이 강해<br />
             모임 자리에 끝까지 남아있어요.
@@ -118,7 +124,7 @@ const Section03 = () => {
           </S.SubTitle>
           <S.SubTitle>
             평소에 <S.EmphasizedText>한식을 즐기는</S.EmphasizedText><br />
-            서경 님께 드리는 안주 추천은,
+            {userData.name} 님께 드리는 안주 추천은,
           </S.SubTitle>
           <S.Button onClick={handleButtonClick}>
             오늘의 안주는 무엇일까요?

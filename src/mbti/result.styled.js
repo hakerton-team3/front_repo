@@ -27,18 +27,16 @@ export const GradientContainer = styled.div`
 
 export const Image = styled.img`
   width: 100%;
-  height: auto;
+   
   display: block;
 `;
 
 export const GradientOverlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
+   
   width: 100%;
-  height: 100%;
+  height:  auto;
   pointer-events: none;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0) 80%, rgba(255, 255, 255, 1) 100%);
+  
   z-index: 1;
 `;
 export const Maintext = styled.h1`
@@ -96,7 +94,7 @@ export const BubbleContainer = styled.div`
   border-radius: 1.0em;
   padding: 3% 3%;
   color: black;
-  margin: 5%;
+  margin-left: 10%;
   font-size:10px;
   width: 40%;
 

@@ -1,6 +1,5 @@
-import React, {useState}from 'react';
+import React, { useState } from 'react';
 import * as S from './result.styled.js';
-import Kingimage from '../image/king.png';
 import Waringimage from '../image/warining.png';
 import Starimage from '../image/star.png';
 import Bellimage from '../image/bell.png';
@@ -25,20 +24,18 @@ const Result = () => {
     navigate('/home');
   };
 
-  // React 컴포넌트 파일
-
   const [data, setData] = useState({}); // 업데이트할 데이터를 저장
 
   const handlePatchRequest = async () => {
     try {
-    const accessToken = localStorage.getItem('accessToken');
-    const response = await axiosInstance.patch(`/abtis/userinfos/${resultData.id}`, {},
-      {
-      headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'Content-Type': 'application/json',
-      }
-    });
+      const accessToken = localStorage.getItem('accessToken');
+      const response = await axiosInstance.patch(`/abtis/userinfos/${resultData.id}`, {},
+        {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+          }
+        });
 
       console.log('업데이트 성공:', response.data);
     } catch (error) {
@@ -53,12 +50,12 @@ const Result = () => {
         <S.BubbleContainertext>{resultData.title}</S.BubbleContainertext>의 술비티아이가 나왔습니다.
       </S.BubbleContainer>
       <S.GradientContainer>
-      <S.Image src={Kingimage} alt="logo" />
-      <S.GradientOverlay />
+        <S.Image src={resultData.image || Kingimage} alt="result image" />
+        
       </S.GradientContainer>
-      <S.MiniContainer><S.FooterText2>{resultData.hashTag}</S.FooterText2></S.MiniContainer>
-      <S.Subtext>{resultData.mainDescription}</S.Subtext>
-      <S.Maintext>{resultData.title}</S.Maintext>
+      {/* <S.MiniContainer><S.FooterText2>{resultData.hashTag}</S.FooterText2></S.MiniContainer> */}
+      {/* <S.Subtext>{resultData.mainDescription}</S.Subtext> */}
+      {/* <S.Maintext>{resultData.title}</S.Maintext> */}
       <S.RowContainer>
         <GrayContainerComponent 
           imageSrc={Waringimage} 
