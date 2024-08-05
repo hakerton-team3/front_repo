@@ -1,9 +1,9 @@
 import React from 'react';
 import * as S from './result.styled.js';
-import Kingimage from '../images/king.png';
-import Waringimage from '../images/warining.png';
-import Starimage from '../images/star.png';
-import Bellimage from '../images/bell.png';
+import Kingimage from '../image/king.png';
+import Waringimage from '../image/warining.png';
+import Starimage from '../image/star.png';
+import Bellimage from '../image/bell.png';
 import GrayContainerComponent from './GrayContainerComponent';
 import { useLocation, useNavigate } from 'react-router-dom';
 import answer from './answer';  // answer 배열 임포트

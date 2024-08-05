@@ -1,10 +1,9 @@
-// src/login/RegisterScreen.js
 import React, { useState } from 'react';
 import * as S from './RegisterScreen.styled';
 import { useNavigate } from 'react-router-dom';
-import Kakaoimage from '../images/kakaotalk.png';
-import Naverimage from '../images/naver.png';
-import Googleimage from '../images/google.png';
+import Kakaoimage from '../image/kakaotalk.png';
+import Naverimage from '../image/naver.png';
+import Googleimage from '../image/google.png';
 import axiosInstance from '../axios/axiosInstance';
 
 const RegisterScreen = () => {
@@ -28,10 +27,26 @@ const RegisterScreen = () => {
     try {
       const response = await axiosInstance.post('/users', formData);
       console.log('User created:', response.data);
-      navigate('/test'); // 회원가입 성공 시 로그인 화면으로 이동
+      
+      // 사용자 데이터를 로컬 스토리지에 저장
+      localStorage.setItem('userData', JSON.stringify({ name: formData.name, email: formData.email }));
+
+      navigate('/test'); // 회원가입 성공 시 테스트 화면으로 이동
     } catch (error) {
       console.error('Error creating user:', error);
     }
+  };
+
+  const handleKakaoLogin = () => {
+    window.location.href = 'http://ec2-43-201-61-252.ap-northeast-2.compute.amazonaws.com:8080/api/v1/oauth2/authorization/kakao';
+  };
+
+  const handleNaverLogin = () => {
+    window.location.href = 'http://ec2-43-201-61-252.ap-northeast-2.compute.amazonaws.com:8080/api/v1/oauth2/authorization/naver';
+  };
+
+  const handleGoogleLogin = () => {
+    window.location.href = 'http://ec2-43-201-61-252.ap-northeast-2.compute.amazonaws.com:8080/api/v1/oauth2/authorization/google';
   };
 
   return (
@@ -77,9 +92,9 @@ const RegisterScreen = () => {
 
       <S.FooterText>혹은, SNS로 가입을 원하시나요?</S.FooterText>
       <S.IconContainer2>
-        <S.Image2 src={Naverimage} alt="logo" />
-        <S.Image2 src={Kakaoimage} alt="logo" />
-        <S.Image2 src={Googleimage} alt="logo" />
+        <S.Image2 src={Naverimage} alt="Naver logo" onClick={handleNaverLogin} />
+        <S.Image2 src={Kakaoimage} alt="Kakao logo" onClick={handleKakaoLogin} />
+        <S.Image2 src={Googleimage} alt="Google logo" onClick={handleGoogleLogin} />
       </S.IconContainer2>
     </S.MainContainer>
   );

@@ -190,7 +190,22 @@ export const PhoneText = styled.div`
 
 `;
 
-export const EditDeleteText = styled.div`
+export const EditText = styled.div`
+  width: 64px;
+  height: 15px;
+  left: 244px;
+  top: 20px;
+  position: absolute;
+  text-align: center;
+  color: black;
+  font-size: 10px;
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+`;
+
+
+export const Delete = styled.div`
   width: 64px;
   height: 15px;
   left: 284px;
@@ -311,4 +326,4 @@ export const SaveButtonText = styled.div`
   font-family: 'Pretendard', sans-serif;
   font-weight: 700;
   text-align: center;
-`;
+`; 

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as S from './test.styled';
-import Beerimage from '../images/6.png';
+import Beerimage from '../image/6.png';
 import { useNavigate } from 'react-router-dom';
 import Question from './Question';
 import axiosInstance from '../axios/axiosInstance';
@@ -9,6 +9,15 @@ import answer from './answer'; // answer 배열 임포트
 const Test = () => {
   const navigate = useNavigate();
   const [answers, setAnswers] = useState(Array(10).fill(null));
+  const [userName, setUserName] = useState(''); // 사용자 이름 상태 추가
+
+  useEffect(() => {
+    // 사용자 이름을 localStorage에서 가져오기
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    if (userData && userData.name) {
+      setUserName(userData.name);
+    }
+  }, []);
 
   const handleAnswerChange = (questionIndex, optionIndex) => {
     const newAnswers = [...answers];
@@ -129,30 +138,42 @@ const Test = () => {
       ]
     },
     {
-      questionText: "10. 본인의 주량이 얼마나 되나요??",
+      questionText: "10. 평소의 주량은?",
       options: [
-        "1병 이하도 못먹음",
-        "2병 먹으면 취한다"
+        "1병이하 마시면 취하거나 기분이 좋다",
+        "1병먹어도 아무렇지 않고 그이상 마신다"
       ]
     },
   ];
 
+
+  const [count, setCount] = useState(1);
+
+  const increaseCount = () => {
+    setCount(count + 1);
+  };
+
+  const decreaseCount = () => {
+    setCount(count - 1);
+  };
+
   return (
     <S.MainContainer>
+      
       <S.Title>잠깐,</S.Title>
       <S.BubbleContainer>
         <S.BubbleContainerText2>
-          <S.BubbleContainerText2>승범</S.BubbleContainerText2>님의 평소음주 습관을
+          <S.BubbleContainerText2>{userName}</S.BubbleContainerText2>님의 평소음주 습관을
         </S.BubbleContainerText2>
         <S.BubbleContainerText2>
           보다 재미있게 돌이켜 보면 어떨까요?
         </S.BubbleContainerText2>
       </S.BubbleContainer>
-      <S.BubbleContainer2>
+      <S.BubbleContainer>
         <S.BubbleContainerText2>
           최근 음주 스타일 바탕으로 <S.BubbleContainerText>술비티아이</S.BubbleContainerText>에 임해주세요.
         </S.BubbleContainerText2>
-      </S.BubbleContainer2>
+      </S.BubbleContainer>
       <S.Divider />
       {questions.map((question, index) => (
         <React.Fragment key={index}>
@@ -167,10 +188,26 @@ const Test = () => {
       ))}
       <S.Image src={Beerimage} alt="logo" />
       <S.Container>
-        <S.Instruction>아래 공백에 사용자의 이름을 입력해주세요. </S.Instruction>
-        <S.InputLine />
+       
+      <S.ParentContainer>
+      <S.Instruction2>
+        일주일에 
+      </S.Instruction2>
+      <S.ParentContainer2><S.Instruction5>소주기준</S.Instruction5> <S.NumberContainer>
+        <S.NumberButton onClick={decreaseCount}>-</S.NumberButton>
+        <S.NumberDisplay>{count}</S.NumberDisplay>
+        <S.NumberButton onClick={increaseCount}>+</S.NumberButton>
+      </S.NumberContainer>   <S.Instruction4>병을 마셔요</S.Instruction4></S.ParentContainer2>
+      
+     
+    </S.ParentContainer>
+        
+           
+       
+          
+         
         <S.MainText>
-          님의 <S.Highlight>술</S.Highlight><S.SubHighlight>BTI</S.SubHighlight>는?
+        {userName}님의 <S.Highlight>술</S.Highlight><S.SubHighlight>BTI</S.SubHighlight>는?
         </S.MainText>
       </S.Container>
       <S.Button onClick={handleresultLogin}>확인하러 가기</S.Button>

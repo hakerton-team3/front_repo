@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as S from './Section3.styled';
-import Gittimage from '../images/선물2.png';
-import Ramenimage from '../images/ramen.png';
+import Gittimage from '../image/선물2.png';
+import Ramenimage from '../image/ramen.png';
 
 const Section03 = () => {
   const [showRecommendation, setShowRecommendation] = useState(false);

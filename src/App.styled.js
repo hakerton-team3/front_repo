@@ -17,7 +17,7 @@ export const Container = styled.div`
 `;
 
 export const HeaderText = styled.h1`
-  font-family: 'chab';
+  font-family: 'LotteriaChab';
   color: #ffCE4F; /* 원하는 폰트 색상 */
   
 `;
