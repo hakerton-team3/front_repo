@@ -37,7 +37,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   width: 100%;
   margin-top: 4px;
-  margin-left: 25px;
+  margin-left: 2%;
 `
 export const ImageButton = styled.button`
   border: none;
@@ -188,7 +188,7 @@ export const TagGroup2 = styled.div`
 
 export const HotTag = styled.img`
   width: 40px;
-  height: 20px;
+  height: 20px ;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -233,11 +233,11 @@ export const Search = styled.img`
 `;
 
 export const InputContainer = styled.div`
-   display: flex; 
+  display: flex; 
   background: linear-gradient(90deg, #FFCE4F, #FF9900);
   border-radius: 15px; 
   padding: 5px 10px; /* 내부 여백 */
-  width: 300px; 
+  width: 250px; 
   height: 37px;
   margin-top: 5px;
 `
@@ -252,7 +252,7 @@ export const StyledInput = styled.input`
   padding-right: 70px; /* 아이콘 크기에 따라 여유 공간 추가 */
   border: none;
   border-radius: 10px;
-  font-size: 12px;
+  font-size: 11px;
   width: 100%;
   height: 20px;
   width: 400px;
@@ -264,19 +264,19 @@ export const StyledInput = styled.input`
 `;
 
 export const SearchIcon = styled.img`
- width: 35px;
-  height: 35px;
+ width: 18px;
+  height: 18px;
   background-size: contain;
   background-repeat: no-repeat;
-  margin-left: 15px; 
-  margin-top: 0px;
+  margin-left: 0px; 
+  margin-top: 10px;
   cursor: pointer; /* 마우스 커서 변경 */
 `;
 
 export const WriteIcon = styled.img`
   flex-direction: row;
   margin-top: -7px;
-  margin-left: 35px;
+  margin-left: 50px;
   width: 50px; 
   height: 50px; 
 `;
@@ -348,6 +348,8 @@ export const ModalOverlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  
 `;
 
 export const ModalContent = styled.div`
@@ -356,7 +358,7 @@ export const ModalContent = styled.div`
   padding: 20px;
   border-radius: 10px;
   text-align: center;
-  width: 300px;
+  width: 90%;
 `;
 
 export const ModalTitle = styled.div`
