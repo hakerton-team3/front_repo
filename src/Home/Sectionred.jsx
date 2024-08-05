@@ -25,6 +25,7 @@ const Section01 = () => {
         const response = await axiosInstance.get('/challenges/weekly', {
           headers: { Authorization: `Bearer ${accessToken}` },
         });
+        console.log(response.data);
         setData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
