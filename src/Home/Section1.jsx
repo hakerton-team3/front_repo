@@ -11,13 +11,19 @@ const Section01 = () => {
     navigate('/contact');
   };
 
+  const userData = JSON.parse(localStorage.getItem('userData'));
+  if (!userData) {
+    return <div>로그인해주세요.</div>;
+  }
+
+  
   return (
     <S.MainWrap>
      
       <S.MainContainer>
         <S.TransparentContainer>
           <S.Title>
-            김서경 님의
+          {userData.name} 님의
             <S.IconWrapper>
               <FiSettings size={20} />
             </S.IconWrapper>
@@ -37,7 +43,7 @@ const Section01 = () => {
           <S.Image src={sudolImage} alt="sudol" />
         </S.TransparentContainer>
         <S.YellowContainer2>
-          <S.Smalltitle>숙취가 심한 서경님! 숙취해소제 챙겨요</S.Smalltitle>
+          <S.Smalltitle>숙취가 심한  {userData.name}님! 숙취해소제 챙겨요</S.Smalltitle>
         </S.YellowContainer2>
         
         

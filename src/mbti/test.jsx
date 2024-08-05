@@ -67,6 +67,8 @@ const Test = () => {
         }
       );
 
+      localStorage.setItem('resultTitle', resultData.title);
+
       console.log('PATCH Response:', responsePatch.data);
 
       const responsePost = await axiosInstance.post('/abtis', formData, {
