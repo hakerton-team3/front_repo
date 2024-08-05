@@ -1,6 +1,7 @@
 // answer.js
 const answer = [
     {
+      id: 1,
       hashTag: "#P#주당#술술술",
       mainDescription: "무계획으로 혼자 많은 양의 술을 즐기는",
       title: "번개 술꾼",
@@ -9,6 +10,7 @@ const answer = [
       improvingDescription3: "간혈적인 술 없는 날을 정해 건강을 지키세요.",
     },
     {
+      id: 2,
       hashTag: "#규칙#나혼자#술술",
       mainDescription: "주기적으로 계획을 세워 혼자만의 시간에 많은 양의 술을 즐기는",
       title: "알코올 애호가",
@@ -17,6 +19,7 @@ const answer = [
       improvingDescription3: "술을 마시는 날에도 적정량을 지키며 자신의 건강을 돌보세요.",
     },
     {
+      id: 3,
       hashTag: "#조금만 #P #분위기",
       mainDescription: "즉흥적으로 적은 양의 술을 혼자 즐기는",
       title: "감성 타는 혼술러",
@@ -25,6 +28,7 @@ const answer = [
       improvingDescription3: "감정적인 이유로 음주를 하지 않도록 해보세요.",
     },
     {
+      id: 4,
       hashTag: "#계획 #꼼꼼 #조금만",
       mainDescription: "자신만의 시간을 계획을 세워 적은 양의 술을 혼자 즐기는",
       title: "꼬꼬마 술애호가",
@@ -33,6 +37,7 @@ const answer = [
       improvingDescription3: "간자신만의 시간을 다른 취미와 함께 즐겨보는 것도 좋습니다.",
     },
     {
+      id: 5,
       hashTag: "#극강의 #프로참석러",
       mainDescription: "지인들과 자주 번개 약속을 가져 많은 양의 술을 즐기는",
       title: "술먹자 빌런",
@@ -41,6 +46,7 @@ const answer = [
       improvingDescription3: "모임을 가지는 횟수를 조절해보세요..",
     },
     {
+      id: 6,
       hashTag: "#술이 #술술 #들어가",
       mainDescription: "지인들과의 술약속에 많은 양의 술을 즐기는",
       title: "술약속 선도자",
@@ -49,6 +55,7 @@ const answer = [
       improvingDescription3: "모임 횟수를 줄이고, 모임 중간에 휴식을 취하며 적정량을 지켜주세요.",
     },
     {
+      id: 7,
       hashTag: "#갑자기더라도 #조금만",
       mainDescription: "번개 모임에서 적은 양의 술을 마시는",
       title: "모임 충성론자",
@@ -57,6 +64,7 @@ const answer = [
       improvingDescription3: "즐거운 모임 후에 건강을 위해 충분한 휴식을 취하세요",
     },
     {
+      id: 8,
       hashTag: "#참을인 #조금만마셔",
       mainDescription: "미리 계획된 약속에서 주로 적은 양의 술을 즐기는",
       title: "절제의 달인",

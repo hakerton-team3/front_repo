@@ -216,3 +216,26 @@ export const Button = styled.button`
     background-color: #e0a800; /* 호버 시 배경색 */
   }
 `;
+
+export const Line1 = styled.p`
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: -20px;
+`;
+
+export const Line2 = styled.p`
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: -20px;
+
+  & .highlight {
+    color: #0085D0;
+;
+  }
+`;
+
+export const GemjuCakeImg = styled.img`
+  width: 187px;
+  height: 167px;
+  margin: 10px;
+`;
