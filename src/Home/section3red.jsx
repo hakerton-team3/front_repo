@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './Section3red.styled';
-import Gittimage from '../images/선물2.png';
-import RedSudol from '../image/Redsudol2.png'; // 경로 수정
+import Gittimage from '../image/선물2.png';
+import RedSudol from '../image/stop.svg'
 
 const Section03 = () => {
   return (
@@ -24,13 +24,10 @@ const Section03 = () => {
         <S.Button>
           오늘의 안주는 무엇일까요?
         </S.Button>
+      
       </S.ContentContainer>
-      <S.ContentContainer2>
-      <S.OverlayImage src={RedSudol} alt="new overlay" />
-      금주챌린지 중에는<br></br> 안주 추천 시스템의 운영을 중단합니다.
-      <S.SubTitle2> 운영중단</S.SubTitle2>
-      </S.ContentContainer2>
-     
+      <S.OverlayImage src={RedSudol} alt="운영중단" />
+      <S.ContentContainer2 />
     </S.SectionContainer>
   );
 }

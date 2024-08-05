@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './LoginScreen.styled';
-import Logoimage from '../images/logo.png';
-import Kakaoimage from '../images/kakaotalk.png';
-import Naverimage from '../images/naver.png';
-import Googleimage from '../images/google.png';
+import Logoimage from '../image/logo.png';
+import Kakaoimage from '../image/kakaotalk.png';
+import Naverimage from '../image/naver.png';
+import Googleimage from '../image/google.png';
 import axiosInstance from '../axios/axiosInstance'; // axiosInstance import
 
 const LoginScreen = () => {

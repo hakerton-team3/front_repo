@@ -25,7 +25,7 @@ export const MainContainer = styled.div`
   height: 100%;
   background: 
     linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%),
-    url('src/images/image2.png');
+    url('src/image/image2.png');
   background-size: cover;
   background-position: center;
   overflow-x: hidden; /* Prevent horizontal scrolling */

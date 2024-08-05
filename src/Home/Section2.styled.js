@@ -20,6 +20,7 @@ export const MainContainer = styled.div`
   align-items: center;
   padding-bottom: 10%; /* Add this line to remove bottom padding */
   margin-bottom: 0; /* Add this line to remove bottom margin */
+   
 `;
 
 // Title style

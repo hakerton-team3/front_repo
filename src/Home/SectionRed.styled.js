@@ -25,11 +25,12 @@ export const MainContainer = styled.div`
   height: 100%;
   background: 
     linear-gradient(to bottom, rgba(255, 255, 255, 0) -100%, rgba(255, 255, 255, 1) 100%),
-    url('src/images/image2.png');
+    url('src/image/image2.png');
   background-size: cover;
   background-position: center;
   overflow-x: hidden; /* Prevent horizontal scrolling */
     overflow-y: hidden;
+     
 `;
  
 // Title style
@@ -202,10 +203,10 @@ export const TransparentContainer = styled.div`
 
 // Image style
 export const Image = styled.img`
-  width: 220px; /* 이미지의 크기를 조정 */
-  height: 234px;
+  width: 180px; /* 이미지의 크기를 조정 */
+  height: 220px;
   position: absolute; /* 절대 위치 */
-  right: -40%; /* 부모 컨테이너의 오른쪽 밖으로 나가도록 설정 */
+  right: -35%; /* 부모 컨테이너의 오른쪽 밖으로 나가도록 설정 */
   bottom: -15%; /* 부모 컨테이너의 아래쪽 밖으로 나가도록 설정 */
 `;
 
@@ -215,12 +216,7 @@ export const Button = styled.button`
   background: white;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); /* 고쳐짐: 0.25로 수정 */
   border-radius: 20px;
-  margin-top: 10%;
-  margin-left: 10%;
-  margin-bottom: 3%;
-  display: flex; /* 추가 */
-  align-items: center; /* 추가 */
-  justify-content: center; /* 추가 */
+  margin: 10px 20px;
   text-decoration: none; /* 링크 스타일 제거 */
   color: inherit; /* 텍스트 색상 상속 */
 

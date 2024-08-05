@@ -84,7 +84,7 @@ export const RecommendationContainer = styled.div`
  
   background: 
     linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 1) 100%),
-    url('src/images/ramen.png');
+    url('src/image/ramen.png');
   background-size: cover;
   background-position: center;
   display: flex;
