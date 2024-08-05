@@ -6,11 +6,7 @@ import * as S from './Section2.styled';
 const GetAttendanceDays = async () => {
   try {
     const accessToken = localStorage.getItem('accessToken'); 
-    if (!accessToken) {   
-        throw new Error('Access token not found'); 
-      }
 
-      console.log('Using accessAttendance token:', accessToken);
     const response = await axiosInstance.get('/attendance/continuous',{
         headers: {
             Authorization: `Bearer ${accessToken}` 
@@ -18,8 +14,6 @@ const GetAttendanceDays = async () => {
     });
 
     const data = response.data;
-    console.log(data);
-    console.log(response);
 
     if (!data.continuousAttendanceDays) {
       throw new Error('continuousAttendanceDays 값이 없습니다.');
@@ -69,4 +63,4 @@ const AttendanceDays = () => {
   );
 };
 
-export default AttendanceDays; // 반드시 default로 내보내야 함
+export default AttendanceDays; 

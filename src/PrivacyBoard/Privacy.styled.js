@@ -12,7 +12,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   width: 100%;
   margin-top: 21px;
-  margin-left: 40px;
+  margin-left: 6%;
 `;
 
 export const ImageButton = styled.button`
@@ -187,8 +187,8 @@ export const BorderedText = styled.div`
   font-size: 17px;
   color: #000000;
   font-weight: bold;
-  height: auto;
-  width: 320px;
+  height: 60px;
+  width: 300px;
   background-color: #FFFFFF;
   margin-top: 20px;
   margin-bottom: 15px;
