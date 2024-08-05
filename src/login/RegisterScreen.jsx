@@ -51,7 +51,7 @@ const RegisterScreen = () => {
 
   return (
     <S.MainContainer>
-      <S.GlobalStyle />
+      
       <S.Title>환영해요,</S.Title>
       <S.BubbleContainer>
         <S.BubbleText>앞으로 사용할 유저님의 회원정보를 입력해주세요.</S.BubbleText>

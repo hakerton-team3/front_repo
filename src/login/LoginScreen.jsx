@@ -50,8 +50,7 @@ const LoginScreen = () => {
   };
 
   return (
-    <S.MainContainer>
-      <S.GlobalStyle />
+    <S.MainContainer> 
       <S.Image src={Logoimage} alt="logo" />
       <S.Title>건강한 음주 생활을 위하여,</S.Title>
       <S.Subtitle>추적주적 챙겨가는 알코올과 음주 습관을 추적하는</S.Subtitle>

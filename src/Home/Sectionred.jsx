@@ -48,7 +48,7 @@ const Section01 = () => {
   const navigate = useNavigate();
 
   const handleEmergencyContactsClick = () => {
-    navigate('/emergency-contacts');
+    navigate('/contact');
   };
 
   const [isOpen6, setIsOpen6] = useState(false);
@@ -85,7 +85,7 @@ const Section01 = () => {
 
   return (
     <S.MainWrap>
-      <S.GlobalStyle />
+       
       <S.MainContainer>
         <S.TransparentContainer>
           <S.Title>
