@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState}from 'react';
 import * as S from './result.styled.js';
 import Kingimage from '../images/king.png';
 import Waringimage from '../images/warining.png';
@@ -7,6 +7,7 @@ import Bellimage from '../images/bell.png';
 import GrayContainerComponent from './GrayContainerComponent';
 import { useLocation, useNavigate } from 'react-router-dom';
 import answer from './answer';  // answer 배열 임포트
+import axiosInstance from '../axios/axiosInstance';
 
 const Result = () => {
   const location = useLocation();
@@ -20,7 +21,29 @@ const Result = () => {
   const resultData = answer[resultIndex];
 
   const handlehome = () => {
+    handlePatchRequest();
     navigate('/home');
+  };
+
+  // React 컴포넌트 파일
+
+  const [data, setData] = useState({}); // 업데이트할 데이터를 저장
+
+  const handlePatchRequest = async () => {
+    try {
+    const accessToken = localStorage.getItem('accessToken');
+    const response = await axiosInstance.patch(`/abtis/userinfos/${resultData.id}`, {},
+      {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      }
+    });
+
+      console.log('업데이트 성공:', response.data);
+    } catch (error) {
+      console.error('업데이트 실패:', error);
+    }
   };
 
   return (

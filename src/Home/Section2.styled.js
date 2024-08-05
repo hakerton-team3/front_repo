@@ -243,8 +243,8 @@ export const Underline = styled.div`
 
 
 export const JudalImage = styled.img`
-  width: 350px;
-  height: 190px;
+  width: 330px;
+  height: 180px;
   margin: 10px;
 `;
 
@@ -275,7 +275,7 @@ export const SubmitButton = styled.button`
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  margin-top: 1px;
+  margin-top: 10px;
   font-weight: bold;
   display: flex;
   justify-content: center; /* 수평 가운데 정렬 */
