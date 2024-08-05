@@ -16,6 +16,8 @@ const Section01 = () => {
   const [isOpen6, setIsOpen6] = useState(false);
   const [isOpen9, setIsOpen9] = useState(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -33,18 +35,9 @@ const Section01 = () => {
     fetchData();
   }, []);
 
-  if (error) {
-    return <h2>{error}</h2>;
-  }
-
-  if (!data) {
-    return <h2>Loading...</h2>;
-  }
-
   const endChallenges = async () => {
     try {
       const accessToken = localStorage.getItem('accessToken');
-      if (!accessToken) throw new Error('Access token not found');
 
       const response = await axiosInstance.post(
         `/challenges/weekly/achieved`,
@@ -53,16 +46,13 @@ const Section01 = () => {
       );
       console.log('Challenge ended:', response.data);
       closeModal6(); // Assuming this modal relates to ending the challenge
+      closeModal9();
     } catch (error) {
       const errorMessage = error.response && error.response.status === 404 ? '챌린지종료 실패' : '챌린지종료에러';
       alert(errorMessage);
       console.error('Challenge end error:', error);
     }
   };
-
-  
-  
-  const navigate = useNavigate();
 
   const handleEmergencyContactsClick = () => {
     navigate('/contact');
@@ -97,9 +87,17 @@ const Section01 = () => {
     },
   };
 
+  if (error) {
+    return <h2>{error}</h2>;
+  }
+
+  if (!data) {
+    return <h2>Loading...</h2>;
+  }
+
+
   return (
     <S.MainWrap>
-       
       <S.MainContainer>
         <S.TransparentContainer>
           <S.Title>
