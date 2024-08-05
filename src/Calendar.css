@@ -20,7 +20,7 @@
 
 .event-text {
   text-align: left;
-  font-size: 30px;
+  font-size: 25px;
   margin: 0;
   margin-left:2%;
 }
@@ -45,10 +45,11 @@
   border-radius: 15px;
   cursor: pointer;
   margin-top: 30px;
+  margin-left: -2%;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
 /* 캘린더 스타일 */
@@ -147,6 +148,13 @@
   text-decoration: none !important;
 }
 
+.centerBottom{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important; /* 수평 중앙 정렬 */
+  justify-content: center !important; /* 수직 중앙 정렬 */
+  width: 100% !important; /* 부모 컨테이너의 너비에 맞춤 */
+}
 
 .top-bar {
   display: flex;
@@ -154,11 +162,12 @@
   align-items: center !important;
   gap: 10px;
   width: 100%;
-  margin-left: 10%;
+  margin-left: 0%;
+  justify-content: center !important; /* 수평 중앙 정렬 */
 }
 
 .beer-soju-text {
-  margin-left: 5%;
+  margin-left: 0%;
   font-size: 13px;
 }
 
@@ -222,7 +231,7 @@
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   width: 300px;
   margin-top: 10px;
-  margin-left: 10%;
+  margin-left: 0%;
 }
 
 .info-left {
@@ -339,7 +348,7 @@
   margin-left: 5%;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
   border: none;
   justify-content: center; /* 가운데 정렬 */
 }
@@ -399,8 +408,7 @@
   padding: 20px;
   border-radius: 10px;
   position: relative;
-  width: 80%;
-  max-width: 350px;
+  width: 85%;
 }
 
 .modal-close-button {
@@ -417,6 +425,7 @@
 }
 
 .modal-box {
+  justify-content: center; /* 가운데 정렬 */
   flex-direction: column;
   background-color: #F0F0F0;
   display: flex;
@@ -535,10 +544,10 @@
 }
 
 .modal-number-container {
-  margin-left: 5%;
+  margin-left: 0% !important;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
   border: none;
   justify-content: center; /* 가운데 정렬 */
 }
@@ -594,9 +603,11 @@
   height: 60px;
 
   margin-bottom: 3%;
+  margin-left: 0% !important;
   
   
   font-size: 20px;
   font-weight: bold;
   text-align: center !important;
+  justify-content: center; /* 가운데 정렬 */
 }

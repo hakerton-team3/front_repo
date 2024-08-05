@@ -132,9 +132,7 @@ const createChallenges = async () => {
 
   const handleAttendanceClick = () => {
     attendance(setImageSrc);
-    console.log('Selected circles:', selectedCircles);
     alert('출석이 저장되었습니다.');
-    setIsCircleClickedToday(true);
   };
 
   const [imageSrc, setImageSrc] = useState(judalIcon3); 

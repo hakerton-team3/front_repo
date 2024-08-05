@@ -1,14 +1,22 @@
+.centerBottom{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important; /* 수평 중앙 정렬 */
+  justify-content: center !important; /* 수직 중앙 정렬 */
+  width: 100% !important; /* 부모 컨테이너의 너비에 맞춤 */
+}
+
 .Soju-top-bar {
     display: flex;
     flex-direction: row;
     align-items: center !important;
     gap: 10px;
     width: 100%;
-    margin-left: 10%;
+    margin-left: 0%;
   }
   
   .soju-text {
-    margin-left: 5%;
+    margin-left: 10%;
     font-size: 13px;
   }
     
@@ -22,7 +30,7 @@
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     width: 300px;
     margin-top: 10px;
-    margin-left: 10%;
+    margin-left: 0%;
   }
   
   .Soju-info-left {
@@ -141,7 +149,7 @@
     margin-left: 5%;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
     border: none;
     justify-content: center; /* 가운데 정렬 */
   }
