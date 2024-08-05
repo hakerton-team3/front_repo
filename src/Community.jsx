@@ -236,7 +236,7 @@ function Community() {
 
   return (
     <>
-      <S.GlobalStyle />
+      
       <S.CommunityContainer>
         <S.ButtonContainer>
         <S.ImageButton onClick={fetchPosts}>

@@ -1,15 +1,6 @@
 // Section2.styled.js
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
-// Global style to include the custom font
-export const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'chab';
-    src: url('src/fonts/chab.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-  }
-`;
 
 // Main container style
 export const MainContainer = styled.div`
@@ -62,7 +53,7 @@ export const CardContainer = styled.div`
 `;
 
 export const ContainererText = styled.h1`
-  font-family: 'chab';
+  font-family: 'LotteriaChab';
   color: black;
   font-size: 38px;
   text-align: left; /* Align text to the left */
@@ -90,12 +81,12 @@ export const Hole = styled.div`
 
 
 export const ModalTitle = styled.div`
-  font-family: 'chab';
+  font-family: 'LotteriaChab';
   font-size: 40px;
   color: #FFCE4F;
   text-align: center;
   font-weight: bold;
-  font-family: 'chab';
+ 
 `;
 
 export const ModalTitle3 = styled.div`
@@ -104,12 +95,12 @@ export const ModalTitle3 = styled.div`
   text-align: center;
   font-weight: bold;
   margin-top: 50px;
-  font-family: 'chab';
+  font-family: 'LotteriaChab';
 `;
 
 export const ModalTitle6 = styled.div`
   font-size: 40px;
-  font-family: 'chab';
+  font-family: 'LotteriaChab';
   color: #EF4444;
   text-align: center;
   font-weight: bold;
@@ -298,7 +289,7 @@ export const H1 = styled.p`
     margin: 10px;
     font-size: 30px;
     color: #EF4444;
-    font-family: 'chab';
+    font-family: 'LotteriaChab';
   `;
 
 export const CircleContainer = styled.div`
@@ -378,6 +369,6 @@ export const RatingCircle = styled.div`
 export const bigText = styled.p`
     margin: 10px;
     color: #FFCE4F;
-    font-family: 'chab';
+    font-family: 'LotteriaChab';
     font-size: 30px;
   `;

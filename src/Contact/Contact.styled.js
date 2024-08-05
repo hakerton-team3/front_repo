@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
+import backgroundImage from '../image/backphon2.png';
+
 export const MainContainer = styled.div`
   width: 100%; /* 전체 너비 사용 */
   height: 100vh;
   flex-direction: column; /* 세로 정렬 */
   display: flex;
-`;
+`;  
 
 export const Containeryellow = styled.div`
   width: 100%;
@@ -53,7 +55,7 @@ export const Triangle = styled.div`
 export const BackgroundContainer = styled.div`
   width: 100%;
   height: 25%;
-  background-image: url('src/image/backphon2.png');
+  background-image: url(${backgroundImage});
   background-size: cover;
   background-position: center;
   margin-top: 10%;

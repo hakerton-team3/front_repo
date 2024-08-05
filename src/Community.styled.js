@@ -1,24 +1,10 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
-// Global style to include the custom font
-export const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'chab';
-    src: url('src/fonts/chab.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-`;
+ 
 
 // Styled component using the custom font
 export const FontChab = styled.span`
-  font-family: 'chab';
+    font-family: 'LotteriaChab';
   font-weight: bold;
   font-size: 50px;
 `;
@@ -216,7 +202,7 @@ export const Keyword = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-family: 'chab';
+  font-family: 'c';
   font-size: 20px;
   font-weight: bold;
   color: #FFCE4F;
@@ -362,7 +348,7 @@ export const ModalContent = styled.div`
 `;
 
 export const ModalTitle = styled.div`
-  font-family: 'chab';
+  font-family: 'LotteriaChab';
   font-weight: bold;
   font-size: 38px;
   color: #FFCE4F;
