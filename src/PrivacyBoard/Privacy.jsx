@@ -50,7 +50,7 @@ const Privacy = () => {
 
     return (
       <>
-      <S.GlobalStyle />
+     
       <S.CommunityContainer>
         <S.BackgroundImage />
         <S.ForegroundImage />
