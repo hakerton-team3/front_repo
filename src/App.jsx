@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import * as S from './App.styled';
 import Home from './Home';
 import Community from './Community';
 import Calendar from './Calendar';
 import Statistics from './Statistics';
-import EmergencyContacts from './EmergencyContacts'; // 비상연락망 페이지 컴포넌트를 추가
-import LoginScreen from './login/LoginScreen'; // 로그인 화면 컴포넌트를 추가
-import RegisterScreen from './login/RegisterScreen'; // 회원가입 화면 컴포넌트를 추가
-import Test from './mbti/test'; // 
+import EmergencyContacts from './EmergencyContacts';
+import LoginScreen from './login/LoginScreen';
+import RegisterScreen from './login/RegisterScreen';
+import Test from './mbti/test';
 import PrivacyPost from './PrivacyBoard/Privacy';
 import Result from './mbti/result.jsx';
 import RedHome from './RedHome.jsx';
 import Contact from './Contact/Contact.jsx';
+import { messaging, onMessage, getToken } from './firebase';
 
 const App = () => {
   const location = useLocation();
@@ -23,6 +24,39 @@ const App = () => {
   const handleBackClick = () => {
     navigate(-1); // 뒤로가기
   };
+
+  useEffect(() => {
+    const requestUserPermission = async () => {
+      const permission = await Notification.requestPermission();
+      if (permission === 'granted') {
+        try {
+          const token = await getToken(messaging, { vapidKey: 'BD5YWfRYngq_pzCIgzE1r1LOZf5-a4xzHg85_769GteG2jA45FttLJUM3kS--QxaJCoOkjstmOwoVsfnmMt388E' });
+          console.log('FCM Token:', token);
+        } catch (error) {
+          console.error('Error getting FCM token', error);
+        }
+      } else {
+        console.error('Permission not granted for notifications');
+      }
+    };
+
+    const receiveMessage = () => {
+      onMessage(messaging, (payload) => {
+        console.log('Message received. ', payload);
+        const notificationTitle = payload.notification.title;
+        const notificationOptions = {
+          body: payload.notification.body,
+        };
+
+        if (Notification.permission === 'granted') {
+          new Notification(notificationTitle, notificationOptions);
+        }
+      });
+    };
+
+    requestUserPermission();
+    receiveMessage();
+  }, []);
 
   return (
     <S.Container>
@@ -39,18 +73,18 @@ const App = () => {
         </>
       )}
       <Routes>
-        <Route path="/" element={<LoginScreen />} /> {/* 첫 화면을 LoginScreen으로 설정 */}
+        <Route path="/" element={<LoginScreen />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/community" element={<Community />} /> 
+        <Route path="/community" element={<Community />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/statistics" element={<Statistics />} />
-        <Route path="/emergency-contacts" element={<EmergencyContacts />} /> {/* 비상연락망 페이지 라우트 추가 */}
-        <Route path="/register" element={<RegisterScreen />} /> {/* 회원가입 페이지 라우트 추가 */}
-        <Route path='/test' element={<Test />} /> {/* Test 페이지 라우트 추가 */}
-        <Route path='/result' element={<Result />} /> {/* Result 페이지 라우트 추가 */}
-        <Route path="/privacy" element={<PrivacyPost />} /> {/* 개인 게시판 라우트 추가 */}
-        <Route path='/redhome' element={<RedHome/>} />
-        <Route path='/contact' element={<Contact/>} />
+        <Route path="/emergency-contacts" element={<EmergencyContacts />} />
+        <Route path="/register" element={<RegisterScreen />} />
+        <Route path='/test' element={<Test />} />
+        <Route path='/result' element={<Result />} />
+        <Route path="/privacy" element={<PrivacyPost />} />
+        <Route path='/redhome' element={<RedHome />} />
+        <Route path='/contact' element={<Contact />} />
       </Routes>
     </S.Container>
   );

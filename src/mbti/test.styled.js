@@ -1,26 +1,18 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
-export const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'chab';
-    src: url('src/fonts/chab.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-  }
-`;
+ 
 
 export const MainContainer = styled.div`
   width: 100%;
   height: 100vh;
   background: white;
-  
   flex-direction: column;
   align-items: center;
    overflow-x: hidden;
 `;
 
 export const Title = styled.h1`
-  font-family: 'chab';
+  font-family: 'LotteriaChab';
   font-size: 70px;
   font-weight: bold;
   text-align: center;
@@ -68,7 +60,7 @@ export const BackContainer = styled.div`
 `;
 
 export const FooterText = styled.p`
-  font-family: 'chab';
+  font-family: 'LotteriaChab';
   font-size: 100px;
   color: white;
   text-align: center;
@@ -109,10 +101,23 @@ export const Container = styled.div`
   margin-top: 10%;
 `;
 
-export const Instruction = styled.p`
-  font-size: 16px;
+export const Instruction4 = styled.h3`
+   
   color: #444;
-  margin-bottom: 20px;
+  font-size: 20px;
+   
+      margin-left: 10px;  
+  font-weight: bold;
+  
+`;
+export const Instruction5 = styled.h3`
+    margin-right: 10px;  
+  color: #444;
+  font-size: 20px;
+   
+  
+  font-weight: bold;
+  
 `;
 
 export const InputWrapper = styled.div`
@@ -154,16 +159,17 @@ export const MainText = styled.div`
   font-size: 36px;
   font-weight: bold;
   color: #000;
+  
 `;
 
 export const Highlight = styled.span`
   color: #FFCE4F; // 노란색
-  font-family: 'chab';  
+  font-family: 'LotteriaChab';
 `;
 
 export const SubHighlight = styled.span`
   color: #FFCE4F;
-  font-family: 'chab';
+  font-family: 'LotteriaChab';
 `;
 
 export const BubbleContainer = styled.span`
@@ -176,6 +182,7 @@ export const BubbleContainer = styled.span`
   font-size: 10px;
   width: 60%;
   margin-right: 25%;
+  margin-bottom: 10%;
   height: 60px; /* 원하는 높이로 설정 */
   display: flex;
   flex-direction: column;
@@ -240,7 +247,7 @@ export const BubbleContainer3 = styled.button`
   color: black;
   font-size: 10px;
   width: 90%;
-  height: 30px; /* 원하는 높이로 설정 */
+  height: 50px; /* 원하는 높이로 설정 */
   display: flex;
   flex-direction: column;
   justify-content: center; /* 자식 요소를 수직 중앙 정렬 */
@@ -252,4 +259,57 @@ export const BubbleContainerText3 = styled.span`
   color: ${(props) => (props.selected ? 'white' : 'black')}; // 선택되었을 때 글자색 변경
   font-weight: bold;
   text-align: center;
+`;
+export const ParentContainer = styled.div`
+display: flex;
+flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10%;
+`;
+
+export const Instruction2 = styled.div`
+font-size: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+`;
+
+export const NumberContainer = styled.div`
+ display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0c040;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  height: 40px;
+  width: 100px;
+`;
+
+export const NumberButton = styled.button`
+ background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+   
+  &:hover {
+    color: #555;
+  }
+`;
+
+export const NumberDisplay = styled.div`
+  background-color: white;
+  padding: 0px 5px;
+  border-radius: 5px;
+  font-size: 20px;
+  text-align: center;
+`;
+
+export const ParentContainer2 = styled.div`
+display: flex;
+flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  
 `;

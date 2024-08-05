@@ -271,6 +271,8 @@ const HandImage = styled.img`
   position: relative;
 `;
 
+ 
+
 function Statistics() {
   const [data, setData] = useState(null);
 

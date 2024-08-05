@@ -1,24 +1,9 @@
-import styled, { createGlobalStyle } from 'styled-components';
-
-// Global style to include the custom font
-export const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'chab';
-    src: url('src/fonts/chab.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-`;
+import styled from 'styled-components';
+ 
 
 // Styled component using the custom font
 export const FontChab = styled.span`
-  font-family: 'chab';
+    font-family: 'LotteriaChab';
   font-weight: bold;
   font-size: 50px;
 `;
@@ -27,7 +12,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   width: 100%;
   margin-top: 21px;
-  margin-left: 40px;
+  margin-left: 6%;
 `;
 
 export const ImageButton = styled.button`
@@ -68,7 +53,7 @@ export const BackgroundImage = styled.div`
   width: 100%;
   height: 300px;
   background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%),
-  url('../../../public/delicious-candy-arrangement.png');
+  url('../../../src/image/delicious-candy-arrangement.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -81,7 +66,7 @@ export const ForegroundImage = styled.div`
   position: absolute;
   width: 300px;
   height: 300px;
-  background-image: url('../../../public/주다리리.png');
+  background-image: url('../../../src/image/주다리리.png');
   background-size: contain;
   background-repeat: no-repeat;
   margin-top: 80px;
@@ -107,7 +92,7 @@ export const MainText = styled.div`
   margin-top: 80%;
   position: absolute;
   left: 7%;
-  font-family: 'chab', sans-serif;
+    font-family: 'LotteriaChab';
   font-weight: bold;
   font-size: 20px;
   color: #FFCE4F;
@@ -116,7 +101,7 @@ export const MainText = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-family: 'chab';
+    font-family: 'LotteriaChab';
   font-size: 20px;
   font-weight: bold;
   color: #FFCE4F;
@@ -202,8 +187,8 @@ export const BorderedText = styled.div`
   font-size: 17px;
   color: #000000;
   font-weight: bold;
-  height: auto;
-  width: 320px;
+  height: 60px;
+  width: 300px;
   background-color: #FFFFFF;
   margin-top: 20px;
   margin-bottom: 15px;

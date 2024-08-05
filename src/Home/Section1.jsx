@@ -13,7 +13,7 @@ const Section01 = () => {
 
   return (
     <S.MainWrap>
-      <S.GlobalStyle />
+     
       <S.MainContainer>
         <S.TransparentContainer>
           <S.Title>

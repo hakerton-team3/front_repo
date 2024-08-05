@@ -2,16 +2,13 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'chab';
-    src: url('src/fonts/chab.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-  }
+  @import url('https://webfontworld.github.io/LotteriaChab/LotteriaChab.css');
 
   body {
-    font-family: 'chab', sans-serif;
-    color: #333; /* 기본 폰트 색상 */
+    font-family: 'LotteriaChab', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 `;
 
@@ -20,7 +17,7 @@ export const Container = styled.div`
 `;
 
 export const HeaderText = styled.h1`
-  font-family: 'chab';
+  font-family: 'LotteriaChab';
   color: #ffCE4F; /* 원하는 폰트 색상 */
   
 `;

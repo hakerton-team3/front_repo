@@ -1,9 +1,9 @@
 import React, {useState}from 'react';
 import * as S from './result.styled.js';
-import Kingimage from '../images/king.png';
-import Waringimage from '../images/warining.png';
-import Starimage from '../images/star.png';
-import Bellimage from '../images/bell.png';
+import Kingimage from '../image/king.png';
+import Waringimage from '../image/warining.png';
+import Starimage from '../image/star.png';
+import Bellimage from '../image/bell.png';
 import GrayContainerComponent from './GrayContainerComponent';
 import { useLocation, useNavigate } from 'react-router-dom';
 import answer from './answer';  // answer 배열 임포트
@@ -52,7 +52,10 @@ const Result = () => {
       <S.BubbleContainer>
         <S.BubbleContainertext>{resultData.title}</S.BubbleContainertext>의 술비티아이가 나왔습니다.
       </S.BubbleContainer>
+      <S.GradientContainer>
       <S.Image src={Kingimage} alt="logo" />
+      <S.GradientOverlay />
+      </S.GradientContainer>
       <S.MiniContainer><S.FooterText2>{resultData.hashTag}</S.FooterText2></S.MiniContainer>
       <S.Subtext>{resultData.mainDescription}</S.Subtext>
       <S.Maintext>{resultData.title}</S.Maintext>

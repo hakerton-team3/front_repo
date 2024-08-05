@@ -1,20 +1,11 @@
 // Section01.styled.js
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
-// Global style to include the custom font
-export const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'chab';
-    src: url('src/fonts/chab.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-  }
-`;
-
+import backgroundImage from '../image/image2.png';
+ 
 // Styled component using the custom font
 export const FontChab = styled.span`
-  font-family: 'chab';
+  font-family: 'LotteriaChab';
   font-weight: bold;
   font-size: 45px;
 `;
@@ -25,7 +16,7 @@ export const MainContainer = styled.div`
   height: 100%;
   background: 
     linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%),
-    url('src/images/image2.png');
+    url(${backgroundImage});
   background-size: cover;
   background-position: center;
   overflow-x: hidden; /* Prevent horizontal scrolling */

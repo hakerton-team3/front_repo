@@ -1,19 +1,45 @@
-import React, { useState } from 'react'; 
-import * as S from '../Contact/Contact.styled';
-import ContactItem from './ContactItem';
+import React, { useState, useEffect } from 'react'; 
+import * as S from './Contact.styled'; // 스타일 컴포넌트 임포트
+import ContactItem from './ContactItem'; // ContactItem 컴포넌트 임포트
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../axios/axiosInstance'; // axiosInstance 임포트
 
 const Contact = () => {
   const [isPopupOpen, setPopupOpen] = useState(false);
-  const [contacts, setContacts] = useState([
-    
-    { name: '김서경', number: '010-5678-5678' },
-    { name: '이순신', number: '010-9876-5432' }
-  ]);
+  const [contacts, setContacts] = useState([]);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const [error, setError] = useState(null);
   
   const navigate = useNavigate();
+
+  useEffect(() => {
+     
+    const fetchContacts = async () => {
+      try {
+        const accessToken = localStorage.getItem('accessToken');
+        if (!accessToken) {
+          throw new Error('Access token not found');
+        }
+        
+        const response = await axiosInstance.get('/contacts', {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          }
+        });
+        
+        if (response.status === 200) {
+          setContacts(response.data);
+        } else {
+          setError(`Error fetching contacts: ${response.statusText}`);
+        }
+      } catch (error) {
+        setError(`Error fetching contacts: ${error.message}`);
+      }
+    };
+    
+    fetchContacts();
+  }, []);
 
   const handleButtonClick = () => {
     setPopupOpen(true);
@@ -35,12 +61,78 @@ const Contact = () => {
     setNumber(event.target.value);
   };
 
-  const handleSaveContact = () => {
+  const handleSaveContact = async () => {
     if (name && number) {
-      setContacts([...contacts, { name, number }]);
-      setName('');
-      setNumber('');
-      setPopupOpen(false);
+      const newContact = { name, number, isMain: false };
+
+      try {
+        const accessToken = localStorage.getItem('accessToken');
+        if (!accessToken) {
+          throw new Error('Access token not found');
+        }
+
+        const response = await axiosInstance.post('/contacts', newContact, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          }
+        });
+
+        if (response.status === 201 || response.status === 200) {
+          const savedContact = response.data; // 응답에서 저장된 연락처 정보 가져오기
+          setContacts([...contacts, savedContact]);
+          setName('');
+          setNumber('');
+          setPopupOpen(false);
+          setError(null); // Clear any previous errors
+        } else {
+          setError(`Error saving contact: ${response.statusText}`);
+        }
+      } catch (error) {
+        if (error.response && error.response.status === 404) {
+          setError('Error: API endpoint not found.');
+        } else {
+          setError(`Error saving contact: ${error.message}`);
+        }
+        console.error('Error saving contact:', error);
+      }
+    } else {
+      setError('Name and number are required.');
+    }
+  };
+
+  const handleUpdate = (id, updatedContact) => {
+    setContacts((prevContacts) =>
+      prevContacts.map((contact) =>
+        contact.id === id ? { ...contact, ...updatedContact } : contact
+      )
+    );
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      const accessToken = localStorage.getItem('accessToken');
+      if (!accessToken) {
+        throw new Error('Access token not found');
+      }
+
+      const response = await axiosInstance.delete(`/contacts/${id}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        }
+      });
+
+      if (response.status === 200 || response.status === 204) {
+        setContacts((prevContacts) => prevContacts.filter((contact) => contact.id !== id));
+        setError(null);
+      } else {
+        setError(`Error deleting contact: ${response.statusText}`);
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        setError('Error: API endpoint not found.');
+      } else {
+        setError(`Error deleting contact: ${error.message}`);
+      }
     }
   };
 
@@ -66,8 +158,15 @@ const Contact = () => {
         </S.ButtonContainer>
       </S.NotificationContainer>
 
-      {contacts.map((contact, index) => (
-        <ContactItem key={index} name={contact.name} number={contact.number} />
+      {contacts.map((contact) => (
+        <ContactItem 
+          key={contact.id} 
+          contactId={contact.id}  
+          name={contact.name} 
+          number={contact.number} 
+          onUpdate={handleUpdate} // contact.id와 updatedContact 전달
+          onDelete={handleDelete}
+        />
       ))}
       
       {isPopupOpen && (
@@ -97,6 +196,9 @@ const Contact = () => {
                 <S.SaveButtonText>전화번호 저장하기</S.SaveButtonText>
               </S.SaveButton>
             </S.InputContainer>
+            {error && (
+              <S.ErrorMessage>{error}</S.ErrorMessage>
+            )}
           </S.PopupContainer>
         </S.PopupOverlay>
       )}

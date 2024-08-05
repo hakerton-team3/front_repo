@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
+import backgroundImage from '../image/backphon2.png';
+
 export const MainContainer = styled.div`
   width: 100%; /* 전체 너비 사용 */
   height: 100vh;
   flex-direction: column; /* 세로 정렬 */
   display: flex;
-`;
+`;  
 
 export const Containeryellow = styled.div`
   width: 100%;
@@ -53,7 +55,7 @@ export const Triangle = styled.div`
 export const BackgroundContainer = styled.div`
   width: 100%;
   height: 25%;
-  background-image: url('src/image/backphon2.png');
+  background-image: url(${backgroundImage});
   background-size: cover;
   background-position: center;
   margin-top: 10%;
@@ -190,7 +192,22 @@ export const PhoneText = styled.div`
 
 `;
 
-export const EditDeleteText = styled.div`
+export const EditText = styled.div`
+  width: 64px;
+  height: 15px;
+  left: 244px;
+  top: 20px;
+  position: absolute;
+  text-align: center;
+  color: black;
+  font-size: 10px;
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 600;
+  word-wrap: break-word;
+`;
+
+
+export const Delete = styled.div`
   width: 64px;
   height: 15px;
   left: 284px;
@@ -311,4 +328,4 @@ export const SaveButtonText = styled.div`
   font-family: 'Pretendard', sans-serif;
   font-weight: 700;
   text-align: center;
-`;
+`; 

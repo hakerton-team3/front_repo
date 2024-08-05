@@ -1,30 +1,11 @@
 // LoginScreen.styled.js
-import styled, { createGlobalStyle } from 'styled-components';
-
-export const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'chab';
-    src: url('src/fonts/chab.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-  }
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    padding: 0;
-    
-  }
-`;
+import styled from 'styled-components';
 
 export const MainContainer = styled.div`
   width: 100%;
   height: 100vh;
   background: white;
-  display: flex;
+ 
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -44,7 +25,7 @@ export const Subtitle = styled.p`
   color: #666;
   text-align: center;
   margin-bottom: 20px;
-  max-width: 300px;
+   
 `;
 
 export const Input = styled.input`
@@ -75,7 +56,7 @@ export const LinkContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  max-width: 320px;
+   
   margin-top: 10px;
 `;
 
@@ -102,7 +83,7 @@ export const Icon = styled.img`
 `;
 
 export const FooterText = styled.p`
-font-family: 'chab';
+  font-family: 'LotteriaChab';
   font-size: 100px;
   color: white;
   text-align: center;
@@ -114,8 +95,7 @@ font-family: 'chab';
 export const Image = styled.img`
   width: auto; /* 이미지의 크기를 조정 */
   height: auto;
-  margin-bottom: 5%;
-  margin-top: 30%;
+  margin: 10%;
 `;
 
 export const Textdiv = styled.div`

@@ -15,7 +15,6 @@ const Section01 = () => {
   const [error, setError] = useState(null);
   const [isOpen6, setIsOpen6] = useState(false);
   const [isOpen9, setIsOpen9] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,6 +60,13 @@ const Section01 = () => {
     }
   };
 
+  
+  
+  const navigate = useNavigate();
+
+  const handleEmergencyContactsClick = () => {
+    navigate('/contact');
+  };
   const HandleYellowHome = () => {
     navigate('/home');
   };
@@ -93,7 +99,7 @@ const Section01 = () => {
 
   return (
     <S.MainWrap>
-      <S.GlobalStyle />
+       
       <S.MainContainer>
         <S.TransparentContainer>
           <S.Title>
@@ -145,7 +151,7 @@ const Section01 = () => {
           <K.SubmitButton onClick={() => { HandleYellowHome();  endChallenges(); }}>챌린지 끝내기</K.SubmitButton>
         </Modal>
 
-        <S.Button onClick={() => navigate('/emergency-contacts')}>
+        <S.Button onClick={handleEmergencyContactsClick}>
           <S.LargeText>비상연락망</S.LargeText>
         </S.Button>
 
