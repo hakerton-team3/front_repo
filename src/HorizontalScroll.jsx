@@ -51,7 +51,7 @@ const HorizontalScroll = ({ posts, viewBest }) => {
           </S.ItemContainer>
         ))
       ) : (
-        <p>No best posts available.</p>
+        <p style={{ marginLeft: "25%" }}>베스트 게시글이 없습니다.</p>
       )}
     </S.ScrollContainer>
   );

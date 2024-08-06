@@ -26,7 +26,7 @@ const Section01 = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await new Promise((resolve) => setTimeout(resolve, 500)); 
+        await new Promise((resolve) => setTimeout(resolve, 2000)); 
         const accessToken = localStorage.getItem('accessToken');
         const response = await axiosInstance.get('/challenges/weekly', {
           headers: { Authorization: `Bearer ${accessToken}` },

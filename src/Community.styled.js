@@ -423,16 +423,16 @@ export const SubmitButton = styled.button`
 `;
 
 export const CloseButton = styled.button`
-  position: absolute;
-  top: 0px;
-  right: 0px;
+ position: absolute;
+  top: 5px;
+  right: 20px;
   background: none;
   border: none;
-  font-size: 16px;
+  font-size: 25px;
   cursor: pointer;
-  margin-right: 20px;
+  font-weight: bold;
 `;
-
+ 
 // Entire Post Modal Styles
 
 export const EntireModalOverlay = styled.div`
@@ -542,10 +542,12 @@ export const LikeCount = styled.span`
 export const EntireCloseButton = styled.div`
   position: absolute;
   top: 5px;
-  right: 5px;
+  right: 20px;
   background: none;
   border: none;
-  font-size: 16px;
+  font-size: 25px;
   cursor: pointer;
+  font-weight: bold;
+  
 `
 

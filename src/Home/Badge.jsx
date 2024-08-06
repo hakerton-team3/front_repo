@@ -54,8 +54,7 @@ const MyComponent = () => {
     return <div>Loading...</div>;
   }
 
-  const thresholds = [5, 10, 20, 30];
-
+  const thresholds = [5, 10, 20, 30, 40];
   return (
     <div>
       <K.BadgeContainer>
@@ -65,8 +64,16 @@ const MyComponent = () => {
             <K.BadgeText>미션달성 {threshold}회</K.BadgeText>
           </K.Badge>
         ))}
+        <K.Badge>
+          <K.BadgeImage src={challengeData.existsSuccessWeeklyChallenge ? badgeIcon9 : badgeIcon1} />
+          <K.BadgeText>금주챌린지</K.BadgeText>
+        </K.Badge>
       </K.BadgeContainer>
       <K.BadgeContainer>
+      <K.Badge>
+          <K.BadgeImage src={(attendanceData.maximumAttendanceDays >= 1) ? badgeIcon9 : badgeIcon1} />
+          <K.BadgeText>하루 출석</K.BadgeText>
+        </K.Badge>
         <K.Badge>
           <K.BadgeImage src={(attendanceData.maximumAttendanceDays >= 30) ? badgeIcon9 : badgeIcon1} />
           <K.BadgeText>한달 출석</K.BadgeText>
@@ -75,16 +82,7 @@ const MyComponent = () => {
           <K.BadgeImage src={(attendanceData.maximumAttendanceDays >= 365) ? badgeIcon9 : badgeIcon1} />
           <K.BadgeText>일년 출석</K.BadgeText>
         </K.Badge>
-      </K.BadgeContainer>
-      <K.BadgeContainer>
-        <K.Badge>
-          <K.BadgeImage src={badgeIcon1} />
-          <K.BadgeText>절주챌린지</K.BadgeText>
-        </K.Badge>
-        <K.Badge>
-          <K.BadgeImage src={challengeData.existsSuccessWeeklyChallenge ? badgeIcon9 : badgeIcon1} />
-          <K.BadgeText>금주챌린지</K.BadgeText>
-        </K.Badge>
+        
       </K.BadgeContainer>
     </div>
   );

@@ -13,7 +13,6 @@ import PrivacyPost from './PrivacyBoard/Privacy';
 import Result from './mbti/result.jsx';
 import RedHome from './RedHome.jsx';
 import Contact from './Contact/Contact.jsx';
-import { messaging, onMessage, getToken } from './firebase';
 
 const App = () => {
   const location = useLocation();
@@ -22,40 +21,7 @@ const App = () => {
   const isAuthRoute = location.pathname === '/' || location.pathname === '/register' || location.pathname === '/test' || location.pathname === '/result';
 
    
-
-  useEffect(() => {
-    const requestUserPermission = async () => {
-      const permission = await Notification.requestPermission();
-      if (permission === 'granted') {
-        try {
-          const token = await getToken(messaging, { vapidKey: 'BD5YWfRYngq_pzCIgzE1r1LOZf5-a4xzHg85_769GteG2jA45FttLJUM3kS--QxaJCoOkjstmOwoVsfnmMt388E' });
-          console.log('FCM Token:', token);
-        } catch (error) {
-          console.error('Error getting FCM token', error);
-        }
-      } else {
-        console.error('Permission not granted for notifications');
-      }
-    };
-
-    const receiveMessage = () => {
-      onMessage(messaging, (payload) => {
-        console.log('Message received. ', payload);
-        const notificationTitle = payload.notification.title;
-        const notificationOptions = {
-          body: payload.notification.body,
-        };
-
-        if (Notification.permission === 'granted') {
-          new Notification(notificationTitle, notificationOptions);
-        }
-      });
-    };
-
-    requestUserPermission();
-    receiveMessage();
-  }, []);
-
+ 
   return (
     <S.Container>
       {!isAuthRoute && (

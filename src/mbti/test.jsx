@@ -10,7 +10,8 @@ const Test = () => {
   const navigate = useNavigate();
   const [answers, setAnswers] = useState(Array(10).fill(null));
   const [userName, setUserName] = useState(''); // 사용자 이름 상태 추가
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(0);
+  const [count2, setCount2] = useState(0);
 
   useEffect(() => {
     // 사용자 이름을 localStorage에서 가져오기
@@ -33,7 +34,7 @@ const Test = () => {
       return;
     }
     const resultData = answer[resultIndex];
-    const averageAlcoholAmount = answers[9] === 0 ? 0.5 : 1;
+    const averageAlcoholAmount = count2
 
     const formData = {
       title: resultData.title,
@@ -43,7 +44,7 @@ const Test = () => {
       improvingDescription2: resultData.improvingDescription2,
       improvingDescription3: resultData.improvingDescription3,
       weeklyAlcoholAmount: count,
-      averageAlcoholAmount: averageAlcoholAmount,
+      averageAlcoholAmount: count2,
     };
 
     try {
@@ -58,7 +59,7 @@ const Test = () => {
         '/user-infos/user-drink-amount',
         {
           weeklyAlcoholAmount: count,
-          averageAlcoholAmount: averageAlcoholAmount,
+          averageAlcoholAmount: count2,
         },
         {
           headers: {
@@ -177,23 +178,26 @@ const Test = () => {
         "바텐더에게 추천을 받는다"
       ]
     },
-    {
-      questionText: "10. 평소의 주량은?",
-      options: [
-        "1병이하 마시면 취하거나 기분이 좋다",
-        "1병먹어도 아무렇지 않고 그이상 마신다"
-      ]
-    },
+   
   ];
 
   const increaseCount = () => {
-    setCount(count + 1);
+    setCount((prevCount) => prevCount + 0.5);
   };
-
+  
   const decreaseCount = () => {
-    setCount(count - 1);
+    setCount((prevCount) => (prevCount > 0 ? prevCount - 0.5 : 0));
+  };
+  
+  const increaseCount2 = () => {
+    setCount2((prevCount) => prevCount + 0.5);
+  };
+  
+  const decreaseCount2 = () => {
+    setCount2((prevCount) => (prevCount > 0 ? prevCount - 0.5 : 0));
   };
 
+  
   return (
     <S.MainContainer>
       <S.Title>잠깐,</S.Title>
@@ -222,7 +226,25 @@ const Test = () => {
           <S.Divider />
         </React.Fragment>
       ))}
+      
       <S.Image src={Beerimage} alt="logo" />
+      <S.Container>
+        <S.ParentContainer>
+          <S.Instruction2>
+            나의 주량은
+          </S.Instruction2>
+          <S.ParentContainer2>
+            <S.Instruction5>소주기준</S.Instruction5>
+            <S.NumberContainer>
+              <S.NumberButton onClick={decreaseCount}>-</S.NumberButton>
+              <S.NumberDisplay>{count}</S.NumberDisplay>
+              <S.NumberButton onClick={increaseCount}>+</S.NumberButton>
+            </S.NumberContainer>
+            <S.Instruction4>병을 마셔요</S.Instruction4>
+          </S.ParentContainer2>
+        </S.ParentContainer>
+        
+      </S.Container>
       <S.Container>
         <S.ParentContainer>
           <S.Instruction2>
@@ -231,9 +253,9 @@ const Test = () => {
           <S.ParentContainer2>
             <S.Instruction5>소주기준</S.Instruction5>
             <S.NumberContainer>
-              <S.NumberButton onClick={decreaseCount}>-</S.NumberButton>
-              <S.NumberDisplay>{count}</S.NumberDisplay>
-              <S.NumberButton onClick={increaseCount}>+</S.NumberButton>
+              <S.NumberButton onClick={decreaseCount2}>-</S.NumberButton>
+              <S.NumberDisplay>{count2}</S.NumberDisplay>
+              <S.NumberButton onClick={increaseCount2}>+</S.NumberButton>
             </S.NumberContainer>
             <S.Instruction4>병을 마셔요</S.Instruction4>
           </S.ParentContainer2>

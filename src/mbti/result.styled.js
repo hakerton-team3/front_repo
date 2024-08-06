@@ -54,7 +54,7 @@ export const Graycontainer = styled.div`
 display: flex;
    border-radius: 10%; 
   width: 30%;
-  height: 200px;
+  height: 230px;
   background-color: #F8F8F8;
  align-items: center;
   box-sizing: border-box;
@@ -66,7 +66,7 @@ display: flex;
 
 export const ContainerImage = styled.img`
   width: 70%; /* 이미지의 크기를 조정 */
-  height: 70px;
+  height: 85px;
   margin-top: 30%;
  
   
