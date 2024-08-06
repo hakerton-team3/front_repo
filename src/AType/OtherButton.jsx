@@ -1,11 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
+import ModalBottle from '../image/기타술병.png';
 
 const OtherButton = ({ 
-  value, memo, setShowMemoInput, showMemoInput, handleMemoChange, handleSave, handleCloseModal, rating, setRating, numberValue, increaseNumber, decreaseNumber, selectedDrink, setSelectedDrink, highballNumberValue, kaoliangNumberValue 
+  value, 
+  memo, 
+  setShowMemoInput, 
+  showMemoInput, 
+  handleMemoChange, 
+  handleSave, 
+  handleCloseModal, 
+  rating, 
+  setRating, 
+  numberValue, 
+  increaseNumber, 
+  decreaseNumber, 
+  selectedDrink, 
+  setSelectedDrink, 
+  highballNumberValue, 
+  kaoliangNumberValue,
+  scheduleData 
 }) => {
-  const [highballTemp, setHighballTemp] = useState(highballNumberValue);
-  const [kaoliangTemp, setKaoliangTemp] = useState(kaoliangNumberValue);
+  const [highballTemp, setHighballTemp] = useState(0);
+  const [kaoliangTemp, setKaoliangTemp] = useState(0);
+
+  useEffect(() => {
+    if (scheduleData) {
+      if (scheduleData.highballAlcohol) {
+        setHighballTemp(scheduleData.highballAlcohol);
+      }
+      if (scheduleData.kaoliangAlcohol) {
+        setKaoliangTemp(scheduleData.kaoliangAlcohol);
+      }
+    } else {
+      if (highballNumberValue) {
+        setHighballTemp(highballNumberValue);
+      }
+      if (kaoliangNumberValue) {
+        setKaoliangTemp(kaoliangNumberValue);
+      }
+    }
+  }, [scheduleData, highballNumberValue, kaoliangNumberValue]);
 
   const increaseTempNumber = () => {
     if (selectedDrink === 'light') {
@@ -60,7 +95,7 @@ const OtherButton = ({
                 </div>
               </div>
               <div className="modal-info-right">
-                <div className="modal-bottle-image"></div>
+                <img className="modal-bottle-image" src={ModalBottle}></img>
                 <div style={{fontSize:'12px', marginLeft:'5%'}}>
                   음주량
                   {selectedDrink === 'light' ? (

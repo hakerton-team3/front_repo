@@ -7,26 +7,22 @@ import Soju from './AType/Soju';
 import OtherButton from './AType/OtherButton';
 import axiosInstance from './axios/axiosInstance';
 import { fetchLatestUserName } from './userUtils';
+import Pencil from './image/pencil.png';
+import Bottle from './image/노란술병.png';
+import Sun from './image/sun.png';
+
 
 const CustomCalendar = () => {
   const [userName, setUserName] = useState('');
 
-  useEffect(() => {
-    const getUserName = async () => {
-      const name = await fetchLatestUserName();
-      setUserName(name);
-    };
-
-    getUserName();
-  }, []);
-
-
-
+  const [scheduleData, setScheduleData] = useState({ memo: '약속 없음' });
   const [value, setValue] = useState(new Date());
   const [mark, setMark] = useState([]); // for marked dates
   const [isSwitchOn, setIsSwitchOn] = useState(false);
   const [isInfoVisible, setIsInfoVisible] = useState(false);
   const [memo, setMemo] = useState('');
+  const [keepMemo, setKeepMemo] = useState('');
+  const [todayMemo, setTodayMemo] = useState('');
   const [rating, setRating] = useState(0);
   const [numberValue, setNumberValue] = useState(0);
   const [sojuNumberValue, setSojuNumberValue] = useState(0);
@@ -36,10 +32,30 @@ const CustomCalendar = () => {
   const [showMemoInput, setShowMemoInput] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
+  
+  useEffect(() => {
+    if (scheduleData.beerAlcohol) {
+      setNumberValue(scheduleData.beerAlcohol);
+    }
+    if (scheduleData.todayCondition) {
+      setRating(scheduleData.todayCondition);
+    }
+  }, [scheduleData]);
+  
+  useEffect(() => {
+    const getUserName = async () => {
+      const name = await fetchLatestUserName();
+      setUserName(name);
+      fetchSchedules(new Date()); // Fetch today's schedule
+    };
+  
+    getUserName();
+  }, []);
 
   const handleDateChange = (date) => {
     setValue(date);
     setIsInfoVisible(true);
+    fetchSchedules(date);  // 선택한 날짜의 일정 데이터를 가져옴
   };
 
   const toggleSwitch = () => {
@@ -102,66 +118,47 @@ const CustomCalendar = () => {
     setIsModalVisible(false);
   };
 
-  const todayDate = moment().format('M/D'); // Example: '7/30'
 
-  const fetchSchedules = async () => {
+  const fetchSchedules = async (date) => {
     try {
       setLoading(true);
       const accessToken = localStorage.getItem('accessToken');
       if (!accessToken) throw new Error('Access token not found');
-
-      const year = parseInt(moment(value).format('YYYY'));
-      const month = parseInt(moment(value).format('MM'));
-      const day = parseInt(moment(value).format('DD'));
-
+  
+      const year = parseInt(moment(date).format('YYYY'));
+      const month = parseInt(moment(date).format('MM'));
+      const day = parseInt(moment(date).format('DD'));
+      console.log(year, month, day);
+  
       const response = await axiosInstance.get(
         `/schedules/${year}/${month}/${day}`,
         {
-          memo,
-          todayCondition: rating,
-          beerAlcohol: numberValue,
-          sojuAlcohol: sojuNumberValue,
-          highballAlcohol: highballNumberValue,
-          kaoliangAlcohol: kaoliangNumberValue,
-          schedulesDate: value,
-        },
-        {
-          headers: { Authorization: `Bearer ${accessToken}` },
+          headers: { 'Authorization': `Bearer ${accessToken}` },
         }
       );
-
-      console.log('Schedule fetch response:', response);
+  
+      console.log(response.data);
+      const schedule = response.data[0] || { memo: '약속 없음' };
+      setScheduleData(schedule);  // 상태 업데이트
+  
+      // Set today's memo if the fetched date is today
+      if (moment(date).isSame(new Date(), 'day')) {
+        setTodayMemo(schedule.memo || '약속 없음');
+      }
     } catch (error) {
       console.error('Error fetching schedule:', error);
-      alert('약속을 조회하는데 실패했습니다.');
+      // Set scheduleData to default with '약속 없음' if an error occurs
+      setScheduleData({ memo: '약속 없음' });
+      if (moment(date).isSame(new Date(), 'day')) {
+        setTodayMemo('약속 없음');
+      }
+      alert('약속이 존재하지 않습니다.');
     } finally {
       setLoading(false);
     }
   };
-
-  const countWeek = async () => {
-    try {
-      setLoading(true);
-      const accessToken = localStorage.getItem('accessToken');
-      if (!accessToken) throw new Error('Access token not found');
-
-      const year = parseInt(moment(value).format('YYYY'));
-      const month = parseInt(moment(value).format('MM'));
-      const startDay = parseInt(moment(value).format('DD'));
-      const endDay = parseInt(moment(value).format('DD'));
-
-      const response = await axiosInstance.get(`/schedules/${year}/${month}/${startDay}/${endDay}`, {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      });
-
-      console.log('Schedule fetch response:', response);
-    } catch (error) {
-      console.error('Error fetching schedule:', error);
-      alert('주량 음주량 계산에 실패했습니다.');
-    } finally {
-      setLoading(false);
-    }
-  };
+  
+  
 
   const handleSaveLocal = (highballTemp, kaoliangTemp) => {
     setHighballNumberValue(highballTemp);
@@ -177,7 +174,10 @@ const CustomCalendar = () => {
       newDate.setMonth(newDate.getMonth() - 1);
     }
     setValue(newDate);
+    fetchSchedules(newDate); // 새로운 날짜로 일정 데이터를 가져옴
   };
+
+  const todayDate = moment().format('M/D'); 
 
   return (
     <div className={`react-calendar-wrapper ${isSwitchOn ? 'switch-on' : ''}`}>
@@ -188,9 +188,10 @@ const CustomCalendar = () => {
             {userName}님의<br />
             <strong>예정된 약속은,</strong>
           </div>
-          <div className="event-circle"></div>
+          <img className="event-circle" src={Sun}></img>
         </div>
-        <div className="event-button">오늘 {todayDate}자 | {memo}</div>
+        <div className="event-button">오늘 {todayDate}자 | {todayMemo}
+        </div>
       </div>
 
       <Calendar
@@ -226,6 +227,9 @@ const CustomCalendar = () => {
           <div className={isSwitchOn ? 'soju-container' : 'info-container'}>
             {isSwitchOn ? (
               <Soju
+                scheduleData={scheduleData}
+                setShowMemoInput={setShowMemoInput}
+                showMemoInput={showMemoInput}
                 isSwitchOn={isSwitchOn}
                 toggleSwitch={toggleSwitch}
                 value={value}
@@ -233,7 +237,8 @@ const CustomCalendar = () => {
                 handleMemoChange={handleMemoChange}
                 rating={rating}
                 setRating={setRating}
-                numberValue={sojuNumberValue}
+                sojuNumberValue={sojuNumberValue}
+                setSojuNumberValue={setSojuNumberValue}
                 increaseNumber={() => increaseNumber(setSojuNumberValue)}
                 decreaseNumber={() => decreaseNumber(setSojuNumberValue)}
                 handleSave={handleSave}
@@ -280,12 +285,12 @@ const CustomCalendar = () => {
                           onBlur={() => setShowMemoInput(false)}
                         />
                       ) : (
-                        memo
+                        scheduleData.memo
                       )}
                       {showMemoInput && (
                         <img
                           className="pencil"
-                          src="/src/image/pencil.png"
+                          src={Pencil}
                           onClick={(e) => {
                             e.stopPropagation(); // Prevent the div click event
                             setShowMemoInput(false);
@@ -298,7 +303,7 @@ const CustomCalendar = () => {
                         오늘의 컨디션 정도
                       </strong>
                       <div className="rating-container">
-                        {[
+                        {[ 
                           { num: 1, label: '최하' },
                           { num: 2, label: '2' },
                           { num: 3, label: '3' },
@@ -317,7 +322,7 @@ const CustomCalendar = () => {
                     </div>
                   </div>
                   <div className="info-right">
-                    <div className="bottle-image"></div>
+                    <img className="bottle-image" src={Bottle}></img>
                     <div style={{ fontSize: '12px', marginLeft: '5%' }}>
                       음주량
                       <div className="number-container">
@@ -357,6 +362,8 @@ const CustomCalendar = () => {
 
         {isModalVisible && (
           <OtherButton
+            isSwitchOn={isSwitchOn}
+            toggleSwitch={toggleSwitch}
             value={value}
             memo={memo}
             setShowMemoInput={setShowMemoInput}
@@ -372,7 +379,10 @@ const CustomCalendar = () => {
             selectedDrink={selectedDrink}
             setSelectedDrink={setSelectedDrink}
             highballNumberValue={highballNumberValue}
+            setHighballNumberValue={setHighballNumberValue}
             kaoliangNumberValue={kaoliangNumberValue}
+            setKaoliangNumberValue={setKaoliangNumberValue}
+            scheduleData={scheduleData} // 추가된 부분
           />
         )}
       </div>

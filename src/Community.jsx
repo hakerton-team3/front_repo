@@ -47,7 +47,7 @@ function Community() {
         id: post.id,
         title: post.title,
         memo: post.contents,
-        tags: post.hashtag || "", // Tags as a string
+        tags: post.hashtag,
         userName: post.userName,
         likeCount: post.likes,
         liked: post.liked,
@@ -78,6 +78,7 @@ function Community() {
 
       alert('데이터가 성공적으로 전송되었습니다.');
       fetchPosts();
+      toggleModal(); // Close the modal after submission
     } catch (error) {
       console.error('Error:', error);
       alert('데이터 전송에 실패했습니다.');
@@ -123,7 +124,7 @@ function Community() {
         id: post.id,
         title: post.title,
         memo: post.contents,
-        tags: post.hashtag || "", // Tags as a string
+        tags: post.hashtag,
         userName: post.userName,
         likeCount: post.likes,
         liked: post.liked,
@@ -161,36 +162,6 @@ function Community() {
     }
   };
 
-  const searchByHashtag = async (hashtag) => {
-    try {
-      setLoading(true);
-      const accessToken = localStorage.getItem('accessToken');
-      if (!accessToken) throw new Error('Access token not found');
-
-      const response = await axiosInstance.get(`/group-posts/hashtag/${hashtag}`, {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      });
-
-      const posts = response.data.map(post => ({
-        id: post.id,
-        title: post.title,
-        memo: post.contents,
-        tags: post.hashtag || "", // Tags as a string
-        userName: post.userName,
-        likeCount: post.likes,
-        liked: post.liked,
-        time: new Date(post.postDate)
-      }));
-
-      setPostList(posts);
-    } catch (error) {
-      console.error('Error:', error);
-      alert('#게시글을 불러오는데 실패했습니다.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const searchByKeyword = async (keyword) => {
     try {
       setLoading(true);
@@ -205,7 +176,7 @@ function Community() {
         id: post.id,
         title: post.title,
         memo: post.contents,
-        tags: post.hashtag || "", // Tags as a string
+        tags: post.hashtag,
         userName: post.userName,
         likeCount: post.likes,
         liked: post.liked,
@@ -216,6 +187,36 @@ function Community() {
     } catch (error) {
       console.error('Error:', error);
       alert('키워드 게시글을 불러오는데 실패했습니다.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const searchByHashtag = async (hashtag) => {
+    try {
+      setLoading(true);
+      const accessToken = localStorage.getItem('accessToken');
+      if (!accessToken) throw new Error('Access token not found');
+
+      const response = await axiosInstance.get(`/group-posts/hashtag/${hashtag}`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+
+      const posts = response.data.map(post => ({
+        id: post.id,
+        title: post.title,
+        memo: post.contents,
+        tags: post.hashtag,
+        userName: post.userName,
+        likeCount: post.likes,
+        liked: post.liked,
+        time: new Date(post.postDate)
+      }));
+
+      setPostList(posts);
+    } catch (error) {
+      console.error('Error:', error);
+      alert('해시태그 게시글을 불러오는데 실패했습니다.');
     } finally {
       setLoading(false);
     }
@@ -239,9 +240,8 @@ function Community() {
       
       <S.CommunityContainer>
         <S.ButtonContainer>
-        <S.ImageButton onClick={fetchPosts}>
+          <S.ImageButton onClick={fetchPosts}>
             <img src={ImageButton} alt="Community Board" />
-
           </S.ImageButton>
           <S.ImageButton onClick={() => navigate('/privacy')}>
             <img src={ImageButton2} alt="Personal Board" />
@@ -262,8 +262,9 @@ function Community() {
         </S.BestContainer>
         <S.KeywordContainer>
           <S.Keyword>
-            <S.Title style={{ marginTop: '10px' }}>키워드를 검색해 주세요
-            <S.Search src={Search} alt="Search" />
+            <S.Title style={{ marginTop: '10px' }}>
+              키워드를 검색해 주세요
+              <S.Search src={Search} alt="Search" />
             </S.Title>
           </S.Keyword>
           <S.InputContainer>
@@ -290,12 +291,14 @@ function Community() {
                       {formatTime(post.time)} · @{post.userName} 님의 새로운 게시글
                     </p>
                     <h5 style={{ fontSize: "13px" }}>{post.title}</h5>
-                    <p style={{ fontSize: "9px", color: "darkgray", width: "300px", height:"10px", lineHeight:"18px"}}>{post.memo}</p>
+                    <p style={{ fontSize: "9px", color: "darkgray", width: "300px", height: "10px", lineHeight: "18px" }}>
+                      {post.memo}
+                    </p>
                   </S.Text>
                   <S.Box>
                     <S.TagGroup>
                       <S.Tag>{post.tags}</S.Tag> {/* Display tags as a string */}
-                    </S.TagGroup>                  
+                    </S.TagGroup>
                   </S.Box>
                   <p style={{ fontSize: "10px", color: "gray", textAlign: "left" }}>
                     ❤️ <S.LikeCount>{post.likeCount}</S.LikeCount>
@@ -326,7 +329,7 @@ function Community() {
               <S.Underline />
               <S.ModalBottom>
                 <S.TagBox
-                  placeholder="키워드를 #을 포함해 작성해 주세요. (최대 3개)"
+                  placeholder="키워드를 #을 포함해 작성해 주세요.     (최대 3개)"
                   value={tags}
                   onChange={onTagsChange}
                 />

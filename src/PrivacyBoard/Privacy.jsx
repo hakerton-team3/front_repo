@@ -7,6 +7,7 @@ import ImageButton4 from '../image/혼잣말게시판1.png';
 import SearchImg from '../image/검색.png';
 import SearchIcon from '../image/돋보기.png';
 import WriteIcon from '../image/작성.png';
+import Candy from '../image/background1.png';
 
 const Privacy = () => {
     const navigate = useNavigate();
@@ -108,7 +109,7 @@ const Privacy = () => {
     return (
         <>
             <S.CommunityContainer>
-                <S.BackgroundImage />
+                <S.BackgroundImage src={Candy} />
                 <S.ForegroundImage />
                 <S.ButtonContainer>
                     <S.ImageButton onClick={() => navigateTo('/community')}>

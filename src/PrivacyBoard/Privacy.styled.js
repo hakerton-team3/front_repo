@@ -1,9 +1,25 @@
-import styled from 'styled-components';
- 
+import styled, { createGlobalStyle } from 'styled-components';
+
+// Global style to include the custom font
+export const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: 'Lotteriachab';
+    src: url('src/fonts/chab.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;  /* 가로 스크롤 비활성화 */
+  }
+`;
 
 // Styled component using the custom font
 export const FontChab = styled.span`
-    font-family: 'LotteriaChab';
+    font-family: 'Lotteriachab';
   font-weight: bold;
   font-size: 50px;
 `;
@@ -28,9 +44,10 @@ export const ImageButton = styled.button`
 `;
 
 export const CommunityContainer = styled.div`
-  position: relative;
-  height: 100vh;
-  overflow: none;
+  position: relative; /* Changed from absolute to relative */
+  width: 100%;
+  height: 100vh; /* Ensure it takes the full viewport height */
+  overflow: hidden; /* Hide overflow to prevent content from spilling out */
 
   -ms-overflow-style: none; /* Internet Explorer and Edge */
   scrollbar-width: none; /* Firefox */
@@ -39,41 +56,26 @@ export const CommunityContainer = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
-  
-  /* 필요한 다른 스타일 추가 */
-  width: 100%;
-  height: 100%;
-  overflow: auto; /* 스크롤이 필요한 경우만 표시 */
 `;
 
-export const BackgroundImage = styled.div`
+export const BackgroundImage = styled.img`
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 300px;
-  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%),
-  url('../../../src/image/delicious-candy-arrangement.png');
-  background-size: cover;
+  object-fit: cover; /* Make sure the image covers the area without overflow */
   background-repeat: no-repeat;
   background-position: center;
-  margin-top: 80px;
+  margin-top: 80px; /* Adjust this as needed */
 `;
 
+
 export const ForegroundImage = styled.div`
-  left: 50%;
-  transform: translateX(-50%);
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  background-image: url('../../../src/image/주다리리.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  margin-top: 80px;
+
 `;
 
 export const Content = styled.div`
-  margin-top: 45%;
+  margin-top: 50%;
   position: absolute;
   text-align: center;
   font-size: 9px;
@@ -89,10 +91,10 @@ export const Content = styled.div`
 `;
 
 export const MainText = styled.div`
-  margin-top: 80%;
+  margin-top: 90%;
   position: absolute;
   left: 7%;
-    font-family: 'LotteriaChab';
+  font-family: 'Lotteriachab', sans-serif;
   font-weight: bold;
   font-size: 20px;
   color: #FFCE4F;
@@ -101,7 +103,7 @@ export const MainText = styled.div`
 `;
 
 export const Title = styled.h1`
-    font-family: 'LotteriaChab';
+    font-family: 'Lotteriachab';
   font-size: 20px;
   font-weight: bold;
   color: #FFCE4F;
@@ -147,19 +149,19 @@ export const SearchInput = styled.input`
 `;
 
 export const SearchIcon = styled.img`
-  width: 35px;
-  height: 35px;
+ width: 18px;
+  height: 18px;
   background-size: contain;
   background-repeat: no-repeat;
-  margin-left: 3px; 
-  margin-top: 0px;
+  margin-left: 10px; 
+  margin-top: 10px;
   cursor: pointer; /* 마우스 커서 변경 */
 `;
 
 export const WriteIcon = styled.img`
   flex-direction: row;
   margin-top: 0px;
-  margin-left: 15px;
+  margin-left: 70px;
   width: 50px; 
   height: 50px; 
 `;
