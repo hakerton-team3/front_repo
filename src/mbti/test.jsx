@@ -81,13 +81,15 @@ const Test = () => {
       navigate('/result', { state: { resultIndex } });
     } catch (error) {
       if (error.response && error.response.status === 404) {
-        alert('챌린지생성 실패');
+        alert('사용자 생성 중 오류가 발생했습니다');
       } else {
-        console.error('챌린지생성에러:', error);
-        alert('챌린지생성에러');
+        console.error('사용자 생성 중 오류가 발생했습니다:', error);
+        alert('사용자 생성 중 오류가 발생했습니다');
       }
     }
   };
+
+  
 
   const calculateResult = (answers) => {
     if (answers[0] === 0 && answers[1] === 0 && answers[2] === 0) {

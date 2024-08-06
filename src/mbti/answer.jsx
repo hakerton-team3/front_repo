@@ -8,7 +8,7 @@ const answer = [
     improvingDescription1: "즉흥적인 음주가 즐거울<br>수 있지만, 건강을 유의할<br>타이밍입니다.",
     improvingDescription2: "미리 계획된 술자리를<br>가지면서 자신을 돌보세요.",
     improvingDescription3: "간헐적인 술 없는 날을<br>정해 건강을 지키세요",
-    image: "https://fourj-storage.p-e.kr/uploads/files/2024-08-04/6b8414bd-6fc3-461d-a151-b68ea4b6e431.svg"
+    image: "https://fourj-storage.p-e.kr/uploads/files/2024-08-06/1f96c309-ef63-4068-966e-faff5379da9e.svg"
   },
   {
     id: 2,

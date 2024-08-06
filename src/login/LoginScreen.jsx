@@ -27,27 +27,83 @@ const LoginScreen = () => {
     navigate('/home'); // Home 화면으로 이동
   };
 
-  const handleLogin = async () => { // 인자를 제거합니다.
-    try {
-      const response = await axiosInstance.post('/users/login', formData);
+  
+  // const handleLogin = async () => { // 인자를 제거합니다.
+  //   try {
+  //     const response = await axiosInstance.post('/users/login', formData);
 
-      const {accessToken, message} = response.data;
-      if (accessToken) {
+  //     const { accessToken, userData } = response.data;
+  //     if (accessToken) {
         
+  //       localStorage.setItem('accessToken', accessToken);
+  //       localStorage.setItem('userData', JSON.stringify(userData));
+      
+     
+  //       console.log('Login successful');
+  //       navigate('/home');
+  //     }
+  //   } catch (error) {
+  //     if (error.response && error.response.status === 401) {
+  //       alert('로그인 실패: 아이디와 비밀번호를 확인하세요.');
+  //     } else {
+  //       console.error('Error logging in:', error);
+  //       alert('로그인 실패: 서버에 문제가 발생했습니다.');
+  //     }
+  //   }
+  // };
+  const handleLogin = async () => {
+    try {
+      // 첫 번째 API 호출: 로그인 요청
+      const loginResponse = await axiosInstance.post('/users/login', formData);
+      const { accessToken } = loginResponse.data;
+
+      if (accessToken) {
         localStorage.setItem('accessToken', accessToken);
-        console.log(accessToken);
-        console.log('Login successful');
-        navigate('/home');
+        console.log('Login successful, fetching additional data...');
+
+        try {
+          // 두 번째 API 호출: 이름과 abti 가져오기
+          const abtiDataResponse = await axiosInstance.get(
+            '/user-infos/user-abti',
+            {
+              headers: { 'Authorization': `Bearer ${accessToken}` },
+            }
+          );
+          const usernameDataResponse = await axiosInstance.get(
+            '/user-infos/user-name',
+            {
+              headers: { 'Authorization': `Bearer ${accessToken}` },
+            }
+          );
+          
+          const { name } = usernameDataResponse.data;
+          const { title } = abtiDataResponse.data;
+
+          localStorage.setItem('name', name);
+          localStorage.setItem('title', title);
+
+          navigate('/home');
+        } catch (additionalDataError) {
+          if (additionalDataError.response && additionalDataError.response.status === 404) {
+
+            console.log('ABTI not found, navigating to /test');
+            navigate('/test');
+          } else {
+            console.error('Error fetching additional data:', additionalDataError);
+            alert('정보를 가져오는 데 실패했습니다.');
+          }
+        }
       }
-    } catch (error) {
-      if (error.response && error.response.status === 401) {
+    } catch (loginError) {
+      if (loginError.response && loginError.response.status === 401) {
         alert('로그인 실패: 아이디와 비밀번호를 확인하세요.');
       } else {
-        console.error('Error logging in:', error);
+        console.error('Error logging in:', loginError);
         alert('로그인 실패: 서버에 문제가 발생했습니다.');
       }
     }
   };
+  
 
   return (
     <S.MainContainer> 

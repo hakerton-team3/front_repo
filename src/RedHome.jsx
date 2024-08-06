@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Sectionred from './Home/Sectionred.jsx';
-import Section02 from './Home/section2.jsx';
+import Section02 from './Home/section2red.jsx';
 import Section03red from './Home/section3red.jsx';
+
 
 const RedHome = () => {
   const navigate = useNavigate();

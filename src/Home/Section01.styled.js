@@ -85,7 +85,7 @@ export const LargeText = styled.div`
 `;
 
 export const Smalltitle = styled.div`
-  font-size: 13px;
+  font-size: 10px;
   color: black;
   text-align: center;
   width: 100%; /* 부모 요소의 전체 너비 사용 */
