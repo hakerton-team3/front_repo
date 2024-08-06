@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import * as S from './LoginScreen.styled';
 import Logoimage from '../image/logo.png';
 import Kakaoimage from '../image/kakaotalk.png';
 import Naverimage from '../image/naver.png';
 import Googleimage from '../image/google.png';
-import axiosInstance from '../axios/axiosInstance'; // axiosInstance import
+import axiosInstance from '../axios/axiosInstance';
 
 const LoginScreen = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +14,69 @@ const LoginScreen = () => {
   });
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const socialLoginSuccess = params.get('social-login-success');
+
+    if (socialLoginSuccess === 'true') {
+      handleSocialLogin();
+    }
+  }, [location.search]);
+
+  const fetchAdditionalData = async (accessToken) => {
+    try {
+      const [abtiDataResponse, usernameDataResponse] = await Promise.all([
+        axiosInstance.get('/user-infos/user-abti', {
+          headers: { 'Authorization': `Bearer ${accessToken}` },
+        }),
+        axiosInstance.get('/user-infos/user-name', {
+          headers: { 'Authorization': `Bearer ${accessToken}` },
+        }),
+      ]);
+
+      const { name } = usernameDataResponse.data;
+      const { title } = abtiDataResponse.data;
+
+      localStorage.setItem('name', name);
+      localStorage.setItem('title', title);
+
+      return { abti: title };
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        return { abti: null };
+      } else {
+        throw new Error('Error fetching additional data');
+      }
+    }
+  };
+
+  const handleSocialLogin = async () => {
+    try {
+      const response = await axiosInstance.post('/tokens/refresh');
+      const { accessToken, NeedAbti } = response.data;
+
+      if (accessToken) {
+        localStorage.setItem('accessToken', accessToken);
+      }
+
+      if (NeedAbti) {
+        navigate('/test');
+      } else {
+        const additionalData = await fetchAdditionalData(accessToken);
+
+        if (additionalData.abti) {
+          navigate('/home');
+        } else {
+          navigate('/test');
+        }
+      }
+    } catch (error) {
+      console.error('Error during social login:', error);
+      alert('소셜 로그인 처리 중 오류가 발생했습니다.');
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,30 +90,6 @@ const LoginScreen = () => {
     navigate('/home'); // Home 화면으로 이동
   };
 
-  
-  // const handleLogin = async () => { // 인자를 제거합니다.
-  //   try {
-  //     const response = await axiosInstance.post('/users/login', formData);
-
-  //     const { accessToken, userData } = response.data;
-  //     if (accessToken) {
-        
-  //       localStorage.setItem('accessToken', accessToken);
-  //       localStorage.setItem('userData', JSON.stringify(userData));
-      
-     
-  //       console.log('Login successful');
-  //       navigate('/home');
-  //     }
-  //   } catch (error) {
-  //     if (error.response && error.response.status === 401) {
-  //       alert('로그인 실패: 아이디와 비밀번호를 확인하세요.');
-  //     } else {
-  //       console.error('Error logging in:', error);
-  //       alert('로그인 실패: 서버에 문제가 발생했습니다.');
-  //     }
-  //   }
-  // };
   const handleLogin = async () => {
     try {
       // 첫 번째 API 호출: 로그인 요청
@@ -85,7 +124,6 @@ const LoginScreen = () => {
           navigate('/home');
         } catch (additionalDataError) {
           if (additionalDataError.response && additionalDataError.response.status === 404) {
-
             console.log('ABTI not found, navigating to /test');
             navigate('/test');
           } else {
@@ -103,7 +141,6 @@ const LoginScreen = () => {
       }
     }
   };
-  
 
   return (
     <S.MainContainer> 
@@ -126,19 +163,18 @@ const LoginScreen = () => {
       />
       <S.Button onClick={handleLogin}>회원으로 로그인하기</S.Button>
       <S.LinkContainer>
-         
         <S.Link href="/register">추적주적 회원가입</S.Link>
       </S.LinkContainer>
       <S.Button2 onClick={handleGuestLogin}>3초만에 시작하기🚀</S.Button2>
       <S.IconContainer2>
-      <S.Link href="http://ec2-43-201-61-252.ap-northeast-2.compute.amazonaws.com:8080/api/v1/oauth2/authorization/naver" target="_blank" rel="noopener noreferrer">
-        <S.Image2 src={Naverimage} alt="Naver logo" />
-      </S.Link>
-      <S.Link href="http://ec2-43-201-61-252.ap-northeast-2.compute.amazonaws.com:8080/api/v1/oauth2/authorization/kakao" target="_blank" rel="noopener noreferrer">
-        <S.Image2 src={Kakaoimage} alt="Kakao logo" />
-      </S.Link>
-      <S.Link href="http://ec2-43-201-61-252.ap-northeast-2.compute.amazonaws.com:8080/api/v1/oauth2/authorization/google" target="_blank" rel="noopener noreferrer">
-        <S.Image2 src={Googleimage} alt="Google logo" />
+        <S.Link href="http://ec2-43-201-61-252.ap-northeast-2.compute.amazonaws.com:8080/api/v1/oauth2/authorization/naver" target="_blank" rel="noopener noreferrer">
+          <S.Image2 src={Naverimage} alt="Naver logo" />
+        </S.Link>
+        <S.Link href="http://ec2-43-201-61-252.ap-northeast-2.compute.amazonaws.com:8080/api/v1/oauth2/authorization/kakao" target="_blank" rel="noopener noreferrer">
+          <S.Image2 src={Kakaoimage} alt="Kakao logo" />
+        </S.Link>
+        <S.Link href="http://ec2-43-201-61-252.ap-northeast-2.compute.amazonaws.com:8080/api/v1/oauth2/authorization/google" target="_blank" rel="noopener noreferrer">
+          <S.Image2 src={Googleimage} alt="Google logo" />
         </S.Link>
       </S.IconContainer2>
       <S.BackContainer>
