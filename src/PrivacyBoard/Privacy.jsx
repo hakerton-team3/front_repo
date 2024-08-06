@@ -21,6 +21,8 @@ const Privacy = () => {
         navigate(path);
     };
 
+    const userData = JSON.parse(localStorage.getItem('userData'));
+
     // 모달 열기/닫기 함수
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen);
@@ -120,7 +122,7 @@ const Privacy = () => {
                     </S.ImageButton>
                 </S.ButtonContainer>
                 <S.Content>
-                    <p style={{ textAlign: 'left', fontSize: '19px', fontWeight: 'bold', margin: '0' }}>김서경 님, 나만의 게시판입니다.</p>
+                    <p style={{ textAlign: 'left', fontSize: '19px', fontWeight: 'bold', margin: '0' }}> {userData.name} 님, 나만의 게시판입니다.</p>
                     <hr />
                     <p>
                         누군가에게 말하기 망설여지거나 말 못할 고민들로 인해 한 음주.<br />

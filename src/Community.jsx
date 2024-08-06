@@ -114,7 +114,7 @@ function Community() {
       const accessToken = localStorage.getItem('accessToken');
       if (!accessToken) throw new Error('Access token not found');
 
-      const response = await axiosInstance.get('/group-posts/best/흑역사', {
+      const response = await axiosInstance.get('/group-posts/best', {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
 
