@@ -33,6 +33,9 @@ const CustomCalendar = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   
+  const userData = JSON.parse(localStorage.getItem('userData'));
+
+
   useEffect(() => {
     if (scheduleData.beerAlcohol) {
       setNumberValue(scheduleData.beerAlcohol);
@@ -185,7 +188,7 @@ const CustomCalendar = () => {
         <div className="header-text">
           <div className="event-text">
             <br />
-            {userName}님의<br />
+             {userData.name} 님의<br />
             <strong>예정된 약속은,</strong>
           </div>
           <img className="event-circle" src={Sun}></img>

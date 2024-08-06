@@ -20,9 +20,13 @@ const Section01 = () => {
  
   const navigate = useNavigate();
 
+
+  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
+        await new Promise((resolve) => setTimeout(resolve, 500)); 
         const accessToken = localStorage.getItem('accessToken');
         const response = await axiosInstance.get('/challenges/weekly', {
           headers: { Authorization: `Bearer ${accessToken}` },
@@ -42,7 +46,7 @@ const Section01 = () => {
     try {
       const accessToken = localStorage.getItem('accessToken');
 
-      const response = await axiosInstance.post(
+      const response = await axiosInstance.post(//
         `/challenges/weekly/achieved`,
         {},
         { headers: { Authorization: `Bearer ${accessToken}` } }

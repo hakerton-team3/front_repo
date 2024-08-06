@@ -326,7 +326,7 @@ function Statistics() {
         return "절주가 필요하지 않습니다.";
     }
   };
-
+  
   const getComments = (totalComments) => {
     switch (totalComments) {
       case "1 star comments":
@@ -343,13 +343,13 @@ function Statistics() {
     }
   };
 
-
+  const userData = JSON.parse(localStorage.getItem('userData'));
   return (
     <>
       <Container>
         <MemoImage src={memoIcone} />
         <Maintext>
-          <p>{data.userName} 님의</p>
+          <p>  {userData.name}  님의</p>
           <p>건강진단표,</p>
         </Maintext>
         <Underline />
