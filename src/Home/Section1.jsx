@@ -12,50 +12,7 @@ const Section01 = () => {
     navigate('/contact');
   };
 
-
-  const [data, setData] = useState(null);
-  const [details, setDetails] = useState(null);
-
-  useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken');
-    
-
-    axiosInstance.get('/user-infos/user-name', {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    })
-      .then(response => {
-        setData(response.data);
-        localStorage.setItem('userData', JSON.stringify({ name: response.data.name }));
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-
-      axiosInstance.get('/user-infos/user-abti', {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-        .then(response => {
-          setDetails(response.data);
-          const storedData = JSON.parse(localStorage.getItem('userData')) || {};
-          localStorage.setItem('userData', JSON.stringify({ ...storedData, resultTitle: response.data.title }));
-        })
-        .catch(error => {
-          console.error('Error fetching user title:', error);
-        });
-
-
-
-
-    }, []);
-
-  if (!data) {
-    return <h2>Loding...</h2>;
-  }
-  
+  const userData = JSON.parse(localStorage.getItem('userData'));
   // const userData = JSON.parse(localStorage.getItem('userData'));
  
   return (
@@ -64,7 +21,7 @@ const Section01 = () => {
       <S.MainContainer>
         <S.TransparentContainer>
           <S.Title>
-          {data.name}  님의
+          {userData.name} 님의
             <S.IconWrapper>
               <FiSettings size={20} />
             </S.IconWrapper>
@@ -84,7 +41,7 @@ const Section01 = () => {
           <S.Image src={sudolImage} alt="sudol" />
         </S.TransparentContainer>
         <S.YellowContainer2>
-          <S.Smalltitle>숙취가 심한 {data.name} 님! 숙취해소제 챙겨요</S.Smalltitle>
+          <S.Smalltitle>숙취가 심한  {userData.name} 님! 숙취해소제 챙겨요</S.Smalltitle>
         </S.YellowContainer2>
         
         
