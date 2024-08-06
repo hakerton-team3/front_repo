@@ -27,7 +27,7 @@ import Badge from './Badge.jsx';
 
  
 
-const Section02 = () => {
+const Section02red = () => {
   const postMissionClear = async (missionId) => {  
       try {
       
@@ -243,8 +243,7 @@ const createChallenges = async () => {
         <K.ModalTitle>오늘의 미션</K.ModalTitle>
         <K.ModalContent>앱 사용과 음주 습관 관리법까지 한 번에 익혀보도록 합시다.</K.ModalContent>
         <K.BorderedBtn onClick={() => { openModal8();  }}>출석체크 하기</K.BorderedBtn>
-        <K.BorderedBtn onClick={() => { handleScrollAndClose();  handleButtonClick(2); }}>안주 추천 받기 기능 사용하기</K.BorderedBtn>
-        <K.BorderedBtn onClick={() => {navigateTo('/calendar'); handleButtonClick(3);}}>음주 기록하기</K.BorderedBtn>
+         
       </Modal>
 
       <Modal ariaHideApp={false} isOpen={isOpen8} onRequestClose={closeModal8} style={customStyles}>
@@ -320,4 +319,4 @@ const createChallenges = async () => {
 };
 
 
-export default Section02;
+export default Section02red;

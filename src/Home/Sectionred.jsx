@@ -15,7 +15,9 @@ const Section01 = () => {
   const [error, setError] = useState(null);
   const [isOpen6, setIsOpen6] = useState(false);
   const [isOpen9, setIsOpen9] = useState(false);
-
+   
+  const userData = JSON.parse(localStorage.getItem('userData'));
+ 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -102,7 +104,7 @@ const Section01 = () => {
       <S.MainContainer>
         <S.TransparentContainer>
           <S.Title>
-            김서경 님의
+            {userData.name} 님의
             <S.IconWrapper>
               <FiSettings size={20} />
             </S.IconWrapper>

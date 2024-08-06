@@ -27,9 +27,11 @@ const RegisterScreen = () => {
     try {
       const response = await axiosInstance.post('/users', formData);
       console.log('User created:', response.data);
-      
+      const { accessToken } = response.data;
       // 사용자 데이터를 로컬 스토리지에 저장
-      localStorage.setItem('userData', JSON.stringify({ name: formData.name, email: formData.email }));
+      localStorage.setItem('userData', JSON.stringify({ name: formData.name, email: formData.email}));
+      localStorage.setItem('accessToken', accessToken);
+
 
       navigate('/test'); // 회원가입 성공 시 테스트 화면으로 이동
     } catch (error) {
