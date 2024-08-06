@@ -10,7 +10,8 @@ const Test = () => {
   const navigate = useNavigate();
   const [answers, setAnswers] = useState(Array(10).fill(null));
   const [userName, setUserName] = useState(''); // 사용자 이름 상태 추가
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(0);
+  const [count2, setCount2] = useState(0);
 
   useEffect(() => {
     // 사용자 이름을 localStorage에서 가져오기
@@ -28,12 +29,13 @@ const Test = () => {
 
   const handleresultLogin = async () => {
     const resultIndex = calculateResult(answers);
+    
     if (resultIndex === -1) {
       alert('결과를 계산할 수 없습니다.');
       return;
     }
     const resultData = answer[resultIndex];
-    const averageAlcoholAmount = answers[9] === 0 ? 0.5 : 1;
+    const averageAlcoholAmount = count2
 
     const formData = {
       title: resultData.title,
@@ -43,7 +45,7 @@ const Test = () => {
       improvingDescription2: resultData.improvingDescription2,
       improvingDescription3: resultData.improvingDescription3,
       weeklyAlcoholAmount: count,
-      averageAlcoholAmount: averageAlcoholAmount,
+      averageAlcoholAmount: count2,
     };
 
     try {
@@ -58,7 +60,7 @@ const Test = () => {
         '/user-infos/user-drink-amount',
         {
           weeklyAlcoholAmount: count,
-          averageAlcoholAmount: averageAlcoholAmount,
+          averageAlcoholAmount: count2,
         },
         {
           headers: {
@@ -90,29 +92,70 @@ const Test = () => {
   };
 
   
-
   const calculateResult = (answers) => {
-    if (answers[0] === 0 && answers[1] === 0 && answers[2] === 0) {
-      return 0;
-    } else if (answers[0] === 1 && answers[1] === 1 && answers[2] === 1) {
-      return 1;
-    } else if (answers[0] === 0 && answers[1] === 0 && answers[2] === 1) {
-      return 2;
-    } else if (answers[0] === 0 && answers[1] === 1 && answers[2] === 0) {
-      return 3;
-    } else if (answers[0] === 0 && answers[1] === 1 && answers[2] === 1) {
-      return 4;
-    } else if (answers[0] === 1 && answers[1] === 0 && answers[2] === 0) {
-      return 5;
-    } else if (answers[0] === 1 && answers[1] === 0 && answers[2] === 1) {
-      return 6;
-    } else if (answers[0] === 1 && answers[1] === 1 && answers[2] === 0) {
-      return 7;
-    } else {
-      return -1; // 결과 없음
-    }
-  };
+    // 그룹별 답변 카운트
+    let group1Count = 0; // 혼자/같이
+    let group2Count = 0; // 많이/조금
+    let group3Count = 0; // 번개/계획
+  
+    // 첫 번째 그룹 (1, 2, 3 질문)
+    if (answers[0] === 0) group1Count++;
+    if (answers[1] === 0) group1Count++;
+    if (answers[2] === 0) group1Count++;
+  
+    // 두 번째 그룹 (4, 5, 6 질문)
+    if (answers[3] === 0) group2Count++;
+    if (answers[4] === 0) group2Count++;
+    if (answers[5] === 0) group2Count++;
+  
+    // 세 번째 그룹 (7, 8, 9 질문)
+    if (answers[6] === 0) group3Count++;
+    if (answers[7] === 0) group3Count++;
+    if (answers[8] === 0) group3Count++;
 
+   
+    // 혼자/같이 결정
+    const aloneOrTogether = group1Count >= 2 ? '같이' : '혼자';
+  
+    // 많이/조금 결정
+    const lotOrLittle = group2Count >= 2 ? '많이' : '조금';
+  
+    // 번개/계획 결정
+    const spontaneousOrPlanned = group3Count >= 2 ? '번개' : '계획';
+  
+    // 결과 매핑
+    if (aloneOrTogether === '혼자') {
+      if (lotOrLittle === '많이') {
+        if (spontaneousOrPlanned === '번개') {
+          return 0; // 번개 술꾼
+        } else {
+          return 1; // 알코올 애호가
+        }
+      } else {
+        if (spontaneousOrPlanned === '번개') {
+          return 2; // 감성 타는 혼술러
+        } else {
+          return 3; // 꼬꼬마 술애호가
+        }
+      }
+    } else {
+      if (lotOrLittle === '많이') {
+        if (spontaneousOrPlanned === '번개') {
+          return 4; // "뭐해? 술 먹자" 빌런
+        } else {
+          return 5; // 술약속의 선도자
+        }
+      } else {
+        if (spontaneousOrPlanned === '번개') {
+          return 6; // 모임 충성론자
+        } else {
+          return 7; // 절제의 달인
+        }
+      }
+    }
+  
+  };
+  
   const questions = [
     {
       questionText: "1. 오랜 기간 진행한 프로젝트가 끝이 났다.<br>그동안의 고생을 보상하기 위한 당신의 선택은?",
@@ -173,27 +216,31 @@ const Test = () => {
     {
       questionText: "9. 친구들과 자주 가던 바에 간 당신의 선택은?",
       options: [
+         "바텐더에게 추천을 받는다",
         "매번 마시던 그 메뉴를 주문한다",
-        "바텐더에게 추천을 받는다"
+       
       ]
     },
-    {
-      questionText: "10. 평소의 주량은?",
-      options: [
-        "1병이하 마시면 취하거나 기분이 좋다",
-        "1병먹어도 아무렇지 않고 그이상 마신다"
-      ]
-    },
+   
   ];
 
   const increaseCount = () => {
-    setCount(count + 1);
+    setCount((prevCount) => prevCount + 0.5);
   };
-
+  
   const decreaseCount = () => {
-    setCount(count - 1);
+    setCount((prevCount) => (prevCount > 0 ? prevCount - 0.5 : 0));
+  };
+  
+  const increaseCount2 = () => {
+    setCount2((prevCount) => prevCount + 0.5);
+  };
+  
+  const decreaseCount2 = () => {
+    setCount2((prevCount) => (prevCount > 0 ? prevCount - 0.5 : 0));
   };
 
+  
   return (
     <S.MainContainer>
       <S.Title>잠깐,</S.Title>
@@ -222,7 +269,25 @@ const Test = () => {
           <S.Divider />
         </React.Fragment>
       ))}
+      
       <S.Image src={Beerimage} alt="logo" />
+      <S.Container>
+        <S.ParentContainer>
+          <S.Instruction2>
+            나의 주량은
+          </S.Instruction2>
+          <S.ParentContainer2>
+            <S.Instruction5>소주기준</S.Instruction5>
+            <S.NumberContainer>
+              <S.NumberButton onClick={decreaseCount}>-</S.NumberButton>
+              <S.NumberDisplay>{count}</S.NumberDisplay>
+              <S.NumberButton onClick={increaseCount}>+</S.NumberButton>
+            </S.NumberContainer>
+            <S.Instruction4>병을 마셔요</S.Instruction4>
+          </S.ParentContainer2>
+        </S.ParentContainer>
+        
+      </S.Container>
       <S.Container>
         <S.ParentContainer>
           <S.Instruction2>
@@ -231,9 +296,9 @@ const Test = () => {
           <S.ParentContainer2>
             <S.Instruction5>소주기준</S.Instruction5>
             <S.NumberContainer>
-              <S.NumberButton onClick={decreaseCount}>-</S.NumberButton>
-              <S.NumberDisplay>{count}</S.NumberDisplay>
-              <S.NumberButton onClick={increaseCount}>+</S.NumberButton>
+              <S.NumberButton onClick={decreaseCount2}>-</S.NumberButton>
+              <S.NumberDisplay>{count2}</S.NumberDisplay>
+              <S.NumberButton onClick={increaseCount2}>+</S.NumberButton>
             </S.NumberContainer>
             <S.Instruction4>병을 마셔요</S.Instruction4>
           </S.ParentContainer2>

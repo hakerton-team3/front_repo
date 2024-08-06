@@ -112,6 +112,23 @@ export const ModalContent = styled.div`
   text-align: center;
 `;
 
+
+export const ModalContent2 = styled.div`
+  font-size: 11px;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 25%;
+`;
+
+export const ModalContent3 = styled.div`
+  font-size: 11px;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 15%;
+`;
+
+
+
 export const CloseIcon = styled.img`
   position: absolute;
   top: 10px;

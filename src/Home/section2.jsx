@@ -266,7 +266,7 @@ const createChallenges = async () => {
       <Modal ariaHideApp={false} isOpen={isOpen3} onRequestClose={closeModal3} style={customStyles}>
         <K.CloseIcon src={closeIcon} alt="Close" onClick={closeModal3} />
         <K.ModalTitle3>나만의 미션</K.ModalTitle3>
-        <K.ModalContent>나만의 미션으로 절주챌린지와 금주챌린지에 도전해봐요.</K.ModalContent>
+        <K.ModalContent3>나만의 미션으로 절주챌린지와 금주챌린지에 도전해봐요.</K.ModalContent3>
         
         <K.BorderedBtn onClick={openModal5}>금주챌린지 도전</K.BorderedBtn>
       </Modal>

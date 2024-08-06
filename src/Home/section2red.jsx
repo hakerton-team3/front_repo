@@ -219,14 +219,7 @@ const createChallenges = async () => {
             
           </S.ContainererText>
         </S.CardContainer>
-        <S.CardContainer onClick={openModal3}>
-          <S.Hole />
-          <S.ContainererText>
-            <div>나만의</div>
-            <div>미션</div>
-            
-          </S.ContainererText>
-        </S.CardContainer>
+        
         {/* Add more CardContainer components as needed */}
       </S.ScrollWrapper>
 
@@ -241,7 +234,7 @@ const createChallenges = async () => {
       <Modal ariaHideApp={false} isOpen={isOpen2} onRequestClose={closeModal2} style={customStyles}>
         <K.CloseIcon src={closeIcon} alt="Close" onClick={closeModal2} />
         <K.ModalTitle>오늘의 미션</K.ModalTitle>
-        <K.ModalContent>앱 사용과 음주 습관 관리법까지 한 번에 익혀보도록 합시다.</K.ModalContent>
+        <K.ModalContent2>앱 사용과 음주 습관 관리법까지 한 번에 익혀보도록 합시다.</K.ModalContent2>
         <K.BorderedBtn onClick={() => { openModal8();  }}>출석체크 하기</K.BorderedBtn>
          
       </Modal>
@@ -266,7 +259,7 @@ const createChallenges = async () => {
         <K.CloseIcon src={closeIcon} alt="Close" onClick={closeModal3} />
         <K.ModalTitle3>나만의 미션</K.ModalTitle3>
         <K.ModalContent>나만의 미션으로 절주챌린지와 금주챌린지에 도전해봐요.</K.ModalContent>
-        <K.BorderedBtn onClick={openModal4}>절주챌린지 도전</K.BorderedBtn>
+        
         <K.BorderedBtn onClick={openModal5}>금주챌린지 도전</K.BorderedBtn>
       </Modal>
 

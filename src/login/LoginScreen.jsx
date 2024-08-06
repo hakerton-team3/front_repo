@@ -118,8 +118,12 @@ const LoginScreen = () => {
           const { name } = usernameDataResponse.data;
           const { title } = abtiDataResponse.data;
 
-          localStorage.setItem('name', name);
-          localStorage.setItem('title', title);
+          const userData = {
+            name: name,
+            resultTitle: title
+          };
+          
+          localStorage.setItem('userData', JSON.stringify(userData));
 
           navigate('/home');
         } catch (additionalDataError) {
@@ -165,7 +169,7 @@ const LoginScreen = () => {
       <S.LinkContainer>
         <S.Link href="/register">추적주적 회원가입</S.Link>
       </S.LinkContainer>
-      <S.Button2 onClick={handleGuestLogin}>3초만에 시작하기🚀</S.Button2>
+       
       <S.IconContainer2>
         <S.Link href="https://api.smartcheers.site/api/v1/oauth2/authorization/naver" target="_blank" rel="noopener noreferrer">
           <S.Image2 src={Naverimage} alt="Naver logo" />

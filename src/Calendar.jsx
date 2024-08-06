@@ -103,6 +103,9 @@ const CustomCalendar = () => {
         }
       );
 
+      console.log(response)
+      setTodayMemo(response.data.memo);
+
       setMark(prevMark => [...prevMark, moment(value).format('YYYY-MM-DD')]);
       alert('음주량을 저장했습니다.');
     } catch (error) {
@@ -149,13 +152,13 @@ const CustomCalendar = () => {
         setTodayMemo(schedule.memo || '약속 없음');
       }
     } catch (error) {
-      console.error('Error fetching schedule:', error);
+      // console.error('Error fetching schedule:', error);
       // Set scheduleData to default with '약속 없음' if an error occurs
       setScheduleData({ memo: '약속 없음' });
       if (moment(date).isSame(new Date(), 'day')) {
         setTodayMemo('약속 없음');
       }
-      alert('약속이 존재하지 않습니다.');
+     
     } finally {
       setLoading(false);
     }

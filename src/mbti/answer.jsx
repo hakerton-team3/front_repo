@@ -80,46 +80,7 @@ const answer = [
     improvingDescription3: "절제를 통해 건강을<br>유지하며 술을 즐기는<br>습관을 계속 이어가세요.",
     image: "https://fourj-storage.p-e.kr/uploads/files/2024-08-04/da9115b3-5ed8-4d95-b645-9cfd77a4b0ec.svg"
   },
-  {
-    id: 9,
-    title: "주량마스터",
-    mainDescription: "자주 술을 마시며, 강한 술에 대한 저항력이 있는",
-    detail: "#사교 #주당 #규칙적",
-    improvingDescription1: "강한 술을 즐기지만,<br>과도한 음주는<br>건강에 해로울 수 있습니다.",
-    improvingDescription2: "술을 마시지 않는 날을<br>정해 간과 체력을<br>보호하세요.",
-    improvingDescription3: "균형 잡힌 생활을 위해<br>음주 후 충분한 휴식과<br>수분 섭취를 잊지 마세요.",
-    image: "https://fourj-storage.p-e.kr/uploads/files/2024-08-04/ad468f6a-3c73-4e1a-b0c1-aedd9588807a.svg"
-  },
-  {
-    id: 10,
-    title: "술먹자 빌런",
-    mainDescription: "지인들과 자주 번개 약속을 가져 많은 양의 술을 즐기는",
-    detail: "#극강의 #프로참석러",
-    improvingDescription1: "자주 모임을 가지는 것은 좋지만, 많은 양의 술을 마시는 것은 유의해 주세요.",
-    improvingDescription2: "모임 전후로 충분한 휴식을 취하고, 중간중간 물을 마시며 적정량을 지키세요.",
-    improvingDescription3: "모임을 가지는 횟수를 조절해보세요.",
-    image: null
-  },
-  {
-    id: 11,
-    title: "모임 충성론자",
-    mainDescription: "번개 모임에서 적은 양의 술을 마시는",
-    detail: "#갑자기더라도 #조금만",
-    improvingDescription1: "모임에서 술을 즐기는 것은 좋지만, 과음은 피해야 합니다.",
-    improvingDescription2: "모임 중간중간 물을 마시며, 적당한 음주량을 지켜보세요.",
-    improvingDescription3: "즐거운 모임 후에 건강을 위해 충분한 휴식을 취하세요",
-    image: null
-  },
-  {
-    id: 12,
-    title: "절제의 달인",
-    mainDescription: "미리 계획된 약속에서 주로 적은 양의 술을 즐기는",
-    detail: "#참을인 #조금만마셔",
-    improvingDescription1: "자신의 주량을 잘 알고, 항상 적정량을 유지하는 것은 매우 중요합니다.",
-    improvingDescription2: "술을 마신 후에 충분한 수분을 섭취하고 균형 잡힌 식사를 하세요.",
-    improvingDescription3: "절제를 통해 건강을 유지하며 술을 즐기는 습관을 계속 이어가세요.",
-    image: null
-  }
+   
 ];
 
 export default answer;
