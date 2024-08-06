@@ -161,7 +161,7 @@ export const SearchIcon = styled.img`
 export const WriteIcon = styled.img`
   flex-direction: row;
   margin-top: 0px;
-  margin-left: 70px;
+  margin-left: 55px;
   width: 50px; 
   height: 50px; 
 `;
@@ -190,7 +190,7 @@ export const BorderedText = styled.div`
   color: #000000;
   font-weight: bold;
   height: 60px;
-  width: 300px;
+  width: 250px;
   background-color: #FFFFFF;
   margin-top: 20px;
   margin-bottom: 15px;

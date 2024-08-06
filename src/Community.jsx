@@ -329,7 +329,7 @@ function Community() {
               <S.Underline />
               <S.ModalBottom>
                 <S.TagBox
-                  placeholder="키워드를 #을 포함해 작성해 주세요.     (최대 3개)"
+                  placeholder="키워드를 #을 포함해 작성해 주세요.(최대 3개)"
                   value={tags}
                   onChange={onTagsChange}
                 />
