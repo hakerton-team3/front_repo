@@ -101,6 +101,8 @@ export const YellowContainer = styled.div`
   margin-bottom: 3%;
   color: black; 
   font-weight: bold;
+  margin-top: 5%;
+  margin-right: 10%;
 `;
 export const YellowContainer2 = styled.div`
   background-color: #FFCE4F; /* 노란색 배경 */

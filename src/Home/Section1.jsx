@@ -4,7 +4,7 @@ import * as S from './Section01.styled';
 import { FiSettings } from 'react-icons/fi';
 import sudolImage from  '../image/sudol2.svg';
 import axiosInstance from '../axios/axiosInstance';
-
+import DateComponent from './GetCurrentDate';
 const Section01 = () => {
   const navigate = useNavigate();
 
@@ -29,13 +29,13 @@ const Section01 = () => {
           <S.FontChab> 음주정보 </S.FontChab>
           <S.WhiteContainer>
             <S.Subtitle>
-              이번주 평균 음주량에 주의해 주세요.
+              이번주 평균 음주량에 주의해 주세요.  
             </S.Subtitle>
           </S.WhiteContainer>
           <S.WhiteSubContainer>
-            <div>음주 캘린더 | 약속</div>
-            <S.LargeText>오늘 18:00</S.LargeText>
-            <S.YellowContainer>동아리 회식자리</S.YellowContainer>
+            <div>오늘은,</div>
+            <S.LargeText>  <DateComponent /></S.LargeText>
+            <S.YellowContainer>{userData.name}님 환영합니다</S.YellowContainer>
             <S.Smalltitle>*목표 절주 주량을 확인하러가요</S.Smalltitle>
           </S.WhiteSubContainer>
           <S.Image src={sudolImage} alt="sudol" />

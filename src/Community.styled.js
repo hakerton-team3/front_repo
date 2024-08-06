@@ -264,7 +264,7 @@ export const SearchIcon = styled.img`
 export const WriteIcon = styled.img`
   flex-direction: row;
   margin-top: -7px;
-  margin-left: 80px;
+  margin-left: 65px;
   width: 50px; 
   height: 50px; 
 `;
@@ -365,7 +365,7 @@ export const P = styled.div`
 
 export const TitleBox = styled.input`
   margin-top: 10px;
-  margin-left: 35px;
+  margin-left: 25px;
   padding: 10px;
   font-weight: bold;
   display: block;
@@ -375,7 +375,7 @@ export const TitleBox = styled.input`
 `;
 
 export const Underline = styled.div`
-  margin-left: 10px;
+  margin-left: 0px;
   width: 100%;
   height: 1px;
   background-color: #E3E3E3;
