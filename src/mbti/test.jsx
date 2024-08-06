@@ -10,6 +10,7 @@ const Test = () => {
   const navigate = useNavigate();
   const [answers, setAnswers] = useState(Array(10).fill(null));
   const [userName, setUserName] = useState(''); // 사용자 이름 상태 추가
+  const [count, setCount] = useState(1);
 
   useEffect(() => {
     // 사용자 이름을 localStorage에서 가져오기
@@ -32,6 +33,7 @@ const Test = () => {
       return;
     }
     const resultData = answer[resultIndex];
+    const averageAlcoholAmount = answers[9] === 0 ? 0.5 : 1;
 
     const formData = {
       title: resultData.title,
@@ -39,15 +41,51 @@ const Test = () => {
       detail: resultData.hashTag,
       improvingDescription1: resultData.improvingDescription1,
       improvingDescription2: resultData.improvingDescription2,
-      improvingDescription3: resultData.improvingDescription3
+      improvingDescription3: resultData.improvingDescription3,
+      weeklyAlcoholAmount: count,
+      averageAlcoholAmount: averageAlcoholAmount,
     };
 
     try {
-      const response = await axiosInstance.post('/abtis', formData);
-      console.log('Response:', response.data);
+      const accessToken = localStorage.getItem('accessToken');
+      if (!accessToken) {
+        throw new Error('Access token not found');
+      }
+
+      console.log('Using access token:', accessToken);
+
+      const responsePatch = await axiosInstance.patch(
+        '/user-infos/user-drink-amount',
+        {
+          weeklyAlcoholAmount: count,
+          averageAlcoholAmount: averageAlcoholAmount,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+
+      localStorage.setItem('resultTitle', resultData.title);
+
+      console.log('PATCH Response:', responsePatch.data);
+
+      const responsePost = await axiosInstance.post('/abtis', formData, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      console.log('POST Response:', responsePost.data);
       navigate('/result', { state: { resultIndex } });
     } catch (error) {
-      console.error('Error posting data:', error);
+      if (error.response && error.response.status === 404) {
+        alert('챌린지생성 실패');
+      } else {
+        console.error('챌린지생성에러:', error);
+        alert('챌린지생성에러');
+      }
     }
   };
 
@@ -146,9 +184,6 @@ const Test = () => {
     },
   ];
 
-
-  const [count, setCount] = useState(1);
-
   const increaseCount = () => {
     setCount(count + 1);
   };
@@ -159,7 +194,6 @@ const Test = () => {
 
   return (
     <S.MainContainer>
-      
       <S.Title>잠깐,</S.Title>
       <S.BubbleContainer>
         <S.BubbleContainerText2>
@@ -188,26 +222,22 @@ const Test = () => {
       ))}
       <S.Image src={Beerimage} alt="logo" />
       <S.Container>
-       
-      <S.ParentContainer>
-      <S.Instruction2>
-        일주일에 
-      </S.Instruction2>
-      <S.ParentContainer2><S.Instruction5>소주기준</S.Instruction5> <S.NumberContainer>
-        <S.NumberButton onClick={decreaseCount}>-</S.NumberButton>
-        <S.NumberDisplay>{count}</S.NumberDisplay>
-        <S.NumberButton onClick={increaseCount}>+</S.NumberButton>
-      </S.NumberContainer>   <S.Instruction4>병을 마셔요</S.Instruction4></S.ParentContainer2>
-      
-     
-    </S.ParentContainer>
-        
-           
-       
-          
-         
+        <S.ParentContainer>
+          <S.Instruction2>
+            일주일에
+          </S.Instruction2>
+          <S.ParentContainer2>
+            <S.Instruction5>소주기준</S.Instruction5>
+            <S.NumberContainer>
+              <S.NumberButton onClick={decreaseCount}>-</S.NumberButton>
+              <S.NumberDisplay>{count}</S.NumberDisplay>
+              <S.NumberButton onClick={increaseCount}>+</S.NumberButton>
+            </S.NumberContainer>
+            <S.Instruction4>병을 마셔요</S.Instruction4>
+          </S.ParentContainer2>
+        </S.ParentContainer>
         <S.MainText>
-        {userName}님의 <S.Highlight>술</S.Highlight><S.SubHighlight>BTI</S.SubHighlight>는?
+          {userName}님의 <S.Highlight>술</S.Highlight><S.SubHighlight>BTI</S.SubHighlight>는?
         </S.MainText>
       </S.Container>
       <S.Button onClick={handleresultLogin}>확인하러 가기</S.Button>

@@ -21,9 +21,7 @@ const App = () => {
 
   const isAuthRoute = location.pathname === '/' || location.pathname === '/register' || location.pathname === '/test' || location.pathname === '/result';
 
-  const handleBackClick = () => {
-    navigate(-1); // 뒤로가기
-  };
+   
 
   useEffect(() => {
     const requestUserPermission = async () => {
@@ -68,7 +66,7 @@ const App = () => {
             <S.StyledLink to="/community">커뮤니티</S.StyledLink>
             <S.StyledLink to="/calendar">캘린더</S.StyledLink>
             <S.StyledLink to="/statistics">통계분석</S.StyledLink>
-            <S.BackButton onClick={handleBackClick}>뒤로가기</S.BackButton>
+            
           </S.Nav>
         </>
       )}

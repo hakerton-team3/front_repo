@@ -1,14 +1,7 @@
 // RegisterScreen.styled.js
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
-export const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'chab';
-    src: url('src/fonts/chab.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-  }
-`;
+ 
 
 export const MainContainer = styled.div`
   width: 100%;
@@ -23,7 +16,7 @@ export const MainContainer = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-family: 'chab';
+  font-family: 'LotteriaChab';
   font-size: 40px;
   font-weight: bold;
   text-align: center;

@@ -1,17 +1,18 @@
 // Section02.js
 import * as S from './Section2.styled';
 import * as K from './Section2.styled';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import closeIcon from '../image/닫기버튼.png';
 import badgeIcon1 from '../image/미획득뱃지1.svg';
-import badgeIcon2 from '../image/미획득뱃지2.svg';
-import badgeIcon3 from '../image/미획득뱃지3.svg';
-import badgeIcon4 from '../image/미획득뱃지4.svg';
-import badgeIcon5 from '../image/미획득뱃지5.svg';
-import badgeIcon6 from '../image/미획득뱃지6.svg';
-import badgeIcon7 from '../image/미획득뱃지7.svg';
-import badgeIcon8 from '../image/미획득뱃지8.svg';
+import badgeIcon2 from '../image/미획득뱃지1.svg';
+import badgeIcon3 from '../image/미획득뱃지1.svg';
+import badgeIcon4 from '../image/미획득뱃지1.svg';
+import badgeIcon5 from '../image/미획득뱃지1.svg';
+import badgeIcon6 from '../image/미획득뱃지1.svg';
+import badgeIcon7 from '../image/미획득뱃지1.svg';
+import badgeIcon8 from '../image/미획득뱃지1.svg';
+import badgeIcon9 from '../image/획득뱃지.svg';
 import judalIcon from '../image/금주 주달.png';
 import judalIcon2 from '../image/금주중 주달.png';
 import judalIcon3 from '../image/출석전주다리.svg';
@@ -20,6 +21,8 @@ import axiosInstance from '../axios/axiosInstance';
 import { useNavigate } from 'react-router-dom';
 import AttendanceDays from './AttendanceDays.jsx';
 import DateComponent from './GetCurrentDate.jsx';
+import Badge from './Badge.jsx';
+
 
 
  
@@ -132,12 +135,10 @@ const createChallenges = async () => {
 
   const handleAttendanceClick = () => {
     attendance(setImageSrc);
-    alert('출석이 저장되었습니다.');
   };
 
   const [imageSrc, setImageSrc] = useState(judalIcon3); 
-
-
+  
   const [isOpen1, setIsOpen1] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
   const [isOpen3, setIsOpen3] = useState(false);
@@ -170,7 +171,7 @@ const createChallenges = async () => {
     document.documentElement.scrollTo(0, document.body.scrollHeight); // 페이지 가장 아래로 스크롤
   };
   
-
+ 
   const customStyles = {
     overlay: {
       backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -193,8 +194,10 @@ const createChallenges = async () => {
       alignItems: 'center'
     },
   };
-
+ 
+  
   return (
+    <>
     <S.MainContainer>
       <S.Title>간단 미션 메뉴</S.Title>
       <S.ScrollWrapper>
@@ -230,46 +233,7 @@ const createChallenges = async () => {
         <K.ModalTitle>달성뱃지 보관함</K.ModalTitle>
         <K.ModalContent>여태 모은 미션뱃지와</K.ModalContent>
         <K.ModalContent>앞으로 도전하게 될 달성뱃지를 모아서 확인해요.</K.ModalContent>
-        <K.BadgeContainer>
-          <K.Badge>
-            <K.BadgeImage src={badgeIcon1} />
-            <K.BadgeText>미션달성 5회</K.BadgeText>
-          </K.Badge>
-          <K.Badge>
-            <K.BadgeImage src={badgeIcon2} />
-            <K.BadgeText>미션달성 10회</K.BadgeText>
-          </K.Badge>
-        </K.BadgeContainer>
-        <K.BadgeContainer>
-          <K.Badge>
-            <K.BadgeImage src={badgeIcon3} />
-            <K.BadgeText>미션달성 20회</K.BadgeText>
-          </K.Badge>
-          <K.Badge>
-            <K.BadgeImage src={badgeIcon4} />
-            <K.BadgeText>미션달성 30회</K.BadgeText>
-          </K.Badge>
-        </K.BadgeContainer>
-        <K.BadgeContainer>
-          <K.Badge>
-            <K.BadgeImage src={badgeIcon5} />
-            <K.BadgeText>한달 출석</K.BadgeText>
-          </K.Badge>
-          <K.Badge>
-            <K.BadgeImage src={badgeIcon6} />
-            <K.BadgeText>일년 출석</K.BadgeText>
-          </K.Badge>
-        </K.BadgeContainer>
-        <K.BadgeContainer>
-          <K.Badge>
-            <K.BadgeImage src={badgeIcon7} />
-            <K.BadgeText>절주챌린지</K.BadgeText>
-          </K.Badge>
-          <K.Badge>
-            <K.BadgeImage src={badgeIcon8} />
-            <K.BadgeText>금주챌린지</K.BadgeText>
-          </K.Badge>
-        </K.BadgeContainer>
+        <Badge/>
       </Modal>
 
       <Modal ariaHideApp={false} isOpen={isOpen2} onRequestClose={closeModal2} style={customStyles}>
@@ -349,6 +313,7 @@ const createChallenges = async () => {
         <K.SubmitButton>포기하기</K.SubmitButton>
       </Modal>
     </S.MainContainer>
+    </>
   );
 };
 

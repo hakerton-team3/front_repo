@@ -1,5 +1,6 @@
 // Section3.styled.js
 import styled from 'styled-components';
+import backgroundImage from '../image/ramen.png';
 
 export const SectionContainer = styled.div`
   width: 100%;
@@ -27,6 +28,7 @@ export const Title = styled.h1`
   font-weight: bold;
   margin-bottom: 10px;
   color: black;
+  
 `;
 
 export const SubTitle = styled.h2`
@@ -84,7 +86,7 @@ export const RecommendationContainer = styled.div`
  
   background: 
     linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 1) 100%),
-    url('src/image/ramen.png');
+    url(${backgroundImage});
   background-size: cover;
   background-position: center;
   display: flex;
@@ -105,7 +107,7 @@ export const Recommandtitle = styled.div`
   font-size: 60px;
   color: black;
   text-align: center;
-  font-weight: bold;
+
   margin-top: 10px;
-  font-family: 'chab';
+  font-family: 'LotteriaChab';
 `;

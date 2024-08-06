@@ -1,20 +1,12 @@
 // Section01.styled.js
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
-// Global style to include the custom font
-export const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'chab';
-    src: url('src/fonts/chab.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-  }
-`;
+import backgroundImage from '../image/image2.png';
+ 
 
 // Styled component using the custom font
 export const FontChab = styled.span`
-  font-family: 'chab';
+  font-family: 'LotteriaChab';
   font-weight: bold;
   font-size: 45px;
 `;
@@ -25,7 +17,7 @@ export const MainContainer = styled.div`
   height: 100%;
   background: 
     linear-gradient(to bottom, rgba(255, 255, 255, 0) -100%, rgba(255, 255, 255, 1) 100%),
-    url('src/image/image2.png');
+    url(${backgroundImage});
   background-size: cover;
   background-position: center;
   overflow-x: hidden; /* Prevent horizontal scrolling */
@@ -204,10 +196,10 @@ export const TransparentContainer = styled.div`
 // Image style
 export const Image = styled.img`
   width: 180px; /* 이미지의 크기를 조정 */
-  height: 220px;
+  height: 200px;
   position: absolute; /* 절대 위치 */
   right: -35%; /* 부모 컨테이너의 오른쪽 밖으로 나가도록 설정 */
-  bottom: -15%; /* 부모 컨테이너의 아래쪽 밖으로 나가도록 설정 */
+  bottom: -10%; /* 부모 컨테이너의 아래쪽 밖으로 나가도록 설정 */
 `;
 
 export const Button = styled.button`
@@ -223,4 +215,27 @@ export const Button = styled.button`
   &:hover {
     background-color: #e0a800; /* 호버 시 배경색 */
   }
+`;
+
+export const Line1 = styled.p`
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: -20px;
+`;
+
+export const Line2 = styled.p`
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: -20px;
+
+  & .highlight {
+    color: #0085D0;
+;
+  }
+`;
+
+export const GemjuCakeImg = styled.img`
+  width: 187px;
+  height: 167px;
+  margin: 10px;
 `;

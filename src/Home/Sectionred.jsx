@@ -1,59 +1,66 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './SectionRed.styled';
 import * as K from './Section2.styled';
 import { FiSettings } from 'react-icons/fi';
-import sudolImage from  '../image/redsudol.png';
+import sudolImage from '../image/redsudol.png';
 import judalIcon2 from '../image/금주중 주달.png';
 import closeIcon from '../image/닫기버튼.png';
+import gemjuCakeIcon from '../image/금주케이크.svg';
 import Modal from 'react-modal';
 import axiosInstance from '../axios/axiosInstance';
-import GoalDate from './GoalDate';
 
 const Section01 = () => {
-
-  const endChallenges = async () => {  
-    try {
-    
-    const accessToken = localStorage.getItem('accessToken'); 
-    if (!accessToken) {   
-      throw new Error('Access token not found'); 
-    }
-  
-    console.log('Using access token:', accessToken);
-  
-    const response = await axiosInstance.post( 
-      `/challenges/weekly/achieved`,
-      {}, 
-      { 
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        }
-      }
-    );
-  
-    console.log(' 금주 챌린지 종료 완료:', response.data); 
-    }catch (error) { 
-    if (error.response && error.response.status === 404) { 
-      alert('챌린지종료 실패 ');
-    } else {
-      console.error('챌린지종료에러:', error);
-      alert('챌린지종료에러');
-    }
-  }
-  };
-
-  
-  
-  const navigate = useNavigate();
-
-  const handleEmergencyContactsClick = () => {
-    navigate('/emergency-contacts');
-  };
-
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
   const [isOpen6, setIsOpen6] = useState(false);
   const [isOpen9, setIsOpen9] = useState(false);
-  const [goalDate, setGoalDate] = useState(null); // GoalDate에서 전달받은 값을 저장할 상태
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const accessToken = localStorage.getItem('accessToken');
+        const response = await axiosInstance.get('/challenges/weekly', {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        });
+        console.log(response.data);
+        setData(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setError('Failed to load data. Please try again later.');
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const endChallenges = async () => {
+    try {
+      const accessToken = localStorage.getItem('accessToken');
+
+      const response = await axiosInstance.post(
+        `/challenges/weekly/achieved`,
+        {},
+        { headers: { Authorization: `Bearer ${accessToken}` } }
+      );
+      console.log('Challenge ended:', response.data);
+      closeModal6(); // Assuming this modal relates to ending the challenge
+      closeModal9();
+    } catch (error) {
+      const errorMessage = error.response && error.response.status === 404 ? '챌린지종료 실패' : '챌린지종료에러';
+      alert(errorMessage);
+      console.error('Challenge end error:', error);
+    }
+  };
+
+  const handleEmergencyContactsClick = () => {
+    navigate('/contact');
+  };
+  const HandleYellowHome = () => {
+    navigate('/home');
+  };
 
   const openModal6 = () => setIsOpen6(true);
   const closeModal6 = () => setIsOpen6(false);
@@ -61,9 +68,7 @@ const Section01 = () => {
   const closeModal9 = () => setIsOpen9(false);
 
   const customStyles = {
-    overlay: {
-      backgroundColor: "rgba(0, 0, 0, 0.5)",
-    },
+    overlay: { backgroundColor: "rgba(0, 0, 0, 0.5)" },
     content: {
       position: 'absolute',
       top: '50%',
@@ -79,13 +84,21 @@ const Section01 = () => {
       padding: "20px",
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center'
+      alignItems: 'center',
     },
   };
 
+  if (error) {
+    return <h2>{error}</h2>;
+  }
+
+  if (!data) {
+    return <h2>Loading...</h2>;
+  }
+
+
   return (
     <S.MainWrap>
-      <S.GlobalStyle />
       <S.MainContainer>
         <S.TransparentContainer>
           <S.Title>
@@ -96,7 +109,7 @@ const Section01 = () => {
           </S.Title>
           <S.FontChab> 음주정보 </S.FontChab>
           <S.WhiteContainer>
-            <S.Subtitle onClick={goalDate === 0 ? openModal9 : openModal6}>
+            <S.Subtitle onClick={data.remainingDate === 0 ? openModal9 : openModal6}>
               2주 간의 금주챌린지 중
             </S.Subtitle>
           </S.WhiteContainer>
@@ -112,43 +125,39 @@ const Section01 = () => {
           <S.Smalltitle>숙취가 심한 서경님! 숙취해소제 챙겨요</S.Smalltitle>
         </S.YellowContainer2>
 
-
         <Modal ariaHideApp={false} isOpen={isOpen6} onRequestClose={closeModal6} style={customStyles}>
-        <K.CloseIcon src={closeIcon} alt="Close" onClick={closeModal6} />
-        <K.ModalTitle6>금주챌린지</K.ModalTitle6>
-        <K.ModalContent>2주동안 금주를 실천하는 챌린지, 솔직하게 임하길.</K.ModalContent>
-        <K.JudalImage2 src={judalIcon2}></K.JudalImage2>
-        <K.GemjuContainer>
-          <h4>성공까지</h4>
-          <GoalDate setGoalDate={setGoalDate}/>
-          <h4>남았어요.</h4> 
-        </K.GemjuContainer>
-        <K.SubmitButton onClick={endChallenges}>종료하기</K.SubmitButton>
-      </Modal>
+          <K.CloseIcon src={closeIcon} alt="Close" onClick={closeModal6} />
+          <K.ModalTitle6>금주챌린지</K.ModalTitle6>
+          <K.ModalContent>2주동안 금주를 실천하는 챌린지, 솔직하게 임하길.</K.ModalContent>
+          <K.JudalImage2 src={judalIcon2} alt="Judal" />
+          <K.GemjuContainer>
+            <h4>성공까지</h4>
+            <K.H1>{data.remainingDate}일</K.H1>
+            <h4>남았어요.</h4>
+          </K.GemjuContainer>
+          <K.SubmitButton onClick={() => { HandleYellowHome();  endChallenges(); }}>종료하기</K.SubmitButton>
+        </Modal>
 
-      <Modal ariaHideApp={false} isOpen={isOpen9} onRequestClose={closeModal9} style={customStyles}>
-        <K.CloseIcon src={closeIcon} alt="Close" onClick={closeModal9} />
-        <K.ModalTitle6>금주챌린지성공</K.ModalTitle6>
-        <K.ModalContent>2주동안 금주를 실천하는 챌린지, 솔직하게 임하길.</K.ModalContent>
-        <K.JudalImage2 src={judalIcon2}></K.JudalImage2>
-        <K.GemjuContainer>
-          <h4>성공까지</h4>
-          <GoalDate setGoalDate={setGoalDate}/>
-          <h4>남았어요.</h4> 
-        </K.GemjuContainer>
-        <K.SubmitButton onClick={endChallenges}>챌린지 끝내기</K.SubmitButton>
-      </Modal>
-        
-        
-        
+        <Modal ariaHideApp={false} isOpen={isOpen9} onRequestClose={closeModal9} style={customStyles}>
+          <K.CloseIcon src={closeIcon} alt="Close" onClick={closeModal9} />
+          <K.ModalTitle6>금주챌린지</K.ModalTitle6>
+          <K.ModalContent>2주동안 금주를 실천하는 챌린지, 솔직하게 임하길.</K.ModalContent>
+          <S.GemjuCakeImg src={gemjuCakeIcon} alt="Cake" />
+          <S.Line1>김서경님의 챌린지</S.Line1>
+          <S.Line2>
+            <span className="highlight">성공</span>을 축하드립니다.
+          </S.Line2>
+          <K.SubmitButton onClick={() => { HandleYellowHome();  endChallenges(); }}>챌린지 끝내기</K.SubmitButton>
+        </Modal>
+
         <S.Button onClick={handleEmergencyContactsClick}>
           <S.LargeText>비상연락망</S.LargeText>
         </S.Button>
-        
+
         <S.Smalltitle>음주 약속 시간에 알람으로 가장 상단에 띄울 번호를 설정해주세요.</S.Smalltitle>
       </S.MainContainer>
     </S.MainWrap>
   );
-}
+};
 
 export default Section01;
