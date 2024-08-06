@@ -3,7 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 // Global style to include the custom font
 export const GlobalStyle = createGlobalStyle`
   @font-face {
-    font-family: 'chab';
+    font-family: 'Lotteriachab';
     src: url('src/fonts/chab.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
@@ -18,7 +18,7 @@ export const GlobalStyle = createGlobalStyle`
 
 // Styled component using the custom font
 export const FontChab = styled.span`
-  font-family: 'chab';
+  font-family: 'Lotteriachab';
   font-weight: bold;
   font-size: 50px;
 `;
@@ -216,7 +216,7 @@ export const Keyword = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-family: 'chab';
+  font-family: 'Lotteriachab';
   font-size: 20px;
   font-weight: bold;
   color: #FFCE4F;
@@ -243,24 +243,12 @@ export const InputContainer = styled.div`
 `
 
 export const StyledInput = styled.input`
- -webkit-background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   border: none; /* 기본 테두리 제거 */
   font-size: 12px; 
   font-weight: bold;
-  padding: 10px 40px 10px 10px; /* 여백 설정 */
-
-  padding-right: 70px; /* 아이콘 크기에 따라 여유 공간 추가 */
-  border: none;
-  border-radius: 10px;
-  font-size: 11px;
-  width: 100%;
-  height: 20px;
-  width: 400px;
-  overflow: auto; /* 검색어가 길어졌을때 오른쪽으로 자연스럽게 검색되도록 하기 위해 */
-  position: relative; /* 아이콘을 절대 위치로 배치하기 위해 설정 */
-  &::placeholder {
-    color: white; 
-  }
+  padding: 10px 40px 10px 10px; /* 여백 설정 */ 
 `;
 
 export const SearchIcon = styled.img`
@@ -268,7 +256,7 @@ export const SearchIcon = styled.img`
   height: 18px;
   background-size: contain;
   background-repeat: no-repeat;
-  margin-left: 0px; 
+  margin-left: 10px; 
   margin-top: 10px;
   cursor: pointer; /* 마우스 커서 변경 */
 `;
@@ -276,7 +264,7 @@ export const SearchIcon = styled.img`
 export const WriteIcon = styled.img`
   flex-direction: row;
   margin-top: -7px;
-  margin-left: 50px;
+  margin-left: 80px;
   width: 50px; 
   height: 50px; 
 `;
@@ -353,16 +341,16 @@ export const ModalOverlay = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  position: relative; /* 추가: 닫기 버튼의 절대 위치를 기준으로 설정 */
+  position: absolute; 
   background: #F8F8F8;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 20px;
   text-align: center;
-  width: 90%;
+  width: 70%;
 `;
 
 export const ModalTitle = styled.div`
-  font-family: 'chab';
+  font-family: 'Lotteriachab';
   font-weight: bold;
   font-size: 38px;
   color: #FFCE4F;
@@ -377,7 +365,7 @@ export const P = styled.div`
 
 export const TitleBox = styled.input`
   margin-top: 10px;
-  margin-left: 15px;
+  margin-left: 35px;
   padding: 10px;
   font-weight: bold;
   display: block;
@@ -387,10 +375,10 @@ export const TitleBox = styled.input`
 `;
 
 export const Underline = styled.div`
-  margin-left: 0px;
+  margin-left: 10px;
   width: 100%;
   height: 1px;
-  background-color: black;
+  background-color: #E3E3E3;
 `;
 
 export const MemoBox = styled.textarea`
@@ -408,7 +396,7 @@ export const ModalBottom = styled.div`
 `
 export const TagBox = styled.textarea`
   margin-top: 15px;
-  margin-left: 25px;
+  margin-left: 40px;
   margin-right: 5px;
   width: 160px;
   height: 28px;
@@ -436,12 +424,13 @@ export const SubmitButton = styled.button`
 
 export const CloseButton = styled.button`
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 0px;
+  right: 0px;
   background: none;
   border: none;
   font-size: 16px;
   cursor: pointer;
+  margin-right: 20px;
 `;
 
 // Entire Post Modal Styles
@@ -461,13 +450,13 @@ export const EntireModalOverlay = styled.div`
 
 export const EntireModalContent = styled.div`
   background: #F8F8F8;
-  width: 40%;
-  max-width: 800px;
-  border-radius: 8px;
+  width: 70%;
+  border-radius: 20px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
 `;
+
 
 
 

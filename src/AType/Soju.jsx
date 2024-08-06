@@ -1,9 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
-import OtherButton from './OtherButton';
 import './Soju.css';
+import SojuBottle from '../image/초록술병.png';
 
-const Soju = ({ isSwitchOn, toggleSwitch, value, memo, handleMemoChange, rating, setRating, numberValue, increaseNumber, decreaseNumber, handleSave, selectedDrink, setSelectedDrink, highballNumberValue, kaoliangNumberValue, setHighballNumberValue, setKaoliangNumberValue, handleOtherButtonClick }) => {
+const Soju = ({
+  sojuNumberValue,
+  setSojuNumberValue,
+  setShowMemoInput, 
+  isSwitchOn,
+  toggleSwitch,
+  value,
+  memo,
+  handleMemoChange,
+  rating,
+  setRating,
+  numberValue,
+  increaseNumber,
+  decreaseNumber,
+  handleSave,
+  selectedDrink,
+  setSelectedDrink,
+  highballNumberValue,
+  kaoliangNumberValue,
+  setHighballNumberValue,
+  setKaoliangNumberValue,
+  handleOtherButtonClick,
+  scheduleData 
+}) => {
+
+  useEffect(() => {
+    if (scheduleData.sojuAlcohol) {
+      setSojuNumberValue(scheduleData.sojuAlcohol);
+    }
+  }, [scheduleData.sojuAlcohol, setSojuNumberValue]);
+
   return (
     <div className='centerBottom'>
       <div className="Soju-top-bar">
@@ -46,13 +76,17 @@ const Soju = ({ isSwitchOn, toggleSwitch, value, memo, handleMemoChange, rating,
           </div>
         </div>
         <div className="Soju-info-right">
-          <div className="Soju-bottle-image"></div>
+          <img className="Soju-bottle-image" src={SojuBottle}></img>
           <div style={{fontSize:'12px', marginLeft:'5%'}}>
             음주량
             <div className="Soju-number-container">
-              <button onClick={() => decreaseNumber(setHighballNumberValue)} className="Soju-number-button">-</button>
-              <input type="text" value={numberValue.toFixed(1)} readOnly className="Soju-number-input" />
-              <button onClick={() => increaseNumber(setHighballNumberValue)} className="Soju-number-button">+</button>
+              <button onClick={() => decreaseNumber(setSojuNumberValue)} className="Soju-number-button">-</button>
+              <input 
+                type="text" 
+                value={sojuNumberValue.toFixed(1)} 
+                readOnly 
+                className="Soju-number-input" />
+              <button onClick={() => increaseNumber(setSojuNumberValue)} className="Soju-number-button">+</button>
             </div>
             0.5 단위
           </div>
