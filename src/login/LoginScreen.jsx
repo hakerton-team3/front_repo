@@ -54,7 +54,7 @@ const LoginScreen = () => {
 
   const handleSocialLogin = async () => {
     try {
-      const response = await axiosInstance.post('/tokens/refresh');
+      const response = await axiosInstance.get('/tokens/refresh');
       const { accessToken, NeedAbti } = response.data;
 
       if (accessToken) {
