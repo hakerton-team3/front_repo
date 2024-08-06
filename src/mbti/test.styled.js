@@ -98,7 +98,7 @@ export const Link = styled.div`
 
 export const Container = styled.div`
   text-align: center;
-  margin-top: 10%;
+  margin-top: 5%;
 `;
 
 export const Instruction4 = styled.h3`
@@ -190,6 +190,24 @@ export const BubbleContainer = styled.span`
   align-items: flex-start; /* 자식 요소를 왼쪽 정렬 */
 `;
 
+export const BubbleminiContainer = styled.span`
+  position: relative;
+  background: #FFCE4F;
+  border-radius: 1.0em;
+  padding: 3% 3%; /* 필요에 따라 패딩을 조정하세요 */
+  color: black;
+  margin-left: 10%;
+  font-size: 10px;
+  width: 68%;
+  margin-right: 25%;
+  margin-bottom: 10%;
+  height: 60px; /* 원하는 높이로 설정 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 자식 요소를 수직 중앙 정렬 */
+  align-items: flex-start; /* 자식 요소를 왼쪽 정렬 */
+`;
+
 export const BubbleContainerText = styled.span` // 수정: text를 span으로 변경
   font-size: 14px;
   font-weight: bold;
@@ -225,6 +243,14 @@ export const Divider = styled.div`
   background-color: black; /* 구분선 색상 */
   margin: 15% auto; /* 구분선을 수평 중앙으로 정렬 */
 `;
+
+export const Divider2 = styled.div`
+  width: 80%; /* 구분선의 너비 */
+  height: 1px; /* 구분선의 높이 */
+  background-color: black; /* 구분선 색상 */
+  margin: 5% auto; /* 구분선을 수평 중앙으로 정렬 */
+`;
+
 
 export const Container3 = styled.div`
   width: 350px;
@@ -265,7 +291,7 @@ display: flex;
 flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10%;
+  
 `;
 
 export const Instruction2 = styled.div`
@@ -283,8 +309,8 @@ export const NumberContainer = styled.div`
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 10px;
-  height: 40px;
-  width: 100px;
+  height: 10%;
+  width: 30%;
 `;
 
 export const NumberButton = styled.button`

@@ -60,6 +60,39 @@ const LoginScreen = () => {
       if (accessToken) {
         localStorage.setItem('accessToken', accessToken);
       }
+      try {
+        // 두 번째 API 호출: 이름과 abti 가져오기
+        const abtiDataResponse = await axiosInstance.get(
+          '/user-infos/user-abti',
+          {
+            headers: { 'Authorization': `Bearer ${accessToken}` },
+          });
+        const usernameDataResponse = await axiosInstance.get(
+          '/user-infos/user-name',
+          {
+            headers: { 'Authorization': `Bearer ${accessToken}` },
+          });
+        
+        const { name } = usernameDataResponse.data;
+        const { title } = abtiDataResponse.data;
+
+        const userData = {
+          name: name,
+          resultTitle: title
+        };
+        
+        localStorage.setItem('userData', JSON.stringify(userData));
+
+        navigate('/home');
+      } catch (additionalDataError) {
+        if (additionalDataError.response && additionalDataError.response.status === 404) {
+          console.log('ABTI not found, navigating to /test');
+          navigate('/test');
+        } else {
+          console.error('Error fetching additional data:', additionalDataError);
+          alert('정보를 가져오는 데 실패했습니다.');
+        }
+      }
 
       if (NeedAbti) {
         navigate('/test');

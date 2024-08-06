@@ -94,6 +94,12 @@ const Test = () => {
   
   const calculateResult = (answers) => {
     // 그룹별 답변 카운트
+
+  //   if (answers.length === 0 || answers.includes(null) || answers.includes(undefined)) {
+  //     alert("질문에 대한 답을 클릭해주세요.");
+  //     return;
+  // }
+
     let group1Count = 0; // 혼자/같이
     let group2Count = 0; // 많이/조금
     let group3Count = 0; // 번개/계획
@@ -252,11 +258,11 @@ const Test = () => {
           보다 재미있게 돌이켜 보면 어떨까요?
         </S.BubbleContainerText2>
       </S.BubbleContainer>
-      <S.BubbleContainer>
+      <S.BubbleminiContainer>
         <S.BubbleContainerText2>
           최근 음주 스타일 바탕으로 <S.BubbleContainerText>술비티아이</S.BubbleContainerText>에 임해주세요.
         </S.BubbleContainerText2>
-      </S.BubbleContainer>
+      </S.BubbleminiContainer>
       <S.Divider />
       {questions.map((question, index) => (
         <React.Fragment key={index}>
@@ -277,7 +283,7 @@ const Test = () => {
             나의 주량은
           </S.Instruction2>
           <S.ParentContainer2>
-            <S.Instruction5>소주기준</S.Instruction5>
+            <S.Instruction5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소주기준</S.Instruction5>
             <S.NumberContainer>
               <S.NumberButton onClick={decreaseCount}>-</S.NumberButton>
               <S.NumberDisplay>{count}</S.NumberDisplay>
@@ -286,15 +292,15 @@ const Test = () => {
             <S.Instruction4>병을 마셔요</S.Instruction4>
           </S.ParentContainer2>
         </S.ParentContainer>
-        
       </S.Container>
+     
       <S.Container>
         <S.ParentContainer>
           <S.Instruction2>
             일주일에
           </S.Instruction2>
           <S.ParentContainer2>
-            <S.Instruction5>소주기준</S.Instruction5>
+            <S.Instruction5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;소주기준</S.Instruction5>
             <S.NumberContainer>
               <S.NumberButton onClick={decreaseCount2}>-</S.NumberButton>
               <S.NumberDisplay>{count2}</S.NumberDisplay>
@@ -303,6 +309,7 @@ const Test = () => {
             <S.Instruction4>병을 마셔요</S.Instruction4>
           </S.ParentContainer2>
         </S.ParentContainer>
+        <S.Divider2 />
         <S.MainText>
           {userName}님의 <S.Highlight>술</S.Highlight><S.SubHighlight>BTI</S.SubHighlight>는?
         </S.MainText>
